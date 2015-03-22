@@ -24,11 +24,17 @@ public class About extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        //buttons,text
         Button toSettings3 = (Button) findViewById(R.id.toSettings3);
         final RelativeLayout about1 = (RelativeLayout) findViewById(R.id.about1);
         final TextView abouttitle = (TextView) findViewById(R.id.abouttitle);
         final TextView atext = (TextView) findViewById(R.id.atext);
-        if (Themes.t == 0)about1.setBackgroundColor(WHITE);
+        //setting colors
+        if (Themes.t == 0){
+            about1.setBackgroundColor(WHITE);
+            abouttitle.setTextColor(BLACK);
+            atext.setTextColor(BLACK);
+        }
         else if (Themes.t == 1){
             about1.setBackgroundColor(GREEN);
             abouttitle.setTextColor(BLACK);
@@ -59,6 +65,7 @@ public class About extends ActionBarActivity {
             abouttitle.setTextColor(BLACK);
             atext.setTextColor(BLACK);
         }
+        //back to settings
         toSettings3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

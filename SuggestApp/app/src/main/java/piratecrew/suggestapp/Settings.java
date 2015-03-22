@@ -25,6 +25,7 @@ public class Settings extends ActionBarActivity {
         setContentView(R.layout.activity_settings);
         final RelativeLayout set = (RelativeLayout) findViewById(R.id.set);
         final TextView title = (TextView) findViewById(R.id.title);
+        //Setting colors based on theme
         if (Themes.t == 0){
             set.setBackgroundColor(WHITE);
             title.setTextColor(BLACK);
@@ -53,18 +54,20 @@ public class Settings extends ActionBarActivity {
             set.setBackgroundColor(WHITE);
             title.setTextColor(BLACK);
         }
+        //Navigation buttons
         Button log = (Button) findViewById(R.id.log);
         Button stats = (Button) findViewById(R.id.stats);
         Button themes = (Button) findViewById(R.id.themes);
         Button about = (Button) findViewById(R.id.about);
         Button back = (Button) findViewById(R.id.back);
-
+        //to log in
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
+        //to stats
         stats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +76,7 @@ public class Settings extends ActionBarActivity {
 
             }
         });
+        //to themes
         themes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +84,7 @@ public class Settings extends ActionBarActivity {
                 startActivity(i4);
             }
         });
+        //to about page
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +93,7 @@ public class Settings extends ActionBarActivity {
 
             }
         });
+        //to main page
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
