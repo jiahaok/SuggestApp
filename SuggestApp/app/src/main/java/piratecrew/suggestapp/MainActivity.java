@@ -1,18 +1,13 @@
 package piratecrew.suggestapp;
 
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.graphics.Color;
->>>>>>> master
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-<<<<<<< HEAD
 import android.widget.Button;
-=======
 import android.webkit.WebHistoryItem;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -23,7 +18,6 @@ import static android.graphics.Color.GREEN;
 import static android.graphics.Color.RED;
 import static android.graphics.Color.WHITE;
 import static android.graphics.Color.YELLOW;
->>>>>>> master
 
 
 public class MainActivity extends ActionBarActivity {
@@ -32,14 +26,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
-        Button createBtn = (Button) findViewById(R.id.button);
-        createBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateActivity.class);
-                startActivity(intent);
-=======
+
+        //Background-Setting
         Button setting = (Button) findViewById(R.id.setting);
         final RelativeLayout back = (RelativeLayout) findViewById(R.id.back);
         if (Themes.t == 0) back.setBackgroundColor(WHITE);
@@ -54,10 +42,21 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent i7 = new Intent(MainActivity.this, Settings.class);
                 startActivity(i7);
->>>>>>> master
+            }
+        });
+
+
+        Button createBtn = (Button) findViewById(R.id.button);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+                startActivity(intent);
             }
         });
     }
+
+
 
 
     @Override
