@@ -7,4 +7,6 @@
     <string name="title_activity_stats">Stats</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_themes">Themes</string>
+    <string name="title_activity_login_class">LoginClass</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

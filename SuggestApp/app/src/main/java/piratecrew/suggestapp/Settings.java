@@ -62,7 +62,8 @@ public class Settings extends ActionBarActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent1 = new Intent (Settings.this,LoginActivity.class);
+                startActivity(intent1);
             }
         });
         stats.setOnClickListener(new View.OnClickListener() {

@@ -48,6 +48,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="piratecrew.suggestapp.Settings" />
         </activity>
+        <activity
+            android:name=".LoginClass"
+            android:label="@string/title_activity_login_class"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
     </application>
 
 </manifest>

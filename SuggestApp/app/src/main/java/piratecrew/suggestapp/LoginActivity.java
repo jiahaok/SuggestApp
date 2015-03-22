@@ -21,29 +21,30 @@ public class LoginActivity extends Activity {
         final EditText password =(EditText)findViewById(R.id.password);
         Button login = (Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            String usernameField = username.getText().toString();
-            String usernameField = password.getText().toString();
-            public void onClick(View v) {
-                /*for(int i = 0; i<= 1; i++) {
-                    if (username.equals("username")) {
 
-                        if (password.equals("1234")) {
-                            status.setText("logedin");
+
+            public void onClick(View v) {
+                String usernameField = username.getText().toString();
+                String passwordField = password.getText().toString();
+                for(int i = 0; i<= 1; i++) {
+                    if (usernameField.equals("username")) {
+
+                        if (passwordField.equals("1234")) {
+                            status.setText("Logged In");
                         }
                         else {
-                            status.setText("incorrect login");
-                            break;
+                            status.setText("Wrong Log-In");
+
                         }
 
 
 
                     } else {
-                        status.setText("incorrect login");
-                        break;
+                        status.setText("Wrong Log-In");
+
 
                     }
-                }*/
+              }
             }
         });
     }
