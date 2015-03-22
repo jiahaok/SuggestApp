@@ -23,11 +23,13 @@ public class Stats extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
+        //All text
         final RelativeLayout stat = (RelativeLayout) findViewById(R.id.stat);
         final TextView stat1 = (TextView) findViewById(R.id.stat1);
         final TextView stat2 = (TextView) findViewById(R.id.stat2);
         final TextView stat3 = (TextView) findViewById(R.id.stat3);
         final TextView stattitle = (TextView) findViewById((R.id.stattitle));
+        //Setting colors based on theme
         if (Themes.t == 0){
             stat.setBackgroundColor(WHITE);
             stattitle.setTextColor(BLACK);
@@ -74,6 +76,7 @@ public class Stats extends ActionBarActivity {
             stat2.setTextColor(BLACK);
             stat3.setTextColor(BLACK);
         }
+        //back to settings page
         Button toSettings = (Button) findViewById(R.id.toSettings);
         toSettings.setOnClickListener(new View.OnClickListener() {
             @Override

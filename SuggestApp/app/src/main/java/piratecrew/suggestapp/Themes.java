@@ -37,12 +37,14 @@ public class Themes extends ActionBarActivity {
         Button toSettings2 = (Button) findViewById(R.id.toSettings2);
         final TextView themetitle = (TextView) findViewById(R.id.themetitle);
         final RelativeLayout theme = (RelativeLayout) findViewById(R.id.theme);
+        //all buttons
         final RadioButton def = (RadioButton) findViewById(R.id.def);
         final RadioButton green = (RadioButton) findViewById(R.id.green);
         final RadioButton blue = (RadioButton) findViewById(R.id.blue);
         final RadioButton red = (RadioButton) findViewById(R.id.red);
         final RadioButton yel = (RadioButton) findViewById(R.id.yel);
         final RadioButton in = (RadioButton) findViewById(R.id.in);
+        //setting page colors
         if (t == 0){
             def.setChecked(true);
             def.setSelected(true);
@@ -115,6 +117,7 @@ public class Themes extends ActionBarActivity {
             yel.setTextColor(WHITE);
             in.setTextColor(WHITE);
         }
+        //back to settings
         toSettings2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,6 +125,7 @@ public class Themes extends ActionBarActivity {
                 startActivity(i3);
             }
         });
+        //Allows user to set theme
         def.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -372,6 +376,8 @@ public class Themes extends ActionBarActivity {
                 }
             }
         });
+
+        //experimental file code
         String FILENAME = "file";
         String string = String.valueOf(t);
 
