@@ -21,8 +21,6 @@ public class LoginActivity extends Activity {
         final EditText password =(EditText)findViewById(R.id.password);
         Button login = (Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
-            String usernameField = username.getText().toString();
-            String passwordField = password.getText().toString();
             @Override
             public void onClick(View v) {
                 for(int i = 0; i<= 1; i++) {
