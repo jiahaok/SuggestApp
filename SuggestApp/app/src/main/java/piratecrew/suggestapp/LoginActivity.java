@@ -25,24 +25,24 @@ public class LoginActivity extends Activity {
             String usernameField = username.getText().toString();
             String usernameField = password.getText().toString();
             public void onClick(View v) {
-                /*for(int i = 0; i<= 1; i++) {
-                    if (username.equals("username")) {
+                
+                if (username.equals("username")) {
 
-                        if (password.equals("1234")) {
-                            status.setText("logedin");
-                        }
-                        else {
-                            status.setText("incorrect login");
-                            break;
-                        }
-
-
-
-                    } else {
+                    if (password.equals("1234")) {
+                        status.setText("logedin");
+                    }
+                    else {
                         status.setText("incorrect login");
                         break;
-
                     }
+
+
+
+                } else {
+                    status.setText("incorrect login");
+                    break;
+
+                    
                 }*/
             }
         });
