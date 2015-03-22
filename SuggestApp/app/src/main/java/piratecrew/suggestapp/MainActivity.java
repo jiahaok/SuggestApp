@@ -31,13 +31,16 @@ public class MainActivity extends ActionBarActivity {
         //Background-Setting
         Button setting = (Button) findViewById(R.id.setting);
         final RelativeLayout back = (RelativeLayout) findViewById(R.id.back);
-        if (Themes.t == 0) back.setBackgroundColor(WHITE);
-        else if (Themes.t == 1) back.setBackgroundColor(GREEN);
-        else if (Themes.t == 2) back.setBackgroundColor(BLUE);
-        else if (Themes.t == 3) back.setBackgroundColor(RED);
-        else if (Themes.t == 4) back.setBackgroundColor(YELLOW);
-        else if (Themes.t == 5) back.setBackgroundColor(BLACK);
-        else back.setBackgroundColor(WHITE);
+        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
+            if (Themes.t == 0) back.setBackgroundColor(WHITE);
+            else if (Themes.t == 1) back.setBackgroundColor(GREEN);
+            else if (Themes.t == 4) back.setBackgroundColor(YELLOW);
+        }
+        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
+            if (Themes.t == 2) back.setBackgroundColor(BLUE);
+            else if (Themes.t == 3) back.setBackgroundColor(RED);
+            else if (Themes.t == 5) back.setBackgroundColor(BLACK);
+        }
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

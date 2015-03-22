@@ -29,40 +29,19 @@ public class About extends ActionBarActivity {
         final TextView abouttitle = (TextView) findViewById(R.id.abouttitle);
         final TextView atext = (TextView) findViewById(R.id.atext);
         //setting colors
-        if (Themes.t == 0){
-            about1.setBackgroundColor(WHITE);
+        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
             abouttitle.setTextColor(BLACK);
             atext.setTextColor(BLACK);
+            if (Themes.t == 0) about1.setBackgroundColor(WHITE);
+            else if (Themes.t == 1) about1.setBackgroundColor(GREEN);
+            else if (Themes.t == 4) about1.setBackgroundColor(YELLOW);
         }
-        else if (Themes.t == 1){
-            about1.setBackgroundColor(GREEN);
-            abouttitle.setTextColor(BLACK);
-            atext.setTextColor(BLACK);
-        }
-        else if (Themes.t == 2){
-            about1.setBackgroundColor(BLUE);
-            abouttitle.setTextColor(WHITE);
+        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
             atext.setTextColor(WHITE);
-        }
-        else if (Themes.t == 3){
-            about1.setBackgroundColor(RED);
             abouttitle.setTextColor(WHITE);
-            atext.setTextColor(WHITE);
-        }
-        else if (Themes.t == 4){
-            about1.setBackgroundColor(YELLOW);
-            abouttitle.setTextColor(BLACK);
-            atext.setTextColor(BLACK);
-        }
-        else if (Themes.t == 5){
-            about1.setBackgroundColor(BLACK);
-            abouttitle.setTextColor(WHITE);
-            atext.setTextColor(WHITE);
-        }
-        else{
-            about1.setBackgroundColor(WHITE);
-            abouttitle.setTextColor(BLACK);
-            atext.setTextColor(BLACK);
+            if (Themes.t == 2) about1.setBackgroundColor(BLUE);
+            else if (Themes.t == 3) about1.setBackgroundColor(RED);
+            else if (Themes.t == 5) about1.setBackgroundColor(BLACK);
         }
     }
 

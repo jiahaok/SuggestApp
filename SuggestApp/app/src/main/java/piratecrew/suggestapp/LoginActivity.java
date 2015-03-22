@@ -28,6 +28,9 @@ public class LoginActivity extends Activity {
         final TextView status = (TextView)findViewById(R.id.status);
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
+        username.setBackgroundColor(WHITE);
+        password.setBackgroundColor(WHITE);
+        //Theme
         if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
             if (Themes.t == 0) log.setBackgroundColor(WHITE);
             else if (Themes.t == 1) log.setBackgroundColor(GREEN);

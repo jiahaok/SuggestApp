@@ -37,35 +37,17 @@ public class CreateActivity extends ActionBarActivity {
 
         spinner.setAdapter(adapter);
 
-        if (Themes.t == 0){
-            createscreen.setBackgroundColor(WHITE);
+        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
             textview.setTextColor(BLACK);
-            spinner.setBackgroundColor(LTGRAY);
+            if (Themes.t == 0) createscreen.setBackgroundColor(WHITE);
+            else if (Themes.t == 1) createscreen.setBackgroundColor(GREEN);
+            else if (Themes.t == 4) createscreen.setBackgroundColor(YELLOW);
         }
-        else if (Themes.t ==1){
-            createscreen.setBackgroundColor(GREEN);
-            textview.setTextColor(BLACK);
-            spinner.setBackgroundColor(GRAY);
-        }
-        else if (Themes.t == 2){
-            createscreen.setBackgroundColor(BLUE);
+        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
             textview.setTextColor(WHITE);
-            spinner.setBackgroundColor(CYAN);
-        }
-        else if (Themes.t == 3){
-            createscreen.setBackgroundColor(RED);
-            textview.setTextColor(WHITE);
-            spinner.setBackgroundColor(MAGENTA);
-        }
-        else if (Themes.t == 4){
-            createscreen.setBackgroundColor(YELLOW);
-            textview.setTextColor(BLACK);
-            spinner.setBackgroundColor(WHITE);
-        }
-        else if (Themes.t == 5){
-            createscreen.setBackgroundColor(BLACK);
-            textview.setTextColor(WHITE);
-            spinner.setBackgroundColor(WHITE);
+            if (Themes.t == 2) createscreen.setBackgroundColor(BLUE);
+            else if (Themes.t == 3) createscreen.setBackgroundColor(RED);
+            else if (Themes.t == 5) createscreen.setBackgroundColor(BLACK);
         }
     }
 
