@@ -76,15 +76,6 @@ public class Stats extends ActionBarActivity {
             stat2.setTextColor(BLACK);
             stat3.setTextColor(BLACK);
         }
-        //back to settings page
-        Button toSettings = (Button) findViewById(R.id.toSettings);
-        toSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i1 = new Intent(Stats.this, Settings.class);
-                startActivity(i1);
-            }
-        });
     }
 
 

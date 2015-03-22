@@ -25,7 +25,6 @@ public class About extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         //buttons,text
-        Button toSettings3 = (Button) findViewById(R.id.toSettings3);
         final RelativeLayout about1 = (RelativeLayout) findViewById(R.id.about1);
         final TextView abouttitle = (TextView) findViewById(R.id.abouttitle);
         final TextView atext = (TextView) findViewById(R.id.atext);
@@ -65,14 +64,6 @@ public class About extends ActionBarActivity {
             abouttitle.setTextColor(BLACK);
             atext.setTextColor(BLACK);
         }
-        //back to settings
-        toSettings3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i5 = new Intent(About.this, Settings.class);
-                startActivity(i5);
-            }
-        });
     }
 
 

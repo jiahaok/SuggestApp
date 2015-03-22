@@ -8,16 +8,6 @@
     android:id="@+id/about1"
     android:focusableInTouchMode="false">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="&lt;--"
-        android:id="@+id/toSettings3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +15,6 @@
         android:text="About"
         android:id="@+id/abouttitle"
         android:textSize="35sp"
-        android:layout_below="@+id/toSettings3"
         android:layout_centerHorizontal="true" />
 
     <TextView

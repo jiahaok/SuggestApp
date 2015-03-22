@@ -34,7 +34,6 @@ public class Themes extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_themes);
-        Button toSettings2 = (Button) findViewById(R.id.toSettings2);
         final TextView themetitle = (TextView) findViewById(R.id.themetitle);
         final RelativeLayout theme = (RelativeLayout) findViewById(R.id.theme);
         //all buttons
@@ -117,14 +116,6 @@ public class Themes extends ActionBarActivity {
             yel.setTextColor(WHITE);
             in.setTextColor(WHITE);
         }
-        //back to settings
-        toSettings2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i3 = new Intent(Themes.this, Settings.class);
-                startActivity(i3);
-            }
-        });
         //Allows user to set theme
         def.setOnClickListener(new View.OnClickListener() {
             @Override

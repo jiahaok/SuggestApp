@@ -59,7 +59,6 @@ public class Settings extends ActionBarActivity {
         Button stats = (Button) findViewById(R.id.stats);
         Button themes = (Button) findViewById(R.id.themes);
         Button about = (Button) findViewById(R.id.about);
-        Button back = (Button) findViewById(R.id.back);
         //to log in
         log.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,14 +90,6 @@ public class Settings extends ActionBarActivity {
                 Intent i6 = new Intent(Settings.this, About.class);
                 startActivity(i6);
 
-            }
-        });
-        //to main page
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i8 = new Intent(Settings.this, MainActivity.class);
-                startActivity(i8);
             }
         });
     }
