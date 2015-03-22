@@ -22,8 +22,10 @@ public class LoginActivity extends Activity {
         Button login = (Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
+            String usernameField = username.getText().toString();
+            String usernameField = password.getText().toString();
             public void onClick(View v) {
-                for(int i = 0; i<= 1; i++) {
+                /*for(int i = 0; i<= 1; i++) {
                     if (username.equals("username")) {
 
                         if (password.equals("1234")) {
@@ -41,7 +43,7 @@ public class LoginActivity extends Activity {
                         break;
 
                     }
-                }
+                }*/
             }
         });
     }
