@@ -33,14 +33,12 @@ public class LoginActivity extends Activity {
                     }
                     else {
                         status.setText("incorrect login");
-                        break;
                     }
 
 
 
                 } else {
                     status.setText("incorrect login");
-                    break;
 
                     
                 }*/
