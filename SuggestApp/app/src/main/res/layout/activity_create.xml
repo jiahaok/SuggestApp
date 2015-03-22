@@ -4,30 +4,56 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="piratecrew.suggestapp.CreateActivity">
+    tools:context="piratecrew.suggestapp.CreateActivity"
+    android:id="@+id/createscreen">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
+            android:text="Create"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:textSize="35sp" />
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:measureWithLargestChild="true"
-            android:minHeight="400dp"></LinearLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="375dp"
+            android:layout_weight="1.08">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="151dp"
+                android:layout_height="389dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText2"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="365dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+        </LinearLayout>
 
         <Spinner
             android:layout_width="match_parent"
@@ -35,5 +61,6 @@
             android:id="@+id/spinner"
             android:gravity="center"
             android:paddingLeft="100dp" />
+
     </LinearLayout>
 </RelativeLayout>
