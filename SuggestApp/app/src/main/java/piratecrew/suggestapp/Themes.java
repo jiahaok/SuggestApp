@@ -29,6 +29,7 @@ import static android.graphics.Color.YELLOW;
 public class Themes extends ActionBarActivity {
 
     public static int t;
+    public static int temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,10 @@ public class Themes extends ActionBarActivity {
         final RadioButton red = (RadioButton) findViewById(R.id.red);
         final RadioButton yel = (RadioButton) findViewById(R.id.yel);
         final RadioButton in = (RadioButton) findViewById(R.id.in);
+        Button set = (Button) findViewById(R.id.settheme);
+
         //setting page colors
-        if (t == 0){
-            def.setChecked(true);
-            def.setSelected(true);
-            theme.setBackgroundColor(WHITE);
+        if (t==0 ||t == 1|| t == 4){
             themetitle.setTextColor(BLACK);
             def.setTextColor(BLACK);
             green.setTextColor(BLACK);
@@ -55,23 +55,11 @@ public class Themes extends ActionBarActivity {
             red.setTextColor(BLACK);
             yel.setTextColor(BLACK);
             in.setTextColor(BLACK);
+            if (t == 0) theme.setBackgroundColor(WHITE);
+            else if (t == 1) theme.setBackgroundColor(GREEN);
+            else if (t == 4) theme.setBackgroundColor(YELLOW);
         }
-        else if (t == 1){
-            green.setChecked(true);
-            green.setSelected(true);
-            theme.setBackgroundColor(GREEN);
-            themetitle.setTextColor(BLACK);
-            def.setTextColor(BLACK);
-            green.setTextColor(BLACK);
-            blue.setTextColor(BLACK);
-            red.setTextColor(BLACK);
-            yel.setTextColor(BLACK);
-            in.setTextColor(BLACK);
-        }
-        else if (t == 2){
-            blue.setChecked(true);
-            blue.setSelected(true);
-            theme.setBackgroundColor(BLUE);
+        else if (t==2 ||t == 3|| t == 5){
             themetitle.setTextColor(WHITE);
             def.setTextColor(WHITE);
             green.setTextColor(WHITE);
@@ -79,48 +67,15 @@ public class Themes extends ActionBarActivity {
             red.setTextColor(WHITE);
             yel.setTextColor(WHITE);
             in.setTextColor(WHITE);
-        }
-        else if (t == 3){
-            red.setChecked(true);
-            red.setSelected(true);
-            theme.setBackgroundColor(RED);
-            themetitle.setTextColor(WHITE);
-            def.setTextColor(WHITE);
-            green.setTextColor(WHITE);
-            blue.setTextColor(WHITE);
-            red.setTextColor(WHITE);
-            yel.setTextColor(WHITE);
-            in.setTextColor(WHITE);
-        }
-        else if (t == 4){
-            yel.setChecked(true);
-            yel.setSelected(true);
-            theme.setBackgroundColor(YELLOW);
-            themetitle.setTextColor(BLACK);
-            def.setTextColor(BLACK);
-            green.setTextColor(BLACK);
-            blue.setTextColor(BLACK);
-            red.setTextColor(BLACK);
-            yel.setTextColor(BLACK);
-            in.setTextColor(BLACK);
-        }
-        else if (t == 5){
-            in.setChecked(true);
-            in.setSelected(true);
-            theme.setBackgroundColor(BLACK);
-            themetitle.setTextColor(WHITE);
-            def.setTextColor(WHITE);
-            green.setTextColor(WHITE);
-            blue.setTextColor(WHITE);
-            red.setTextColor(WHITE);
-            yel.setTextColor(WHITE);
-            in.setTextColor(WHITE);
+            if (t == 2) theme.setBackgroundColor(BLUE);
+            else if (t == 3) theme.setBackgroundColor(RED);
+            else if (t == 5) theme.setBackgroundColor(BLACK);
         }
         //Allows user to set theme
         def.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=0) {
+                if (temp!=0) {
                     def.setSelected(true);
                     def.setChecked(true);
                     green.setSelected(false);
@@ -133,29 +88,13 @@ public class Themes extends ActionBarActivity {
                     blue.setChecked(false);
                     in.setSelected(false);
                     in.setChecked(false);
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
 
-                    t = 0;
+                    temp = 0;
                 }
                 else{
                     def.setSelected(true);
                     def.setChecked(true);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
 
             }
@@ -163,7 +102,7 @@ public class Themes extends ActionBarActivity {
         green.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(t!=1) {
+                if(temp!=1) {
                     red.setSelected(false);
                     red.setChecked(false);
                     blue.setSelected(false);
@@ -174,37 +113,21 @@ public class Themes extends ActionBarActivity {
                     yel.setChecked(false);
                     in.setSelected(false);
                     in.setChecked(false);
-                    theme.setBackgroundColor(Color.GREEN);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                    t = 1;
+                    temp = 1;
                 }
                 else{
                     def.setSelected(true);
                     def.setChecked(true);
                     green.setSelected(false);
                     green.setChecked(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
             }
         });
         blue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(t!=2) {
+                if(temp!=2) {
                     blue.setSelected(true);
                     blue.setChecked(true);
                     red.setSelected(false);
@@ -217,37 +140,21 @@ public class Themes extends ActionBarActivity {
                     yel.setChecked(false);
                     in.setSelected(false);
                     in.setChecked(false);
-                    theme.setBackgroundColor(Color.BLUE);
-                    themetitle.setTextColor(WHITE);
-                    def.setTextColor(WHITE);
-                    green.setTextColor(WHITE);
-                    blue.setTextColor(WHITE);
-                    red.setTextColor(WHITE);
-                    yel.setTextColor(WHITE);
-                    in.setTextColor(WHITE);
-                    t = 2;
+                    temp = 2;
                 }
                 else{
                     def.setSelected(true);
                     blue.setSelected(false);
                     def.setChecked(true);
                     blue.setChecked(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
             }
         });
         red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=3) {
+                if (temp!=3) {
                     green.setSelected(false);
                     blue.setSelected(false);
                     def.setSelected(false);
@@ -258,37 +165,21 @@ public class Themes extends ActionBarActivity {
                     yel.setChecked(false);
                     in.setSelected(false);
                     in.setChecked(false);
-                    theme.setBackgroundColor(Color.RED);
-                    themetitle.setTextColor(WHITE);
-                    def.setTextColor(WHITE);
-                    green.setTextColor(WHITE);
-                    blue.setTextColor(WHITE);
-                    red.setTextColor(WHITE);
-                    yel.setTextColor(WHITE);
-                    in.setTextColor(WHITE);
-                    t = 3;
+                    temp = 3;
                 }
                 else{
                     def.setSelected(true);
                     def.setChecked(true);
                     red.setChecked(false);
                     red.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
             }
         });
         yel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=4) {
+                if (temp!=4) {
                     green.setSelected(false);
                     blue.setSelected(false);
                     def.setSelected(false);
@@ -299,37 +190,21 @@ public class Themes extends ActionBarActivity {
                     red.setChecked(false);
                     in.setSelected(false);
                     in.setChecked(false);
-                    theme.setBackgroundColor(Color.YELLOW);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                    t = 4;
+                    temp = 4;
                 }
                 else{
                     def.setSelected(true);
                     def.setChecked(true);
                     yel.setChecked(false);
                     yel.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
             }
         });
         in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=5) {
+                if (temp!=5) {
                     green.setSelected(false);
                     blue.setSelected(false);
                     def.setSelected(false);
@@ -340,7 +215,36 @@ public class Themes extends ActionBarActivity {
                     yel.setChecked(false);
                     red.setSelected(false);
                     red.setChecked(false);
-                    theme.setBackgroundColor(Color.BLACK);
+                    temp = 5;
+                }
+                else{
+                    def.setSelected(true);
+                    def.setChecked(true);
+                    in.setChecked(false);
+                    in.setSelected(false);
+                    temp = 0;
+                    theme.setBackgroundColor(WHITE);
+
+                }
+            }
+        });
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t = temp;
+                if (t==0 ||t == 1|| t == 4){
+                    themetitle.setTextColor(BLACK);
+                    def.setTextColor(BLACK);
+                    green.setTextColor(BLACK);
+                    blue.setTextColor(BLACK);
+                    red.setTextColor(BLACK);
+                    yel.setTextColor(BLACK);
+                    in.setTextColor(BLACK);
+                    if (t == 0) theme.setBackgroundColor(WHITE);
+                    else if (t == 1) theme.setBackgroundColor(GREEN);
+                    else if (t == 4) theme.setBackgroundColor(YELLOW);
+                }
+                else if (t==2 ||t == 3|| t == 5){
                     themetitle.setTextColor(WHITE);
                     def.setTextColor(WHITE);
                     green.setTextColor(WHITE);
@@ -348,26 +252,13 @@ public class Themes extends ActionBarActivity {
                     red.setTextColor(WHITE);
                     yel.setTextColor(WHITE);
                     in.setTextColor(WHITE);
-                    t = 5;
+                    if (t == 2) theme.setBackgroundColor(BLUE);
+                    else if (t == 3) theme.setBackgroundColor(RED);
+                    else if (t == 5) theme.setBackgroundColor(BLACK);
                 }
-                else{
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    in.setChecked(false);
-                    in.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                }
+
             }
         });
-
         //experimental file code
         String FILENAME = "file";
         String string = String.valueOf(t);

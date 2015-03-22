@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Default"
         android:id="@+id/def"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:checked="false"
         android:textSize="25sp"
         android:layout_below="@+id/themetitle"
@@ -36,7 +36,7 @@
         android:textSize="25sp"
         android:layout_below="@+id/def"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="25dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -45,7 +45,7 @@
         android:id="@+id/blue"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/green"
         android:layout_centerHorizontal="true" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/red"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/blue"
         android:layout_centerHorizontal="true" />
 
@@ -67,7 +67,7 @@
         android:id="@+id/yel"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/red"
         android:layout_centerHorizontal="true" />
 
@@ -79,6 +79,15 @@
         android:checked="false"
         android:textSize="25sp"
         android:layout_below="@+id/yel"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set"
+        android:id="@+id/settheme"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/in"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
