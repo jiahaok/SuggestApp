@@ -27,38 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:measureWithLargestChild="true"
-            android:minHeight="400dp"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="153dp"
-                android:layout_height="fill_parent"
-                android:weightSum="1"
-                android:layout_gravity="left">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.56" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:weightSum="1"
-                android:layout_gravity="right">
-
-                <EditText
-                    android:layout_width="157dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/editText2"
-                    android:layout_weight="0.56" />
-            </LinearLayout>
-        </LinearLayout>
+            android:minHeight="400dp"></LinearLayout>
 
         <Spinner
             android:layout_width="match_parent"
