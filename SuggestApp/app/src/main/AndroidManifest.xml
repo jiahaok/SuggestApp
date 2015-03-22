@@ -27,11 +27,14 @@
 	<activity
             android:name=".CreateActivity"
             android:label="@string/title_activity_create" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
         <activity
             android:name=".Stats"
             android:label="@string/title_activity_stats"
             android:parentActivityName=".Settings" >
-        </activity>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="piratecrew.suggestapp.Settings" />
