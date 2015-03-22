@@ -16,6 +16,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Stats"
+            android:label="@string/title_activity_stats"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
+        <activity
+            android:name=".About"
+            android:label="@string/title_activity_about"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
+        <activity
+            android:name=".Themes"
+            android:label="@string/title_activity_themes"
+            android:parentActivityName=".Settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="piratecrew.suggestapp.Settings" />
+        </activity>
     </application>
 
 </manifest>
