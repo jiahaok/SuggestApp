@@ -1,5 +1,6 @@
 package piratecrew.suggestapp;
 
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.webkit.WebHistoryItem;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -25,6 +27,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Background-Setting
         Button setting = (Button) findViewById(R.id.setting);
         final RelativeLayout back = (RelativeLayout) findViewById(R.id.back);
         if (Themes.t == 0) back.setBackgroundColor(WHITE);
@@ -41,7 +45,19 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(i7);
             }
         });
+
+
+        Button createBtn = (Button) findViewById(R.id.button);
+        createBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
 
     @Override
