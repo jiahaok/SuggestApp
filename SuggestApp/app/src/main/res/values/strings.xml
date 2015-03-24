@@ -16,4 +16,5 @@
     <string name="title_activity_themes">Themes</string>
     <string name="title_activity_login_class">LoginClass</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="create_button">create</string>
 </resources>

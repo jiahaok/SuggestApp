@@ -9,7 +9,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="create"
+        android:text="@string/create_button"
         android:id="@+id/button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="136dp"

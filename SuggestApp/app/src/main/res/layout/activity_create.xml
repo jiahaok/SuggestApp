@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Hello World"
+        android:text="@string/hello_world"
         android:id="@+id/title"
         android:layout_centerHorizontal="true" />
 
@@ -30,28 +30,32 @@
             android:visibility="invisible"
             android:layout_centerHorizontal="true"/>
 
-    <!--Set width to match_parent sets maximum width. alignParentLeft aligns
-    the left edge of this view with the left edge of its parent. toLeftOf 
-    sets the right edge of this view to align with the left edge of the 
-    given view. The result of all three settings is that this view will 
-    always take up exactly half of the width of its parent, however wide 
-    that may be. -->
-        <Button
-            android:id="@+id/btLeft"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:id="@+id/optName1"
+            android:layout_alignParentLeft="false"
             android:layout_toLeftOf="@+id/centerShim"
-            android:text="Left Button" />
+            android:inputType="text"
+            android:hint="Option 1" />
 
-    <!--Same deal, but on the right -->
-        <Button
-            android:id="@+id/btRight"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/optName2"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@+id/centerShim"
-            android:text="Right Button" />
+            android:inputType="none"
+            android:hint="Option 2" />
+
+        <!--Set width to match_parent sets maximum width. alignParentLeft aligns
+        the left edge of this view with the left edge of its parent. toLeftOf
+        sets the right edge of this view to align with the left edge of the
+        given view. The result of all three settings is that this view will
+        always take up exactly half of the width of its parent, however wide
+        that may be. -->
+
+        <!--Same deal, but on the right -->
     </RelativeLayout>
 
 </RelativeLayout>
