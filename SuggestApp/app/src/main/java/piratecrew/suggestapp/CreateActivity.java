@@ -29,7 +29,7 @@ public class CreateActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
-        TextView textview = (TextView) findViewById(R.id.textView);
+        TextView textview = (TextView) findViewById(R.id.title);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.time_array, android.R.layout.simple_spinner_item);
