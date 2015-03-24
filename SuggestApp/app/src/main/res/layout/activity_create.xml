@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.EqualWidthExample" >
+    tools:context="com.example.EqualWidthExample"
+    android:id="@+id/createscreen">
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,9 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="false"
-        android:layout_below="@+id/title">
-    <!-- An invisible view aligned to the center of the parent. Allows other
-    views to be arranged on either side -->
+        android:layout_below="@+id/title"
+        android:layout_above="@+id/spinner">
+        <!-- An invisible view aligned to the center of the parent. Allows other
+        views to be arranged on either side -->
         <View
             android:id="@+id/centerShim"
             android:layout_height="match_parent"
@@ -57,5 +59,12 @@
 
         <!--Same deal, but on the right -->
     </RelativeLayout>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/spinner" />
 
 </RelativeLayout>
