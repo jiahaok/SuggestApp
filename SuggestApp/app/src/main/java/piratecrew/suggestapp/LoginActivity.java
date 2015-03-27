@@ -22,25 +22,26 @@ public class LoginActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        RelativeLayout log = (RelativeLayout) findViewById(R.id.logging);
         final TextView status = (TextView)findViewById(R.id.status);
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
-        username.setBackgroundColor(WHITE);
-        password.setBackgroundColor(WHITE);
-        //Theme
-        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
-            if (Themes.t == 0) log.setBackgroundColor(WHITE);
-            else if (Themes.t == 1) log.setBackgroundColor(GREEN);
-            else if (Themes.t == 4) log.setBackgroundColor(YELLOW);
-        }
-        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
-            if (Themes.t == 2) log.setBackgroundColor(BLUE);
-            else if (Themes.t == 3) log.setBackgroundColor(RED);
-            else if (Themes.t == 5) log.setBackgroundColor(BLACK);
-        }
         Button login = (Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
 

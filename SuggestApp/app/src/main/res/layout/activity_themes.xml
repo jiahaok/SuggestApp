@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Default"
         android:id="@+id/def"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:checked="false"
         android:textSize="25sp"
         android:layout_below="@+id/themetitle"
@@ -30,8 +30,8 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Green"
-        android:id="@+id/green"
+        android:text="Dark"
+        android:id="@+id/black"
         android:checked="false"
         android:textSize="25sp"
         android:layout_below="@+id/def"
@@ -41,46 +41,24 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blue"
-        android:id="@+id/blue"
+        android:text="Light"
+        android:id="@+id/lt"
         android:checked="false"
         android:textSize="25sp"
         android:layout_marginTop="25dp"
-        android:layout_below="@+id/green"
+        android:layout_below="@+id/black"
         android:layout_centerHorizontal="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red"
-        android:id="@+id/red"
+        android:text="Wallpaper"
+        android:id="@+id/wall"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/blue"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/lt"
         android:layout_centerHorizontal="true" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yellow"
-        android:id="@+id/yel"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/red"
-        android:layout_centerHorizontal="true" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inverted"
-        android:id="@+id/in"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_below="@+id/yel"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -88,6 +66,6 @@
         android:text="Set"
         android:id="@+id/settheme"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/in"
+        android:layout_below="@+id/wall"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
