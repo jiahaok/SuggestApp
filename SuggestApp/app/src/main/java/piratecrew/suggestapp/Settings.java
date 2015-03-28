@@ -79,6 +79,18 @@ public class Settings extends ActionBarActivity {
         });
     }
 
+    public void menu(int a){
+        if (a ==R.id.action_create){
+            Intent intentc = new Intent(Settings.this,CreateActivity.class);
+            startActivity(intentc);
+        }
+        else if (a == R.id.action_suggest){
+            //Does not work yet, there is no suggest activity
+
+            //Intent intentsug = new Intent(Settings.this,MainActivity.class);
+            //startActivity(intentsug);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -93,7 +105,7 @@ public class Settings extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        menu(id);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

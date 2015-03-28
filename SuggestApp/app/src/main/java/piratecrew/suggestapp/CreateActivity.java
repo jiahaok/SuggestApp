@@ -1,5 +1,6 @@
 package piratecrew.suggestapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -50,7 +51,22 @@ public class CreateActivity extends ActionBarActivity {
             else if (Themes.t == 5) createscreen.setBackgroundColor(BLACK);
         }
     }
+    public void menu(int a){
+        if (a ==R.id.action_login){
+            Intent intentl = new Intent(CreateActivity.this,LoginActivity.class);
+            startActivity(intentl);
+        }
+        else if (a == R.id.action_settings){
+            Intent setintent = new Intent(CreateActivity.this,Settings.class);
+            startActivity(setintent);
+        }
+        else if (a == R.id.action_suggest){
+            //Does not work yet, there is no suggest activity
 
+            //Intent intents = new Intent(Settings.this,MainActivity.class);
+            //startActivity(intents);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,6 +81,7 @@ public class CreateActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        menu(id);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

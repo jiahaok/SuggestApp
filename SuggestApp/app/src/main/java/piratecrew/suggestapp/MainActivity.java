@@ -60,7 +60,16 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-
+    public void menu(int a){
+        if (a ==R.id.action_settings){
+            Intent intentset = new Intent(MainActivity.this,Settings.class);
+            startActivity(intentset);
+        }
+        else if (a == R.id.action_login){
+            Intent intentlog = new Intent(MainActivity.this,LoginActivity.class);
+            startActivity(intentlog);
+        }
+    }
 
 
     @Override
@@ -76,12 +85,14 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        menu(id);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 }
