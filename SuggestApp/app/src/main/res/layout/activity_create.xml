@@ -27,13 +27,19 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="375dp"
-            android:layout_weight="1.08">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="151dp"
-                android:layout_height="389dp">
+                android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:layout_gravity="top|left|center_vertical">
+
+                <ImageButton
+                    android:layout_width="168dp"
+                    android:layout_height="250dp"
+                    android:id="@+id/imageButtonLeft"
+                    android:layout_gravity="top|left|center_horizontal" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -45,7 +51,15 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="365dp">
+                android:layout_height="350dp"
+                android:layout_gravity="top|center_vertical|right">
+
+                <ImageButton
+                    android:layout_width="168dp"
+                    android:layout_height="250dp"
+                    android:id="@+id/imageButtonRight"
+                    android:layout_gravity="top|center_horizontal|right"
+                    android:longClickable="false" />
 
                 <EditText
                     android:layout_width="match_parent"
@@ -55,12 +69,12 @@
             </LinearLayout>
         </LinearLayout>
 
-        <Spinner
-            android:layout_width="match_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner"
-            android:gravity="center"
-            android:paddingLeft="100dp" />
+            android:text="Create"
+            android:id="@+id/create"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 </RelativeLayout>
