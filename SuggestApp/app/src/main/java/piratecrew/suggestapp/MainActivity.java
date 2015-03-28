@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         //Background-Setting
-        Button setting = (Button) findViewById(R.id.setting);
+
         final RelativeLayout back = (RelativeLayout) findViewById(R.id.back);
         if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
             if (Themes.t == 0) back.setBackgroundColor(WHITE);
@@ -41,13 +41,6 @@ public class MainActivity extends ActionBarActivity {
             else if (Themes.t == 3) back.setBackgroundColor(RED);
             else if (Themes.t == 5) back.setBackgroundColor(BLACK);
         }
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i7 = new Intent(MainActivity.this, Settings.class);
-                startActivity(i7);
-            }
-        });
 
 
         Button createBtn = (Button) findViewById(R.id.button);
