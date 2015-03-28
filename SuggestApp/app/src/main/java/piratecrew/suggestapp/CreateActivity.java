@@ -5,11 +5,15 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebHistoryItem;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.EditText;
 
 import static android.graphics.Color.BLUE;
 import static android.graphics.Color.CYAN;
@@ -30,12 +34,30 @@ public class CreateActivity extends ActionBarActivity {
         setContentView(R.layout.activity_create);
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
         TextView textview = (TextView) findViewById(R.id.textView);
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.time_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ImageButton imageButtonLeft = (ImageButton) findViewById(R.id.imageButtonLeft);
+        imageButtonLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        spinner.setAdapter(adapter);
+            }
+        });
+        ImageButton imageButtonRight = (ImageButton) findViewById(R.id.imageButtonRight);
+        imageButtonRight.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
+            }
+        });
+        Button create =(Button)findViewById(R.id.create);
+        create.setOnClickListener(new View.OnClickListener(){
+           @Override
+            public void onClick(View v){
+
+           }
+        });
+        EditText editTextLeft = (EditText)findViewById(R.id.editText2);
+        EditText editTextRight = (EditText)findViewById(R.id.editText);
+
 
         if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
             textview.setTextColor(BLACK);
