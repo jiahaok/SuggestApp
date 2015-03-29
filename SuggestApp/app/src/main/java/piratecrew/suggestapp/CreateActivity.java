@@ -26,29 +26,29 @@ public class CreateActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
-        TextView textview = (TextView) findViewById(R.id.textView);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.time_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
-
-        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
-            textview.setTextColor(BLACK);
-            if (Themes.t == 0) createscreen.setBackgroundColor(WHITE);
-            else if (Themes.t == 1) createscreen.setBackgroundColor(GREEN);
-            else if (Themes.t == 4) createscreen.setBackgroundColor(YELLOW);
-        }
-        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
-            textview.setTextColor(WHITE);
-            if (Themes.t == 2) createscreen.setBackgroundColor(BLUE);
-            else if (Themes.t == 3) createscreen.setBackgroundColor(RED);
-            else if (Themes.t == 5) createscreen.setBackgroundColor(BLACK);
-        }
     }
 
 
