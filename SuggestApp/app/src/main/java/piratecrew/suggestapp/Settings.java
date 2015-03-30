@@ -90,6 +90,22 @@ public class Settings extends ActionBarActivity {
             //Intent intentsug = new Intent(Settings.this,MainActivity.class);
             //startActivity(intentsug);
         }
+        if (a ==R.id.action_stats){
+            Intent intentst = new Intent(Settings.this,Stats.class);
+            startActivity(intentst);
+        }
+        if (a ==R.id.action_login){
+            Intent intentla = new Intent(Settings.this,LoginActivity.class);
+            startActivity(intentla);
+        }
+        if (a ==R.id.action_themes){
+            Intent intentth = new Intent(Settings.this,Themes.class);
+            startActivity(intentth);
+        }
+        if (a ==R.id.action_about){
+            Intent intenta = new Intent(Settings.this,About.class);
+            startActivity(intenta);
+        }
     }
 
     @Override

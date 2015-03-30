@@ -33,15 +33,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        Button setting = (Button) findViewById(R.id.setting);
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i7 = new Intent(MainActivity.this, Settings.class);
-                startActivity(i7);
-            }
-        });
-
 
         Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
