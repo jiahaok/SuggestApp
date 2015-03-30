@@ -21,33 +21,23 @@ public class Stats extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-        //All text
-        final RelativeLayout stat = (RelativeLayout) findViewById(R.id.stat);
-        final TextView stat1 = (TextView) findViewById(R.id.stat1);
-        final TextView stat2 = (TextView) findViewById(R.id.stat2);
-        final TextView stat3 = (TextView) findViewById(R.id.stat3);
-        final TextView stattitle = (TextView) findViewById((R.id.stattitle));
-        //Setting colors based on theme
-        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
-            if (Themes.t == 0) stat.setBackgroundColor(WHITE);
-            else if (Themes.t == 1) stat.setBackgroundColor(GREEN);
-            else if (Themes.t == 4) stat.setBackgroundColor(YELLOW);
-        }
-        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-            if (Themes.t == 2) stat.setBackgroundColor(BLUE);
-            else if (Themes.t == 3) stat.setBackgroundColor(RED);
-            else if (Themes.t == 5) stat.setBackgroundColor(BLACK);
-        }
     }
     public void menu(int a){
         if (a ==R.id.action_log){

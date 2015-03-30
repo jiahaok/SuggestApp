@@ -18,27 +18,25 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log In"
+        android:text="log in"
         android:id="@+id/log"
         android:layout_below="@+id/stats"
-        android:layout_alignLeft="@+id/themes"
-        android:layout_alignStart="@+id/themes"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stats"
+        android:text="stats"
         android:id="@+id/stats"
         android:layout_below="@+id/title"
-        android:layout_alignLeft="@+id/log"
-        android:layout_alignStart="@+id/log"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Themes"
+        android:text="themes"
         android:id="@+id/themes"
         android:layout_below="@+id/log"
         android:layout_centerHorizontal="true"
@@ -47,10 +45,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="About"
+        android:text="about"
         android:id="@+id/about"
         android:layout_below="@+id/themes"
-        android:layout_alignLeft="@+id/themes"
-        android:layout_alignStart="@+id/themes"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 </RelativeLayout>

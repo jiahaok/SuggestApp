@@ -21,23 +21,23 @@ public class Settings extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        final RelativeLayout set = (RelativeLayout) findViewById(R.id.set);
-        final TextView title = (TextView) findViewById(R.id.title);
-        //Setting colors based on theme
-        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
-            title.setTextColor(BLACK);
-            if (Themes.t == 0) set.setBackgroundColor(WHITE);
-            else if (Themes.t == 1) set.setBackgroundColor(GREEN);
-            else if (Themes.t == 4) set.setBackgroundColor(YELLOW);
-        }
-        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
-            title.setTextColor(WHITE);
-            if (Themes.t == 2) set.setBackgroundColor(BLUE);
-            else if (Themes.t == 3) set.setBackgroundColor(RED);
-            else if (Themes.t == 5) set.setBackgroundColor(BLACK);
-        }
         //Navigation buttons
         Button log = (Button) findViewById(R.id.log);
         Button stats = (Button) findViewById(R.id.stats);
