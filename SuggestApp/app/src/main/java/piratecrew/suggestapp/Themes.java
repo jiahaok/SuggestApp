@@ -147,12 +147,30 @@ public class Themes extends ActionBarActivity {
         return true;
     }
 
+    public void menu(int a){
+        if (a ==R.id.action_log){
+            Intent intentl = new Intent(Themes.this,LoginActivity.class);
+            startActivity(intentl);
+        }
+        else if (a == R.id.action_create){
+            Intent intentc = new Intent(Themes.this,CreateActivity.class);
+            startActivity(intentc);
+        }
+        else if (a == R.id.action_suggest){
+            //Does not work yet, there is no suggest activity
+
+            //Intent intents = new Intent(Settings.this,MainActivity.class);
+            //startActivity(intents);
+        }
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        menu(id);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
