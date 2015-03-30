@@ -15,32 +15,38 @@ public class Themes extends ActionBarActivity {
 
     public static int t;
     public static int temp;
+    static int before = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         switch (t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
             }
             case 2:{
-                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
                 break;
             }
             case 3:{
-                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
                 break;
             }
             default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_themes);
+
         //all buttons
         final RadioButton def = (RadioButton) findViewById(R.id.def);
         final RadioButton black = (RadioButton) findViewById(R.id.black);
         final RadioButton holo = (RadioButton) findViewById(R.id.lt);
         final RadioButton light = (RadioButton) findViewById(R.id.wall);
         Button set = (Button) findViewById(R.id.settheme);
+
 
         //Allows user to set theme
         def.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +138,7 @@ public class Themes extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 t = temp;
-                temp= 6;
-                Intent reset = new Intent(Themes.this,Themes.class);
-                startActivity(reset);
+                recreate();
             }
         });
     }
@@ -148,19 +152,31 @@ public class Themes extends ActionBarActivity {
     }
 
     public void menu(int a){
-        if (a ==R.id.action_log){
+        if (a ==R.id.action_about){
+            About.before = 5;
+            Intent intentab = new Intent(Themes.this,About.class);
+            startActivity(intentab);
+        }
+        else if (a ==R.id.action_login){
+            LoginActivity.before = 5;
             Intent intentl = new Intent(Themes.this,LoginActivity.class);
             startActivity(intentl);
         }
-        else if (a == R.id.action_create){
-            Intent intentc = new Intent(Themes.this,CreateActivity.class);
-            startActivity(intentc);
+        else if (a ==R.id.action_stats){
+            Stats.before = 5;
+            Intent intentst = new Intent(Themes.this,Stats.class);
+            startActivity(intentst);
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else  if (a ==R.id.action_main){
+            Intent intentm = new Intent(Themes.this,MainActivity.class);
+            startActivity(intentm);
+        }
+        else{
+            if (before == 0)startActivity(new Intent(Themes.this,About.class));
+            if (before == 1)startActivity(new Intent(Themes.this,CreateActivity.class));
+            if (before == 2)startActivity(new Intent(Themes.this,LoginActivity.class));
+            if (before == 3)startActivity(new Intent(Themes.this,MainActivity.class));
+            if (before == 4)startActivity(new Intent(Themes.this,Stats.class));
         }
     }
 

@@ -14,34 +14,25 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         switch (Themes.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
             }
             case 2:{
-                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
                 break;
             }
             case 3:{
-                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
                 break;
             }
             default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        Button setting = (Button) findViewById(R.id.setting);
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i7 = new Intent(MainActivity.this, Settings.class);
-                startActivity(i7);
-            }
-        });
-
 
         Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
@@ -54,13 +45,22 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void menu(int a){
-        if (a ==R.id.action_settings){
-            Intent intentset = new Intent(MainActivity.this,Settings.class);
-            startActivity(intentset);
+
+        if (a == R.id.action_login){
+            LoginActivity.before = 3;
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
-        else if (a == R.id.action_login){
-            Intent intentlog = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intentlog);
+        else if (a ==R.id.action_stats){
+            Stats.before = 3;
+            startActivity(new Intent(MainActivity.this,Stats.class));
+        }
+        else if (a ==R.id.action_themes){
+            Themes.before = 3;
+            startActivity(new Intent(MainActivity.this,Themes.class));
+        }
+       else  if (a ==R.id.action_about){
+            About.before = 3;
+            startActivity(new Intent(MainActivity.this,About.class));
         }
     }
 

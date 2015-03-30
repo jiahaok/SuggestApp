@@ -1,5 +1,6 @@
 package piratecrew.suggestapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,8 +9,12 @@ import android.view.MenuItem;
 
 public class About extends ActionBarActivity {
 
+    public static int before;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         switch (Themes.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
@@ -25,24 +30,35 @@ public class About extends ActionBarActivity {
             }
             default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+
     }
     public void menu(int a){
         if (a ==R.id.action_log){
-            Intent intentl = new Intent(About.this,LoginActivity.class);
-            startActivity(intentl);
+            LoginActivity.before = 0;
+            startActivity(new Intent(About.this,LoginActivity.class));
         }
-        else if (a == R.id.action_create){
-            Intent intentc = new Intent(About.this,CreateActivity.class);
-            startActivity(intentc);
+        else if (a ==R.id.action_stats){
+            Stats.before = 0;
+            startActivity(new Intent(About.this,Stats.class));
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
+        else if (a ==R.id.action_themes){
+            Themes.before = 0;
+            startActivity(new Intent(About.this,Themes.class));
+        }
+        else  if (a ==R.id.action_main){
+            startActivity(new Intent(About.this,MainActivity.class));
+        }
+        else{
+            if (before == 1)startActivity(new Intent(About.this,CreateActivity.class));
+            if (before == 2)startActivity(new Intent(About.this,LoginActivity.class));
+            if (before == 3)startActivity(new Intent(About.this,MainActivity.class));
+            if (before == 4)startActivity(new Intent(About.this,Stats.class));
+            if (before == 5)startActivity(new Intent(About.this,Themes.class));
+        }
 
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
-        }
     }
 
     @Override

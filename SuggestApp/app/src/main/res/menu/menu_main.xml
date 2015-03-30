@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity"
     android:title = "Main Menu">
 
-    <item android:id="@+id/action_settings" android:title="Settings"
+    <item android:id="@+id/action_stats" android:title="Statistics"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_login" android:title="Login"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_themes" android:title="Themes"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_about" android:title="About"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
