@@ -1,70 +1,113 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.EqualWidthExample"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="piratecrew.suggestapp.CreateActivity"
     android:id="@+id/createscreen">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/hello_world"
-        android:id="@+id/title"
-        android:layout_centerHorizontal="true" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentEnd="false"
-        android:layout_below="@+id/title"
-        android:layout_above="@+id/spinner">
-        <!-- An invisible view aligned to the center of the parent. Allows other
-        views to be arranged on either side -->
-        <View
-            android:id="@+id/centerShim"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
-            android:visibility="invisible"
-            android:layout_centerHorizontal="true"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/optName1"
-            android:layout_alignParentLeft="false"
-            android:layout_toLeftOf="@+id/centerShim"
-            android:inputType="text"
-            android:hint="Option 1" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/optName2"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@+id/centerShim"
-            android:inputType="none"
-            android:hint="Option 2" />
-
-        <!--Set width to match_parent sets maximum width. alignParentLeft aligns
-        the left edge of this view with the left edge of its parent. toLeftOf
-        sets the right edge of this view to align with the left edge of the
-        given view. The result of all three settings is that this view will
-        always take up exactly half of the width of its parent, however wide
-        that may be. -->
-
-        <!--Same deal, but on the right -->
-    </RelativeLayout>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/spinner" />
+        android:layout_alignParentTop="true"
+        android:weightSum="1">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Create"
+            android:id="@+id/textView"
+            android:layout_gravity="center_horizontal"
+            android:textSize="35sp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="165dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|left|center_vertical"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:id="@+id/imageViewLeft"
+                    android:layout_weight="0.70"
+                    android:layout_gravity="center_horizontal" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:weightSum="1">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Upload"
+                        android:id="@+id/uploadLeft" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText2"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="380dp"
+                android:layout_gravity="top|center_vertical|right"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp"
+                    android:id="@+id/imageViewRight"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.70" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:weightSum="1">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Upload"
+                        android:id="@+id/uploadRight" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create"
+            android:id="@+id/create"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 </RelativeLayout>
