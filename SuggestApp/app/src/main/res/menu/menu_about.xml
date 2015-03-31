@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="piratecrew.suggestapp.About">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/action_stats" android:title="Statistics"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_log" android:title="Login"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_themes" android:title="Themes"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_main" android:title="Main Menu"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
