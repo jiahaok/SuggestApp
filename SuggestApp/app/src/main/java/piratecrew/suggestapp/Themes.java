@@ -148,19 +148,22 @@ public class Themes extends ActionBarActivity {
     }
 
     public void menu(int a){
-        if (a ==R.id.action_log){
-            Intent intentl = new Intent(Themes.this,LoginActivity.class);
-            startActivity(intentl);
+        Intent intent;
+        if (a == R.id.action_main){
+            intent = new Intent(Themes.this, Stats.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_create){
-            Intent intentc = new Intent(Themes.this,CreateActivity.class);
-            startActivity(intentc);
+        else if (a == R.id.action_stats){
+            intent = new Intent(Themes.this, Stats.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else if (a == R.id.action_login){
+            intent = new Intent(Themes.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_about){
+            intent = new Intent(Themes.this, LoginActivity.class);
+            startActivity(intent);
         }
     }
 

@@ -33,14 +33,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        Button setting = (Button) findViewById(R.id.setting);
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i7 = new Intent(MainActivity.this, Settings.class);
-                startActivity(i7);
-            }
-        });
+
 
 
         Button createBtn = (Button) findViewById(R.id.button);
@@ -54,13 +47,22 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void menu(int a){
-        if (a ==R.id.action_settings){
-            Intent intentset = new Intent(MainActivity.this,Settings.class);
-            startActivity(intentset);
+        Intent intent;
+        if (a ==R.id.action_stats){
+            intent = new Intent(MainActivity.this, Stats.class);
+            startActivity(intent);
         }
         else if (a == R.id.action_login){
-            Intent intentlog = new Intent(MainActivity.this,LoginActivity.class);
-            startActivity(intentlog);
+            intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_themes){
+            intent = new Intent(MainActivity.this, Themes.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_about){
+            intent = new Intent(MainActivity.this, About.class);
+            startActivity(intent);
         }
     }
 

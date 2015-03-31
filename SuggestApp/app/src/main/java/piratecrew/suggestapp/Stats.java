@@ -40,19 +40,22 @@ public class Stats extends ActionBarActivity {
         setContentView(R.layout.activity_stats);
     }
     public void menu(int a){
-        if (a ==R.id.action_log){
-            Intent intentl = new Intent(Stats.this,LoginActivity.class);
-            startActivity(intentl);
+        Intent intent;
+        if (a == R.id.action_main){
+            intent = new Intent(Stats.this, MainActivity.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_create){
-            Intent intentc = new Intent(Stats.this,CreateActivity.class);
-            startActivity(intentc);
+        else if (a == R.id.action_login){
+            intent = new Intent(Stats.this, LoginActivity.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else if (a == R.id.action_themes){
+            intent = new Intent(Stats.this, Themes.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_about){
+            intent = new Intent(Stats.this, About.class);
+            startActivity(intent);
         }
     }
 

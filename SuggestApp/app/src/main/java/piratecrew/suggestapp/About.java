@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.Intent;
 
 
 public class About extends ActionBarActivity {
@@ -29,19 +30,22 @@ public class About extends ActionBarActivity {
         setContentView(R.layout.activity_about);
     }
     public void menu(int a){
-        if (a ==R.id.action_log){
-            Intent intentl = new Intent(About.this,LoginActivity.class);
-            startActivity(intentl);
+        Intent intent;
+        if (a == R.id.action_main){
+            intent = new Intent(About.this, About.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_create){
-            Intent intentc = new Intent(About.this,CreateActivity.class);
-            startActivity(intentc);
+        else if (a ==R.id.action_stats){
+            intent = new Intent(About.this, Stats.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else if (a == R.id.action_login){
+            intent = new Intent(About.this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_themes){
+            intent = new Intent(About.this, Themes.class);
+            startActivity(intent);
         }
     }
 

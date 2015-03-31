@@ -52,19 +52,22 @@ public class CreateActivity extends ActionBarActivity {
         spinner.setAdapter(adapter);
     }
     public void menu(int a){
-        if (a ==R.id.action_login){
-            Intent intentl = new Intent(CreateActivity.this,LoginActivity.class);
-            startActivity(intentl);
+        Intent intent;
+        if (a ==R.id.action_stats){
+            intent = new Intent(CreateActivity.this, Stats.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_settings){
-            Intent setintent = new Intent(CreateActivity.this,Settings.class);
-            startActivity(setintent);
+        else if (a == R.id.action_login){
+            intent = new Intent(CreateActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else if (a == R.id.action_themes){
+            intent = new Intent(CreateActivity.this, Themes.class);
+            startActivity(intent);
+        }
+        else if (a == R.id.action_about){
+            intent = new Intent(CreateActivity.this, About.class);
+            startActivity(intent);
         }
     }
 
