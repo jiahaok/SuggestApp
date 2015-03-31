@@ -1,10 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context="piratecrew.suggestapp.Themes">
-    <item android:id="@+id/action_log" android:title="Login"
+    <item android:id="@+id/action_stats" android:title="Statistics"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_create" android:title="Create"
+    <item android:id="@+id/action_login" android:title="Login"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_suggest" android:title="Suggest"
+    <item android:id="@+id/action_about" android:title="About"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_main" android:title="Main Menu"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

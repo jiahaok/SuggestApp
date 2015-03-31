@@ -30,7 +30,7 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dark"
+        android:text="Holo"
         android:id="@+id/black"
         android:checked="false"
         android:textSize="25sp"
@@ -63,7 +63,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Set"
+        android:text="set"
         android:id="@+id/settheme"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/wall"

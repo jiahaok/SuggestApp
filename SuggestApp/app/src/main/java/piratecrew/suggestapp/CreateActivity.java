@@ -27,45 +27,51 @@ public class CreateActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         switch (Themes.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
             }
             case 2:{
-                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
                 break;
             }
             case 3:{
-                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
                 break;
             }
             default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.time_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.time_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter);
+
     }
     public void menu(int a){
-        if (a ==R.id.action_login){
-            Intent intentl = new Intent(CreateActivity.this,LoginActivity.class);
-            startActivity(intentl);
+        if (a == R.id.action_login){
+            LoginActivity.before = 1;
+            startActivity(new Intent(CreateActivity.this,LoginActivity.class));
         }
-        else if (a == R.id.action_settings){
-            Intent setintent = new Intent(CreateActivity.this,Settings.class);
-            startActivity(setintent);
+        else if (a ==R.id.action_stats){
+            Stats.before = 1;
+            startActivity(new Intent(CreateActivity.this,Stats.class));
         }
-        else if (a == R.id.action_suggest){
-            //Does not work yet, there is no suggest activity
-
-            //Intent intents = new Intent(Settings.this,MainActivity.class);
-            //startActivity(intents);
+        else if (a ==R.id.action_themes){
+            Themes.before = 1;
+            startActivity(new Intent(CreateActivity.this,Themes.class));
         }
+        else  if (a ==R.id.action_about){
+            About.before = 1;
+            startActivity(new Intent(CreateActivity.this,About.class));
+        }
+        else startActivity(new Intent(CreateActivity.this,MainActivity.class));
     }
 
     @Override
