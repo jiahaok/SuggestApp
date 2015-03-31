@@ -4,16 +4,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_create">CreateActivity</string>
-    <string-array name="time_array">
-        <item>5 Minutes</item>
-        <item>15 Minutes</item>
-        <item>30 Minutes</item>
-        <item>1 Hour</item>
-    </string-array>
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_stats">Stats</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_themes">Themes</string>
     <string name="title_activity_login_class">LoginClass</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="create_button">create</string>
 </resources>
