@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -28,7 +29,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.ArrayList;
-
 
 public class CreateActivity extends Activity {
     //variables here:

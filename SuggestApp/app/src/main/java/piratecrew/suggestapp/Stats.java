@@ -4,18 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.content.Intent;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.YELLOW;
 
 public class Stats extends ActionBarActivity {
     static int before = 0;
@@ -46,23 +35,17 @@ public class Stats extends ActionBarActivity {
     public void menu(int a){
         if (a ==R.id.action_about){
             About.before = 4;
-            Intent intentab = new Intent(Stats.this,About.class);
-            startActivity(intentab);
+            startActivity(new Intent(Stats.this,About.class));
         }
         else if (a ==R.id.action_login){
             LoginActivity.before = 4;
-            Intent intentl = new Intent(Stats.this,LoginActivity.class);
-            startActivity(intentl);
+            startActivity(new Intent(Stats.this,LoginActivity.class));
         }
         else if (a ==R.id.action_themes){
             Themes.before = 4;
-            Intent intentth = new Intent(Stats.this,Themes.class);
-            startActivity(intentth);
+            startActivity(new Intent(Stats.this,Themes.class));
         }
-        else  if (a ==R.id.action_main){
-            Intent intentm = new Intent(Stats.this,MainActivity.class);
-            startActivity(intentm);
-        }
+        else  if (a ==R.id.action_main) startActivity(new Intent(Stats.this,MainActivity.class));
         else{
             if (before == 0)startActivity(new Intent(Stats.this,About.class));
             if (before == 1)startActivity(new Intent(Stats.this,CreateActivity.class));
