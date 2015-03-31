@@ -15,7 +15,7 @@ public class Themes extends ActionBarActivity {
 
     public static int t;
     public static int temp;
-    static int before = 0;
+
 
 
     @Override

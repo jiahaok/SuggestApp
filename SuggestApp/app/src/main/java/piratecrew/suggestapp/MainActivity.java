@@ -25,11 +25,6 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //Background-Setting
-        Button setting = (Button) findViewById(R.id.setting);
         switch (Themes.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
@@ -45,6 +40,12 @@ public class MainActivity extends ActionBarActivity {
             }
             default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //Background-Setting
+        Button setting = (Button) findViewById(R.id.setting);
+
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
