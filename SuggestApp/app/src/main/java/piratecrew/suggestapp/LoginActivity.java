@@ -52,11 +52,8 @@ public class LoginActivity extends Activity {
 
                         }
 
-
-
                     } else {
                         status.setText("Wrong Log-In");
-
 
                     }
               }
