@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import piratecrew.suggestapp.DatabaseConnection;
 
 import static android.graphics.Color.BLACK;
 import static android.graphics.Color.BLUE;
@@ -28,47 +29,9 @@ public class LoginActivity extends Activity {
         final TextView status = (TextView)findViewById(R.id.status);
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
-        username.setBackgroundColor(WHITE);
-        password.setBackgroundColor(WHITE);
-        //Theme
-        if (Themes.t==0 ||Themes.t == 1|| Themes.t == 4){
-            if (Themes.t == 0) log.setBackgroundColor(WHITE);
-            else if (Themes.t == 1) log.setBackgroundColor(GREEN);
-            else if (Themes.t == 4) log.setBackgroundColor(YELLOW);
-        }
-        else if (Themes.t==2 ||Themes.t == 3|| Themes.t == 5){
-            if (Themes.t == 2) log.setBackgroundColor(BLUE);
-            else if (Themes.t == 3) log.setBackgroundColor(RED);
-            else if (Themes.t == 5) log.setBackgroundColor(BLACK);
-        }
-        Button login = (Button)findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
 
+        DatabaseConnection databaseConnection = new DatabaseConnection(status);
 
-            public void onClick(View v) {
-                String usernameField = username.getText().toString();
-                String passwordField = password.getText().toString();
-                for(int i = 0; i<= 1; i++) {
-                    if (usernameField.equals("username")) {
-
-                        if (passwordField.equals("1234")) {
-                            status.setText("Logged In");
-                        }
-                        else {
-                            status.setText("Wrong Log-In");
-
-                        }
-
-
-
-                    } else {
-                        status.setText("Wrong Log-In");
-
-
-                    }
-              }
-            }
-        });
     }
 
 
