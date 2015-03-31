@@ -42,11 +42,9 @@ public class LoginActivity extends ActionBarActivity {
         final TextView status = (TextView)findViewById(R.id.status);
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
-<<<<<<< HEAD
 
         DatabaseConnection databaseConnection = new DatabaseConnection(status);
 
-=======
         Button login = (Button)findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +67,6 @@ public class LoginActivity extends ActionBarActivity {
               }
             }
         });
->>>>>>> origin/Back-End-Integration
     }
 
     public void menu(int a){
