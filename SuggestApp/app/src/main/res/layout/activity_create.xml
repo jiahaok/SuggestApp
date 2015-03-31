@@ -15,15 +15,6 @@
         android:layout_alignParentTop="true"
         android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Create"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:textSize="35sp" />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -68,7 +59,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="380dp"
+                android:layout_height="360dp"
                 android:layout_gravity="top|center_vertical|right"
                 android:weightSum="1">
 
@@ -100,6 +91,32 @@
                     android:id="@+id/editText"
                     android:layout_gravity="bottom" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerDay"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerHour"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerMinute"
+                android:layout_weight="1"
+                android:longClickable="false" />
         </LinearLayout>
 
         <Button

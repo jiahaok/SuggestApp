@@ -1,14 +1,15 @@
 package piratecrew.suggestapp;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,12 +25,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
+import java.util.ArrayList;
 
-public class CreateActivity extends ActionBarActivity {
-    ImageView viewImageLeft;
-    ImageView viewImageRight;
+
+public class CreateActivity extends Activity {
+    //variables here:
+    private ImageView viewImageLeft, viewImageRight;
+    private Spinner spinnerDay, spinnerHour, spinnerMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,18 @@ public class CreateActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
-        TextView textview = (TextView) findViewById(R.id.textView);
+
+        pictureUploads();
+        EditText editTextLeft = (EditText) findViewById(R.id.editText2);
+        EditText editTextRight = (EditText) findViewById(R.id.editText);
+        spinnerDay();
+        spinnerHour();
+        spinnerMinute();
+
+
+    }
+
+    public void pictureUploads(){
         viewImageLeft = (ImageView) findViewById(R.id.imageViewLeft);
         viewImageRight = (ImageView) findViewById(R.id.imageViewRight);
         Button uploadLeft = (Button) findViewById(R.id.uploadLeft); //left upload button
@@ -82,10 +97,72 @@ public class CreateActivity extends ActionBarActivity {
 
             }
         });
-        EditText editTextLeft = (EditText) findViewById(R.id.editText2);
-        EditText editTextRight = (EditText) findViewById(R.id.editText);
     }
 
+    public void spinnerDay() {
+        spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
+        List list = new ArrayList();
+        list.add("0 day");
+        list.add("1 day");
+        list.add("2 day");
+        list.add("3 day");
+        list.add("4 day");
+        list.add("5 day");
+        list.add("6 day");
+        ArrayAdapter dataAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerDay.setAdapter(dataAdapter);
+    }
+
+    public void spinnerHour() {
+        spinnerHour = (Spinner) findViewById(R.id.spinnerHour);
+        List list = new ArrayList();
+        list.add("0 hour");
+        list.add("1 hour");
+        list.add("2 hour");
+        list.add("3 hour");
+        list.add("4 hour");
+        list.add("5 hour");
+        list.add("6 hour");
+        list.add("7 hour");
+        list.add("8 hour");
+        list.add("9 hour");
+        list.add("10 hour");
+        list.add("11 hour");
+        list.add("12 hour");
+        list.add("13 hour");
+        list.add("14 hour");
+        list.add("15 hour");
+        list.add("16 hour");
+        list.add("17 hour");
+        list.add("18 hour");
+        list.add("19 hour");
+        list.add("20 hour");
+        list.add("21 hour");
+        list.add("22 hour");
+        list.add("23 hour");
+        ArrayAdapter dataAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerHour.setAdapter(dataAdapter);
+    }
+    public void spinnerMinute() {
+        spinnerMinute = (Spinner) findViewById(R.id.spinnerMinute);
+        List list = new ArrayList();
+        list.add("5 minute");
+        list.add("10 minute");
+        list.add("15 minute");
+        list.add("20 minute");
+        list.add("25 minute");
+        list.add("30 minute");
+        list.add("35 minute");
+        list.add("40 minute");
+        list.add("45 minute");
+        list.add("50 minute");
+        list.add("55 minute");
+        ArrayAdapter dataAdapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMinute.setAdapter(dataAdapter);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -286,7 +363,3 @@ public class CreateActivity extends ActionBarActivity {
         }
     }
 }
-
-
-
-
