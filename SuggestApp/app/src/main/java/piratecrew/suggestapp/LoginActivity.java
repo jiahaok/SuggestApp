@@ -10,15 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.YELLOW;
 
 
 public class LoginActivity extends ActionBarActivity {

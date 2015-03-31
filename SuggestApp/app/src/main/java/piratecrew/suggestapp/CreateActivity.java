@@ -8,20 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebHistoryItem;
 import android.widget.ArrayAdapter;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.CYAN;
-import static android.graphics.Color.GRAY;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.LTGRAY;
-import static android.graphics.Color.MAGENTA;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.YELLOW;
 
 public class CreateActivity extends ActionBarActivity {
 
