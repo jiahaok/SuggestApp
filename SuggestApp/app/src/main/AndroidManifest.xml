@@ -17,14 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Settings"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="piratecrew.suggestapp.MainActivity" />
-        </activity>
-	<activity
             android:name=".CreateActivity"
             android:label="@string/title_activity_create" >
             <meta-data
