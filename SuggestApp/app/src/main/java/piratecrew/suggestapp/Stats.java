@@ -4,87 +4,55 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.content.Intent;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.YELLOW;
 
 public class Stats extends ActionBarActivity {
+    static int before = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-        //All text
-        final RelativeLayout stat = (RelativeLayout) findViewById(R.id.stat);
-        final TextView stat1 = (TextView) findViewById(R.id.stat1);
-        final TextView stat2 = (TextView) findViewById(R.id.stat2);
-        final TextView stat3 = (TextView) findViewById(R.id.stat3);
-        final TextView stattitle = (TextView) findViewById((R.id.stattitle));
-        //Setting colors based on theme
-        if (Themes.t == 0){
-            stat.setBackgroundColor(WHITE);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
+
+    }
+    public void menu(int a){
+        if (a ==R.id.action_about){
+            About.before = 4;
+            startActivity(new Intent(Stats.this,About.class));
         }
-        else if (Themes.t == 1){
-            stat.setBackgroundColor(GREEN);
-            stattitle.setTextColor(BLACK);
+        else if (a ==R.id.action_login){
+            LoginActivity.before = 4;
+            startActivity(new Intent(Stats.this,LoginActivity.class));
         }
-        else if (Themes.t == 2){
-            stat.setBackgroundColor(BLUE);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
+        else if (a ==R.id.action_themes){
+            Themes.before = 4;
+            startActivity(new Intent(Stats.this,Themes.class));
         }
-        else if (Themes.t == 3){
-            stat.setBackgroundColor(RED);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-        }
-        else if (Themes.t == 4){
-            stat.setBackgroundColor(YELLOW);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
-        }
-        else if (Themes.t == 5){
-            stat.setBackgroundColor(BLACK);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-        }
+        else  if (a ==R.id.action_main) startActivity(new Intent(Stats.this,MainActivity.class));
         else{
-            stat.setBackgroundColor(WHITE);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
+            if (before == 0)startActivity(new Intent(Stats.this,About.class));
+            if (before == 1)startActivity(new Intent(Stats.this,CreateActivity.class));
+            if (before == 2)startActivity(new Intent(Stats.this,LoginActivity.class));
+            if (before == 3)startActivity(new Intent(Stats.this,MainActivity.class));
+            if (before == 5)startActivity(new Intent(Stats.this,Themes.class));
         }
-        //back to settings page
-        Button toSettings = (Button) findViewById(R.id.toSettings);
-        toSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i1 = new Intent(Stats.this, Settings.class);
-                startActivity(i1);
-            }
-        });
     }
 
 
@@ -101,7 +69,7 @@ public class Stats extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        menu(id);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

@@ -7,16 +7,6 @@
     tools:context="com.example.pirate_crew.suggest.Themes"
     android:id="@+id/theme">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="&lt;--"
-        android:id="@+id/toSettings2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +14,6 @@
         android:text="Themes"
         android:id="@+id/themetitle"
         android:textSize="35sp"
-        android:layout_below="@+id/toSettings2"
         android:layout_centerHorizontal="true" />
 
     <RadioButton
@@ -41,55 +30,42 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Green"
-        android:id="@+id/green"
+        android:text="Holo"
+        android:id="@+id/black"
         android:checked="false"
         android:textSize="25sp"
         android:layout_below="@+id/def"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="25dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blue"
-        android:id="@+id/blue"
+        android:text="Light"
+        android:id="@+id/lt"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/green"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/black"
         android:layout_centerHorizontal="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Red"
-        android:id="@+id/red"
+        android:text="Wallpaper"
+        android:id="@+id/wall"
         android:checked="false"
         android:textSize="25sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/blue"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/lt"
         android:layout_centerHorizontal="true" />
 
-    <RadioButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yellow"
-        android:id="@+id/yel"
-        android:checked="false"
-        android:textSize="25sp"
+        android:text="set"
+        android:id="@+id/settheme"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/red"
+        android:layout_below="@+id/wall"
         android:layout_centerHorizontal="true" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inverted"
-        android:id="@+id/in"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_below="@+id/yel"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
 </RelativeLayout>

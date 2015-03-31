@@ -7,23 +7,12 @@
     tools:context="com.example.pirate_crew.suggest.Stats"
     android:id="@+id/stat">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="&lt;--"
-        android:id="@+id/toSettings"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Statistics"
         android:id="@+id/stattitle"
-        android:layout_below="@+id/toSettings"
         android:layout_centerHorizontal="true"
         android:textSize="35sp" />
 
