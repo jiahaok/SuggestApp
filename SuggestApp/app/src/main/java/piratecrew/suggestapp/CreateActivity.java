@@ -12,6 +12,21 @@ public class CreateActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 

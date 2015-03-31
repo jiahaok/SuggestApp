@@ -7,75 +7,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.YELLOW;
 
 public class Stats extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
-        //All text
-        final RelativeLayout stat = (RelativeLayout) findViewById(R.id.stat);
-        final TextView stat1 = (TextView) findViewById(R.id.stat1);
-        final TextView stat2 = (TextView) findViewById(R.id.stat2);
-        final TextView stat3 = (TextView) findViewById(R.id.stat3);
-        final TextView stattitle = (TextView) findViewById((R.id.stattitle));
-        //Setting colors based on theme
-        if (Themes.t == 0){
-            stat.setBackgroundColor(WHITE);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
-        }
-        else if (Themes.t == 1){
-            stat.setBackgroundColor(GREEN);
-            stattitle.setTextColor(BLACK);
-        }
-        else if (Themes.t == 2){
-            stat.setBackgroundColor(BLUE);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-        }
-        else if (Themes.t == 3){
-            stat.setBackgroundColor(RED);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-        }
-        else if (Themes.t == 4){
-            stat.setBackgroundColor(YELLOW);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
-        }
-        else if (Themes.t == 5){
-            stat.setBackgroundColor(BLACK);
-            stattitle.setTextColor(WHITE);
-            stat1.setTextColor(WHITE);
-            stat2.setTextColor(WHITE);
-            stat3.setTextColor(WHITE);
-        }
-        else{
-            stat.setBackgroundColor(WHITE);
-            stattitle.setTextColor(BLACK);
-            stat1.setTextColor(BLACK);
-            stat2.setTextColor(BLACK);
-            stat3.setTextColor(BLACK);
-        }
         //back to settings page
         Button toSettings = (Button) findViewById(R.id.toSettings);
         toSettings.setOnClickListener(new View.OnClickListener() {

@@ -1,7 +1,6 @@
 package piratecrew.suggestapp;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,394 +8,136 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import android.content.Context;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import static android.graphics.Color.BLACK;
-import static android.graphics.Color.BLUE;
-import static android.graphics.Color.GREEN;
-import static android.graphics.Color.RED;
-import static android.graphics.Color.WHITE;
-import static android.graphics.Color.YELLOW;
-
 
 public class Themes extends ActionBarActivity {
 
     public static int t;
+    public static int temp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        switch (t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_themes);
-        Button toSettings2 = (Button) findViewById(R.id.toSettings2);
-        final TextView themetitle = (TextView) findViewById(R.id.themetitle);
-        final RelativeLayout theme = (RelativeLayout) findViewById(R.id.theme);
+
         //all buttons
         final RadioButton def = (RadioButton) findViewById(R.id.def);
-        final RadioButton green = (RadioButton) findViewById(R.id.green);
-        final RadioButton blue = (RadioButton) findViewById(R.id.blue);
-        final RadioButton red = (RadioButton) findViewById(R.id.red);
-        final RadioButton yel = (RadioButton) findViewById(R.id.yel);
-        final RadioButton in = (RadioButton) findViewById(R.id.in);
-        //setting page colors
-        if (t == 0){
-            def.setChecked(true);
-            def.setSelected(true);
-            theme.setBackgroundColor(WHITE);
-            themetitle.setTextColor(BLACK);
-            def.setTextColor(BLACK);
-            green.setTextColor(BLACK);
-            blue.setTextColor(BLACK);
-            red.setTextColor(BLACK);
-            yel.setTextColor(BLACK);
-            in.setTextColor(BLACK);
-        }
-        else if (t == 1){
-            green.setChecked(true);
-            green.setSelected(true);
-            theme.setBackgroundColor(GREEN);
-            themetitle.setTextColor(BLACK);
-            def.setTextColor(BLACK);
-            green.setTextColor(BLACK);
-            blue.setTextColor(BLACK);
-            red.setTextColor(BLACK);
-            yel.setTextColor(BLACK);
-            in.setTextColor(BLACK);
-        }
-        else if (t == 2){
-            blue.setChecked(true);
-            blue.setSelected(true);
-            theme.setBackgroundColor(BLUE);
-            themetitle.setTextColor(WHITE);
-            def.setTextColor(WHITE);
-            green.setTextColor(WHITE);
-            blue.setTextColor(WHITE);
-            red.setTextColor(WHITE);
-            yel.setTextColor(WHITE);
-            in.setTextColor(WHITE);
-        }
-        else if (t == 3){
-            red.setChecked(true);
-            red.setSelected(true);
-            theme.setBackgroundColor(RED);
-            themetitle.setTextColor(WHITE);
-            def.setTextColor(WHITE);
-            green.setTextColor(WHITE);
-            blue.setTextColor(WHITE);
-            red.setTextColor(WHITE);
-            yel.setTextColor(WHITE);
-            in.setTextColor(WHITE);
-        }
-        else if (t == 4){
-            yel.setChecked(true);
-            yel.setSelected(true);
-            theme.setBackgroundColor(YELLOW);
-            themetitle.setTextColor(BLACK);
-            def.setTextColor(BLACK);
-            green.setTextColor(BLACK);
-            blue.setTextColor(BLACK);
-            red.setTextColor(BLACK);
-            yel.setTextColor(BLACK);
-            in.setTextColor(BLACK);
-        }
-        else if (t == 5){
-            in.setChecked(true);
-            in.setSelected(true);
-            theme.setBackgroundColor(BLACK);
-            themetitle.setTextColor(WHITE);
-            def.setTextColor(WHITE);
-            green.setTextColor(WHITE);
-            blue.setTextColor(WHITE);
-            red.setTextColor(WHITE);
-            yel.setTextColor(WHITE);
-            in.setTextColor(WHITE);
-        }
-        //back to settings
-        toSettings2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i3 = new Intent(Themes.this, Settings.class);
-                startActivity(i3);
-            }
-        });
+        final RadioButton black = (RadioButton) findViewById(R.id.black);
+        final RadioButton holo = (RadioButton) findViewById(R.id.lt);
+        final RadioButton light = (RadioButton) findViewById(R.id.wall);
+        Button set = (Button) findViewById(R.id.settheme);
+
+
         //Allows user to set theme
         def.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=0) {
+                if (temp!=0) {
                     def.setSelected(true);
                     def.setChecked(true);
-                    green.setSelected(false);
-                    green.setChecked(false);
-                    red.setSelected(false);
-                    red.setChecked(false);
-                    yel.setSelected(false);
-                    yel.setChecked(false);
-                    blue.setSelected(false);
-                    blue.setChecked(false);
-                    in.setSelected(false);
-                    in.setChecked(false);
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-
-                    t = 0;
+                    black.setSelected(false);
+                    black.setChecked(false);
+                    light.setSelected(false);
+                    light.setChecked(false);
+                    holo.setSelected(false);
+                    holo.setChecked(false);
+                    temp = 0;
                 }
                 else{
                     def.setSelected(true);
                     def.setChecked(true);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    temp = 0;
                 }
 
             }
         });
-        green.setOnClickListener(new View.OnClickListener() {
+        black.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(t!=1) {
-                    red.setSelected(false);
-                    red.setChecked(false);
-                    blue.setSelected(false);
-                    blue.setChecked(false);
+                if (temp != 1) {
+                    light.setSelected(false);
+                    light.setChecked(false);
+                    holo.setSelected(false);
+                    holo.setChecked(false);
                     def.setSelected(false);
                     def.setChecked(false);
-                    yel.setSelected(false);
-                    yel.setChecked(false);
-                    in.setSelected(false);
-                    in.setChecked(false);
-                    theme.setBackgroundColor(Color.GREEN);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                    t = 1;
-                }
-                else{
+                    temp = 1;
+                } else {
                     def.setSelected(true);
                     def.setChecked(true);
-                    green.setSelected(false);
-                    green.setChecked(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    black.setSelected(false);
+                    black.setChecked(false);
+                    temp = 0;
                 }
             }
         });
-        blue.setOnClickListener(new View.OnClickListener() {
+        holo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(t!=2) {
-                    blue.setSelected(true);
-                    blue.setChecked(true);
-                    red.setSelected(false);
-                    green.setSelected(false);
+                if (temp != 2) {
+                    holo.setSelected(true);
+                    holo.setChecked(true);
+                    light.setSelected(false);
+                    black.setSelected(false);
                     def.setSelected(false);
-                    red.setChecked(false);
-                    green.setChecked(false);
+                    light.setChecked(false);
+                    black.setChecked(false);
                     def.setChecked(false);
-                    yel.setSelected(false);
-                    yel.setChecked(false);
-                    in.setSelected(false);
-                    in.setChecked(false);
-                    theme.setBackgroundColor(Color.BLUE);
-                    themetitle.setTextColor(WHITE);
-                    def.setTextColor(WHITE);
-                    green.setTextColor(WHITE);
-                    blue.setTextColor(WHITE);
-                    red.setTextColor(WHITE);
-                    yel.setTextColor(WHITE);
-                    in.setTextColor(WHITE);
-                    t = 2;
-                }
-                else{
+                    temp = 2;
+                } else {
                     def.setSelected(true);
-                    blue.setSelected(false);
+                    holo.setSelected(false);
                     def.setChecked(true);
-                    blue.setChecked(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    holo.setChecked(false);
+                    temp = 0;
                 }
             }
         });
-        red.setOnClickListener(new View.OnClickListener() {
+        light.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (t!=3) {
-                    green.setSelected(false);
-                    blue.setSelected(false);
+                if (temp != 3) {
+                    black.setSelected(false);
+                    holo.setSelected(false);
                     def.setSelected(false);
-                    green.setChecked(false);
-                    blue.setChecked(false);
+                    black.setChecked(false);
+                    holo.setChecked(false);
                     def.setChecked(false);
-                    yel.setSelected(false);
-                    yel.setChecked(false);
-                    in.setSelected(false);
-                    in.setChecked(false);
-                    theme.setBackgroundColor(Color.RED);
-                    themetitle.setTextColor(WHITE);
-                    def.setTextColor(WHITE);
-                    green.setTextColor(WHITE);
-                    blue.setTextColor(WHITE);
-                    red.setTextColor(WHITE);
-                    yel.setTextColor(WHITE);
-                    in.setTextColor(WHITE);
-                    t = 3;
-                }
-                else{
+                    temp = 3;
+                } else {
                     def.setSelected(true);
                     def.setChecked(true);
-                    red.setChecked(false);
-                    red.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                }
-            }
-        });
-        yel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (t!=4) {
-                    green.setSelected(false);
-                    blue.setSelected(false);
-                    def.setSelected(false);
-                    green.setChecked(false);
-                    blue.setChecked(false);
-                    def.setChecked(false);
-                    red.setSelected(false);
-                    red.setChecked(false);
-                    in.setSelected(false);
-                    in.setChecked(false);
-                    theme.setBackgroundColor(Color.YELLOW);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                    t = 4;
-                }
-                else{
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    yel.setChecked(false);
-                    yel.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
-                }
-            }
-        });
-        in.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (t!=5) {
-                    green.setSelected(false);
-                    blue.setSelected(false);
-                    def.setSelected(false);
-                    green.setChecked(false);
-                    blue.setChecked(false);
-                    def.setChecked(false);
-                    yel.setSelected(false);
-                    yel.setChecked(false);
-                    red.setSelected(false);
-                    red.setChecked(false);
-                    theme.setBackgroundColor(Color.BLACK);
-                    themetitle.setTextColor(WHITE);
-                    def.setTextColor(WHITE);
-                    green.setTextColor(WHITE);
-                    blue.setTextColor(WHITE);
-                    red.setTextColor(WHITE);
-                    yel.setTextColor(WHITE);
-                    in.setTextColor(WHITE);
-                    t = 5;
-                }
-                else{
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    in.setChecked(false);
-                    in.setSelected(false);
-                    t = 0;
-                    theme.setBackgroundColor(WHITE);
-                    themetitle.setTextColor(BLACK);
-                    def.setTextColor(BLACK);
-                    green.setTextColor(BLACK);
-                    blue.setTextColor(BLACK);
-                    red.setTextColor(BLACK);
-                    yel.setTextColor(BLACK);
-                    in.setTextColor(BLACK);
+                    light.setChecked(false);
+                    light.setSelected(false);
+                    temp = 0;
                 }
             }
         });
 
-        //experimental file code
-        String FILENAME = "file";
-        String string = String.valueOf(t);
-
-        FileOutputStream fos = null;
-        try {
-            fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            fos.write(string.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                t = temp;
+                recreate();
+            }
+        });
     }
 
 
