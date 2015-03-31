@@ -30,14 +30,21 @@ public class MainActivity extends ActionBarActivity {
 
         //Background-Setting
         Button setting = (Button) findViewById(R.id.setting);
-        final RelativeLayout back = (RelativeLayout) findViewById(R.id.back);
-        if (Themes.t == 0) back.setBackgroundColor(WHITE);
-        else if (Themes.t == 1) back.setBackgroundColor(GREEN);
-        else if (Themes.t == 2) back.setBackgroundColor(BLUE);
-        else if (Themes.t == 3) back.setBackgroundColor(RED);
-        else if (Themes.t == 4) back.setBackgroundColor(YELLOW);
-        else if (Themes.t == 5) back.setBackgroundColor(BLACK);
-        else back.setBackgroundColor(WHITE);
+        switch (Themes.t){
+            case 1:{
+                setTheme(android.R.style.Theme_Holo_NoActionBar);
+                break;
+            }
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
+                break;
+            }
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
+                break;
+            }
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+        }
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
