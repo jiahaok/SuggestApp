@@ -1,6 +1,7 @@
 package piratecrew.suggestapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,7 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,25 +37,25 @@ public class CreateActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        switch (Themes.t) {// themes
-            case 1: {
+        switch (Themes.t){
+            case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
             }
-            case 2: {
-                setTheme(android.R.style.Theme_Holo_Light_NoActionBar);
+            case 2:{
+                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
                 break;
             }
-            case 3: {
-                setTheme(android.R.style.Theme_Holo_Wallpaper_NoTitleBar);
+            case 3:{
+                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
                 break;
             }
-            default:
-                setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
+            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
         }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
 
         pictureUploads();
@@ -163,6 +163,27 @@ public class CreateActivity extends Activity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMinute.setAdapter(dataAdapter);
     }
+
+    public void menu(int a){
+        if (a == R.id.action_login){
+            LoginActivity.before = 1;
+            startActivity(new Intent(CreateActivity.this,LoginActivity.class));
+        }
+        else if (a ==R.id.action_stats){
+            Stats.before = 1;
+            startActivity(new Intent(CreateActivity.this,Stats.class));
+        }
+        else if (a ==R.id.action_themes){
+            Themes.before = 1;
+            startActivity(new Intent(CreateActivity.this,Themes.class));
+        }
+        else  if (a ==R.id.action_about){
+            About.before = 1;
+            startActivity(new Intent(CreateActivity.this,About.class));
+        }
+        else startActivity(new Intent(CreateActivity.this,MainActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -228,6 +249,7 @@ public class CreateActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        menu(id);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
