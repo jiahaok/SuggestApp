@@ -58,12 +58,12 @@ public class CreateActivity extends Activity {
 
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
 
-        pictureUploads();
+        pictureUploads(); // start upload photos function
         EditText editTextLeft = (EditText) findViewById(R.id.editText2);
         EditText editTextRight = (EditText) findViewById(R.id.editText);
-        spinnerDay();
-        spinnerHour();
-        spinnerMinute();
+        spinnerDay(); // start spinnerDay function
+        spinnerHour(); //start spinnerHour function
+        spinnerMinute(); //start spinnerMinute function
 
 
     }
@@ -99,9 +99,10 @@ public class CreateActivity extends Activity {
         });
     }
 
-    public void spinnerDay() {
+    public void spinnerDay() { //day spinner
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         List list = new ArrayList();
+        // list of selections
         list.add("0 day");
         list.add("1 day");
         list.add("2 day");
@@ -114,9 +115,10 @@ public class CreateActivity extends Activity {
         spinnerDay.setAdapter(dataAdapter);
     }
 
-    public void spinnerHour() {
+    public void spinnerHour() { // hour spinner
         spinnerHour = (Spinner) findViewById(R.id.spinnerHour);
         List list = new ArrayList();
+        // list of selections
         list.add("0 hour");
         list.add("1 hour");
         list.add("2 hour");
@@ -145,9 +147,10 @@ public class CreateActivity extends Activity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHour.setAdapter(dataAdapter);
     }
-    public void spinnerMinute() {
+    public void spinnerMinute() { // minute spinner
         spinnerMinute = (Spinner) findViewById(R.id.spinnerMinute);
         List list = new ArrayList();
+        //list of slections
         list.add("5 minute");
         list.add("10 minute");
         list.add("15 minute");
