@@ -58,12 +58,12 @@ public class CreateActivity extends Activity {
 
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
 
-        pictureUploads();
+        pictureUploads(); //start picture upload activity
         EditText editTextLeft = (EditText) findViewById(R.id.editText2);
         EditText editTextRight = (EditText) findViewById(R.id.editText);
-        spinnerDay();
-        spinnerHour();
-        spinnerMinute();
+        spinnerDay(); //start spinnerDay activity
+        spinnerHour(); //start spinnerHour activity
+        spinnerMinute(); //start spinnerMinute activity
 
 
     }
