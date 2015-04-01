@@ -60,4 +60,5 @@
         <item>5 Minutes</item>
         <item>55 Minutes</item>
     </string-array>
+    <string name="title_activity_vote">Vote</string>
 </resources>

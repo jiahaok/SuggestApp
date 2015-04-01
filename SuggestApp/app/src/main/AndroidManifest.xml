@@ -3,8 +3,10 @@
     package="piratecrew.suggestapp" >
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -29,7 +31,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="piratecrew.suggestapp.MainActivity" />
         </activity>
-	<activity
+        <activity
             android:name=".CreateActivity"
             android:label="@string/title_activity_create" >
             <meta-data
@@ -75,6 +77,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="piratecrew.suggestapp.Settings" />
+        </activity>
+        <activity
+            android:name=".Vote"
+            android:label="@string/title_activity_vote" >
         </activity>
     </application>
 
