@@ -6,6 +6,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import android.os.StrictMode;
 import android.widget.TextView;
 
 import org.apache.http.HttpResponse;
@@ -23,6 +25,10 @@ import java.net.URI;
 public class DatabaseConnection {
     DatabaseConnection(TextView textView){
         HttpResponse response = null;
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         try {
             HttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
