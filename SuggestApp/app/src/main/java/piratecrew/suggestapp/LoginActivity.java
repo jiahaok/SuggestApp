@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
+import piratecrew.suggestapp.DatabaseConnection;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -41,6 +42,9 @@ public class LoginActivity extends ActionBarActivity {
         final TextView status = (TextView)findViewById(R.id.status);
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
+
+        DatabaseConnection databaseConnection = new DatabaseConnection(status);
+
         Button login = (Button)findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
