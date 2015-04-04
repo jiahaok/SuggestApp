@@ -1,10 +1,7 @@
 package piratecrew.suggestapp;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,27 +10,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends MainActivity {
     static int before = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        switch (Themes.t){
-            case 1:{
-                setTheme(android.R.style.Theme_Holo_NoActionBar);
-                break;
-            }
-            case 2:{
-                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
-                break;
-            }
-            case 3:{
-                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
-                break;
-            }
-            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
-        }
+        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -65,30 +48,7 @@ public class LoginActivity extends ActionBarActivity {
         });
     }
 
-    public void menu(int a){
-        if (a ==R.id.action_about){
-            About.before = 2;
-            startActivity(new Intent(LoginActivity.this,About.class));
-        }
-        else if (a ==R.id.action_stats){
-            Stats.before = 2;
-            startActivity(new Intent(LoginActivity.this,Stats.class));
-        }
-        else if (a ==R.id.action_themes){
-            Themes.before = 2;
-            startActivity(new Intent(LoginActivity.this,Themes.class));
-        }
-        else  if (a ==R.id.action_main) startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
-        else{
-            if (before == 0)startActivity(new Intent(LoginActivity.this,About.class));
-            if (before == 1)startActivity(new Intent(LoginActivity.this,CreateActivity.class));
-            if (before == 3)startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(LoginActivity.this,Stats.class));
-            if (before == 5)startActivity(new Intent(LoginActivity.this,Themes.class));
-        }
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

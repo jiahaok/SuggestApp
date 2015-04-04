@@ -15,57 +15,64 @@
         android:id="@+id/themetitle"
         android:textSize="35sp"
         android:layout_centerHorizontal="true" />
-
-    <RadioButton
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Default"
-        android:id="@+id/def"
-        android:layout_marginTop="30dp"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_below="@+id/themetitle"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/radio_group">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default"
+            android:id="@+id/def"
+            android:layout_marginTop="30dp"
+            android:checked="false"
+            android:textSize="25sp"
+            android:layout_below="@+id/themetitle"
+            android:layout_centerHorizontal="true"
+            android:onClick="onRadioButtonClicked"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Holo"
-        android:id="@+id/black"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_below="@+id/def"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Holo"
+            android:id="@+id/holo"
+            android:checked="false"
+            android:textSize="25sp"
+            android:layout_below="@+id/def"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:onClick="onRadioButtonClicked" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Light"
-        android:id="@+id/lt"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/black"
-        android:layout_centerHorizontal="true" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Light"
+            android:id="@+id/light"
+            android:checked="false"
+            android:textSize="25sp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/holo"
+            android:layout_centerHorizontal="true"
+            android:onClick="onRadioButtonClicked"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wallpaper"
-        android:id="@+id/wall"
-        android:checked="false"
-        android:textSize="25sp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/lt"
-        android:layout_centerHorizontal="true" />
-
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wallpaper"
+            android:id="@+id/wall"
+            android:checked="false"
+            android:textSize="25sp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/light"
+            android:layout_centerHorizontal="true"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="set"
         android:id="@+id/settheme"
         android:layout_marginTop="30dp"
-        android:layout_below="@+id/wall"
+        android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

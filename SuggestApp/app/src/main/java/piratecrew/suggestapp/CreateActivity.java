@@ -1,6 +1,5 @@
 package piratecrew.suggestapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,7 +10,6 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -27,43 +25,29 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.ArrayList;
 
-public class CreateActivity extends Activity {
+public class CreateActivity extends MainActivity {
     //variables here:
     private ImageView viewImageLeft, viewImageRight;
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        switch (Themes.t){
-            case 1:{
-                setTheme(android.R.style.Theme_Holo_NoActionBar);
-                break;
-            }
-            case 2:{
-                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
-                break;
-            }
-            case 3:{
-                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
-                break;
-            }
-            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
-        }
+
+
+        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
         RelativeLayout createscreen = (RelativeLayout) findViewById(R.id.createscreen);
 
-        pictureUploads();
+        pictureUploads(); //start picture upload activity
         EditText editTextLeft = (EditText) findViewById(R.id.editText2);
         EditText editTextRight = (EditText) findViewById(R.id.editText);
-        spinnerDay();
-        spinnerHour();
-        spinnerMinute();
+        spinnerDay(); //start spinnerDay activity
+        spinnerHour(); //start spinnerHour activity
+        spinnerMinute(); //start spinnerMinute activity
 
 
     }
@@ -125,25 +109,7 @@ public class CreateActivity extends Activity {
         spinnerMinute.setAdapter(adapter);
     }
 
-    public void menu(int a){
-        if (a == R.id.action_login){
-            LoginActivity.before = 1;
-            startActivity(new Intent(CreateActivity.this,LoginActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            Stats.before = 1;
-            startActivity(new Intent(CreateActivity.this,Stats.class));
-        }
-        else if (a ==R.id.action_themes){
-            Themes.before = 1;
-            startActivity(new Intent(CreateActivity.this,Themes.class));
-        }
-        else  if (a ==R.id.action_about){
-            About.before = 1;
-            startActivity(new Intent(CreateActivity.this,About.class));
-        }
-        else startActivity(new Intent(CreateActivity.this,MainActivity.class));
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
