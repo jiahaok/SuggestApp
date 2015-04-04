@@ -6,117 +6,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import android.widget.RadioButton;
-
 
 public class ThemesActivity extends MainActivity {
 
     public static int temp;
-    static int before = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(themes[theme]);
+        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_themes);
 
-        //all buttons
-        final RadioButton def = (RadioButton) findViewById(R.id.def);
-        final RadioButton black = (RadioButton) findViewById(R.id.black);
-        final RadioButton holo = (RadioButton) findViewById(R.id.lt);
-        final RadioButton light = (RadioButton) findViewById(R.id.wall);
+
         Button set = (Button) findViewById(R.id.settheme);
-
-
-        //Allows user to set theme
-        def.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temp!=0) {
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    black.setSelected(false);
-                    black.setChecked(false);
-                    light.setSelected(false);
-                    light.setChecked(false);
-                    holo.setSelected(false);
-                    holo.setChecked(false);
-                    temp = 0;
-                }
-                else{
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    temp = 0;
-                }
-
-            }
-        });
-        black.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temp != 1) {
-                    light.setSelected(false);
-                    light.setChecked(false);
-                    holo.setSelected(false);
-                    holo.setChecked(false);
-                    def.setSelected(false);
-                    def.setChecked(false);
-                    temp = 1;
-                } else {
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    black.setSelected(false);
-                    black.setChecked(false);
-                    temp = 0;
-                }
-            }
-        });
-        holo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temp != 2) {
-                    holo.setSelected(true);
-                    holo.setChecked(true);
-                    light.setSelected(false);
-                    black.setSelected(false);
-                    def.setSelected(false);
-                    light.setChecked(false);
-                    black.setChecked(false);
-                    def.setChecked(false);
-                    temp = 2;
-                } else {
-                    def.setSelected(true);
-                    holo.setSelected(false);
-                    def.setChecked(true);
-                    holo.setChecked(false);
-                    temp = 0;
-                }
-            }
-        });
-        light.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temp != 3) {
-                    black.setSelected(false);
-                    holo.setSelected(false);
-                    def.setSelected(false);
-                    black.setChecked(false);
-                    holo.setChecked(false);
-                    def.setChecked(false);
-                    temp = 3;
-                } else {
-                    def.setSelected(true);
-                    def.setChecked(true);
-                    light.setChecked(false);
-                    light.setSelected(false);
-                    temp = 0;
-                }
-            }
-        });
-
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +29,24 @@ public class ThemesActivity extends MainActivity {
                 recreate();
             }
         });
+    }
+
+    //Code is ran whenever a radio button is pressed. View is the button that was pressed.
+    public void onRadioButtonClicked(View v){
+        switch(v.getId()){
+            case R.id.def:
+                temp = android.R.style.Theme_DeviceDefault_NoActionBar;
+                break;
+            case R.id.holo:
+                temp = android.R.style.Theme_Holo_NoActionBar;
+                break;
+            case R.id.light:
+                temp = android.R.style.Theme_DeviceDefault_Light_NoActionBar;
+                break;
+            case R.id.wall:
+                temp = android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar;
+                break;
+        }
     }
 
 

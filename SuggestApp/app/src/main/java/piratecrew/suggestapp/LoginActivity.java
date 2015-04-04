@@ -16,7 +16,7 @@ public class LoginActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(themes[theme]);
+        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);

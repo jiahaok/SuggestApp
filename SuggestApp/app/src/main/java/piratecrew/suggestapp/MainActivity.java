@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(themes[theme]);
+        setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -31,35 +31,27 @@ public class MainActivity extends ActionBarActivity {
 
     public void menu(int a){
         switch (a){
-            case R.id.action_main:{
+            case R.id.action_main:
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 break;
-            }
-            case R.id.action_login:{
+            case R.id.action_login:
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
-            }
-            case R.id.action_stats:{
+            case R.id.action_stats:
                 startActivity(new Intent(MainActivity.this, StatsActivity.class));
                 break;
-            }
-            case R.id.action_themes:{
+            case R.id.action_themes:
                 startActivity(new Intent(MainActivity.this, ThemesActivity.class));
                 break;
-            }
-            case R.id.action_about:{
+            case R.id.action_about:
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 break;
-            }
 
         }
     }
 
-    int[] themes = {android.R.style.Theme_DeviceDefault_NoActionBar,
-                    android.R.style.Theme_Holo_NoActionBar,
-                    android.R.style.Theme_DeviceDefault_Light_NoActionBar,
-                    android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar};
-    static int theme = 0;
+
+    static int theme = android.R.style.Theme_DeviceDefault_NoActionBar;
 
 
 
