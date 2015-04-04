@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Themes"
-        android:id="@+id/themetitle"
+        android:id="@+id/theme_title"
         android:textSize="35sp"
         android:layout_centerHorizontal="true" />
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/theme_title"
         android:id="@+id/radio_group">
         <RadioButton
             android:layout_width="wrap_content"
@@ -27,7 +28,6 @@
             android:layout_marginTop="30dp"
             android:checked="false"
             android:textSize="25sp"
-            android:layout_below="@+id/themetitle"
             android:layout_centerHorizontal="true"
             android:onClick="onRadioButtonClicked"/>
 
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="set"
-        android:id="@+id/settheme"
+        android:id="@+id/set_theme"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true" />

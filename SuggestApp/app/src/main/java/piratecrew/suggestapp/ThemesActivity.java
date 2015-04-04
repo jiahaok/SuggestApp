@@ -21,7 +21,7 @@ public class ThemesActivity extends MainActivity {
         setContentView(R.layout.activity_themes);
 
 
-        Button set = (Button) findViewById(R.id.settheme);
+        Button set = (Button) findViewById(R.id.set_theme);
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
