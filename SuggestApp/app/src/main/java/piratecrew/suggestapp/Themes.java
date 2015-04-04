@@ -153,25 +153,25 @@ public class Themes extends ActionBarActivity {
 
     public void menu(int a){
         if (a ==R.id.action_about){
-            About.before = 5;
-            startActivity(new Intent(Themes.this,About.class));
+            AboutActivity.before = 5;
+            startActivity(new Intent(Themes.this,AboutActivity.class));
         }
         else if (a ==R.id.action_login){
             LoginActivity.before = 5;
             startActivity(new Intent(Themes.this,LoginActivity.class));
         }
         else if (a ==R.id.action_stats){
-            Stats.before = 5;
-            startActivity(new Intent(Themes.this,Stats.class));
+            StatsActivity.before = 5;
+            startActivity(new Intent(Themes.this,StatsActivity.class));
         }
         else  if (a ==R.id.action_main) startActivity(new Intent(Themes.this,MainActivity.class));
 
         else{
-            if (before == 0)startActivity(new Intent(Themes.this,About.class));
+            if (before == 0)startActivity(new Intent(Themes.this,AboutActivity.class));
             if (before == 1)startActivity(new Intent(Themes.this,CreateActivity.class));
             if (before == 2)startActivity(new Intent(Themes.this,LoginActivity.class));
             if (before == 3)startActivity(new Intent(Themes.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(Themes.this,Stats.class));
+            if (before == 4)startActivity(new Intent(Themes.this,StatsActivity.class));
         }
     }
 

@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -27,8 +26,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.ArrayList;
 
 public class CreateActivity extends Activity {
     //variables here:
@@ -131,16 +128,16 @@ public class CreateActivity extends Activity {
             startActivity(new Intent(CreateActivity.this,LoginActivity.class));
         }
         else if (a ==R.id.action_stats){
-            Stats.before = 1;
-            startActivity(new Intent(CreateActivity.this,Stats.class));
+            StatsActivity.before = 1;
+            startActivity(new Intent(CreateActivity.this,StatsActivity.class));
         }
         else if (a ==R.id.action_themes){
             Themes.before = 1;
             startActivity(new Intent(CreateActivity.this,Themes.class));
         }
         else  if (a ==R.id.action_about){
-            About.before = 1;
-            startActivity(new Intent(CreateActivity.this,About.class));
+            AboutActivity.before = 1;
+            startActivity(new Intent(CreateActivity.this,AboutActivity.class));
         }
         else startActivity(new Intent(CreateActivity.this,MainActivity.class));
     }

@@ -37,7 +37,7 @@
                 android:value="piratecrew.suggestapp.Settings" />
         </activity>
         <activity
-            android:name=".Stats"
+            android:name=".StatsActivity"
             android:label="@string/title_activity_stats"
             android:parentActivityName=".Settings" >
             <meta-data
@@ -45,7 +45,7 @@
                 android:value="piratecrew.suggestapp.Settings" />
         </activity>
         <activity
-            android:name=".About"
+            android:name=".AboutActivity"
             android:label="@string/title_activity_about"
             android:parentActivityName=".Settings" >
             <meta-data

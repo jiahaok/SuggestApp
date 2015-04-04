@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
-public class Stats extends ActionBarActivity {
+public class StatsActivity extends ActionBarActivity {
     static int before = 0;
 
     @Override
@@ -34,24 +34,24 @@ public class Stats extends ActionBarActivity {
     }
     public void menu(int a){
         if (a ==R.id.action_about){
-            About.before = 4;
-            startActivity(new Intent(Stats.this,About.class));
+            AboutActivity.before = 4;
+            startActivity(new Intent(StatsActivity.this,AboutActivity.class));
         }
         else if (a ==R.id.action_login){
             LoginActivity.before = 4;
-            startActivity(new Intent(Stats.this,LoginActivity.class));
+            startActivity(new Intent(StatsActivity.this,LoginActivity.class));
         }
         else if (a ==R.id.action_themes){
             Themes.before = 4;
-            startActivity(new Intent(Stats.this,Themes.class));
+            startActivity(new Intent(StatsActivity.this,Themes.class));
         }
-        else  if (a ==R.id.action_main) startActivity(new Intent(Stats.this,MainActivity.class));
+        else  if (a ==R.id.action_main) startActivity(new Intent(StatsActivity.this,MainActivity.class));
         else{
-            if (before == 0)startActivity(new Intent(Stats.this,About.class));
-            if (before == 1)startActivity(new Intent(Stats.this,CreateActivity.class));
-            if (before == 2)startActivity(new Intent(Stats.this,LoginActivity.class));
-            if (before == 3)startActivity(new Intent(Stats.this,MainActivity.class));
-            if (before == 5)startActivity(new Intent(Stats.this,Themes.class));
+            if (before == 0)startActivity(new Intent(StatsActivity.this,AboutActivity.class));
+            if (before == 1)startActivity(new Intent(StatsActivity.this,CreateActivity.class));
+            if (before == 2)startActivity(new Intent(StatsActivity.this,LoginActivity.class));
+            if (before == 3)startActivity(new Intent(StatsActivity.this,MainActivity.class));
+            if (before == 5)startActivity(new Intent(StatsActivity.this,Themes.class));
         }
     }
 

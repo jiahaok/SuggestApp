@@ -50,16 +50,16 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
         }
         else if (a ==R.id.action_stats){
-            Stats.before = 3;
-            startActivity(new Intent(MainActivity.this,Stats.class));
+            StatsActivity.before = 3;
+            startActivity(new Intent(MainActivity.this,StatsActivity.class));
         }
         else if (a ==R.id.action_themes){
             Themes.before = 3;
             startActivity(new Intent(MainActivity.this,Themes.class));
         }
        else  if (a ==R.id.action_about){
-            About.before = 3;
-            startActivity(new Intent(MainActivity.this,About.class));
+            AboutActivity.before = 3;
+            startActivity(new Intent(MainActivity.this,AboutActivity.class));
         }
     }
 

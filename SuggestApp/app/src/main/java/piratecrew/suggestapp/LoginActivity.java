@@ -1,7 +1,6 @@
 package piratecrew.suggestapp;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -67,12 +66,12 @@ public class LoginActivity extends ActionBarActivity {
 
     public void menu(int a){
         if (a ==R.id.action_about){
-            About.before = 2;
-            startActivity(new Intent(LoginActivity.this,About.class));
+            AboutActivity.before = 2;
+            startActivity(new Intent(LoginActivity.this,AboutActivity.class));
         }
         else if (a ==R.id.action_stats){
-            Stats.before = 2;
-            startActivity(new Intent(LoginActivity.this,Stats.class));
+            StatsActivity.before = 2;
+            startActivity(new Intent(LoginActivity.this,StatsActivity.class));
         }
         else if (a ==R.id.action_themes){
             Themes.before = 2;
@@ -81,10 +80,10 @@ public class LoginActivity extends ActionBarActivity {
         else  if (a ==R.id.action_main) startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
         else{
-            if (before == 0)startActivity(new Intent(LoginActivity.this,About.class));
+            if (before == 0)startActivity(new Intent(LoginActivity.this,AboutActivity.class));
             if (before == 1)startActivity(new Intent(LoginActivity.this,CreateActivity.class));
             if (before == 3)startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(LoginActivity.this,Stats.class));
+            if (before == 4)startActivity(new Intent(LoginActivity.this,StatsActivity.class));
             if (before == 5)startActivity(new Intent(LoginActivity.this,Themes.class));
         }
 
