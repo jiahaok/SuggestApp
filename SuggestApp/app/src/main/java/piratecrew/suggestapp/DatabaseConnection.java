@@ -26,6 +26,8 @@ import java.net.URI;
  * Created by Brent on 3/30/2015.
  */
 public class DatabaseConnection {
+    private final String WEB_ROOT = "http://10.0.0.4";
+
     DatabaseConnection(TextView textView){
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -37,7 +39,7 @@ public class DatabaseConnection {
             //Get the response
             HttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet();
-            request.setURI(new URI("http://10.0.0.4?id=1"));
+            request.setURI(new URI(WEB_ROOT+"?id=1"));
             HttpResponse response = client.execute(request);
 
             //Get content of response
