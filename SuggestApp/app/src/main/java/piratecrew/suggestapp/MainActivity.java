@@ -15,21 +15,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        switch (ThemesActivity.t){
-            case 1:{
-                setTheme(android.R.style.Theme_Holo_NoActionBar);
-                break;
-            }
-            case 2:{
-                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
-                break;
-            }
-            case 3:{
-                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
-                break;
-            }
-            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
-        }
+        setTheme(themes[theme]);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -67,25 +53,14 @@ public class MainActivity extends ActionBarActivity {
             }
 
         }
-        /*
-        if (a == R.id.action_login){
-            LoginActivity.before = 3;
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            StatsActivity.before = 3;
-            startActivity(new Intent(MainActivity.this,StatsActivity.class));
-        }
-        else if (a ==R.id.action_themes){
-            ThemesActivity.before = 3;
-            startActivity(new Intent(MainActivity.this,ThemesActivity.class));
-        }
-       else  if (a ==R.id.action_about){
-            AboutActivity.before = 3;
-            startActivity(new Intent(MainActivity.this,AboutActivity.class));
-        }
-        */
     }
+
+    int[] themes = {android.R.style.Theme_DeviceDefault_NoActionBar,
+                    android.R.style.Theme_Holo_NoActionBar,
+                    android.R.style.Theme_DeviceDefault_Light_NoActionBar,
+                    android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar};
+    static int theme = 0;
+
 
 
     @Override

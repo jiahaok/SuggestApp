@@ -1,9 +1,7 @@
 package piratecrew.suggestapp;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,21 +16,7 @@ public class LoginActivity extends MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        switch (ThemesActivity.t){
-            case 1:{
-                setTheme(android.R.style.Theme_Holo_NoActionBar);
-                break;
-            }
-            case 2:{
-                setTheme(android.R.style.Theme_DeviceDefault_Light_NoActionBar);
-                break;
-            }
-            case 3:{
-                setTheme(android.R.style.Theme_DeviceDefault_Wallpaper_NoTitleBar);
-                break;
-            }
-            default: setTheme(android.R.style.Theme_DeviceDefault_NoActionBar);
-        }
+        setTheme(themes[theme]);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
