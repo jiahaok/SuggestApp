@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class ThemesActivity extends MainActivity {
 
-    public static int temp;
+    private int temp;
 
 
     @Override
