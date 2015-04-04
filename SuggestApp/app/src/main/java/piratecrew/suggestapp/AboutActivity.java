@@ -15,7 +15,7 @@ public class AboutActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        switch (Themes.t){
+        switch (ThemesActivity.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
@@ -45,8 +45,8 @@ public class AboutActivity extends ActionBarActivity {
             startActivity(new Intent(AboutActivity.this,StatsActivity.class));
         }
         else if (a ==R.id.action_themes){
-            Themes.before = 0;
-            startActivity(new Intent(AboutActivity.this,Themes.class));
+            ThemesActivity.before = 0;
+            startActivity(new Intent(AboutActivity.this,ThemesActivity.class));
         }
         else  if (a ==R.id.action_main){
             startActivity(new Intent(AboutActivity.this,MainActivity.class));
@@ -56,7 +56,7 @@ public class AboutActivity extends ActionBarActivity {
             if (before == 2)startActivity(new Intent(AboutActivity.this,LoginActivity.class));
             if (before == 3)startActivity(new Intent(AboutActivity.this,MainActivity.class));
             if (before == 4)startActivity(new Intent(AboutActivity.this,StatsActivity.class));
-            if (before == 5)startActivity(new Intent(AboutActivity.this,Themes.class));
+            if (before == 5)startActivity(new Intent(AboutActivity.this,ThemesActivity.class));
         }
 
     }

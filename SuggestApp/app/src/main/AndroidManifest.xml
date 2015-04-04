@@ -53,7 +53,7 @@
                 android:value="piratecrew.suggestapp.Settings" />
         </activity>
         <activity
-            android:name=".Themes"
+            android:name=".ThemesActivity"
             android:label="@string/title_activity_themes"
             android:parentActivityName=".Settings" >
             <meta-data

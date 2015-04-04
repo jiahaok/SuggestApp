@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        switch (Themes.t){
+        switch (ThemesActivity.t){
             case 1:{
                 setTheme(android.R.style.Theme_Holo_NoActionBar);
                 break;
@@ -54,8 +54,8 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(MainActivity.this,StatsActivity.class));
         }
         else if (a ==R.id.action_themes){
-            Themes.before = 3;
-            startActivity(new Intent(MainActivity.this,Themes.class));
+            ThemesActivity.before = 3;
+            startActivity(new Intent(MainActivity.this,ThemesActivity.class));
         }
        else  if (a ==R.id.action_about){
             AboutActivity.before = 3;
