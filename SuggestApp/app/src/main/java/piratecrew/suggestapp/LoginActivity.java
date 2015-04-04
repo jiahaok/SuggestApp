@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends MainActivity {
     static int before = 0;
 
     @Override
@@ -64,30 +64,7 @@ public class LoginActivity extends ActionBarActivity {
         });
     }
 
-    public void menu(int a){
-        if (a ==R.id.action_about){
-            AboutActivity.before = 2;
-            startActivity(new Intent(LoginActivity.this,AboutActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            StatsActivity.before = 2;
-            startActivity(new Intent(LoginActivity.this,StatsActivity.class));
-        }
-        else if (a ==R.id.action_themes){
-            ThemesActivity.before = 2;
-            startActivity(new Intent(LoginActivity.this,ThemesActivity.class));
-        }
-        else  if (a ==R.id.action_main) startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
-        else{
-            if (before == 0)startActivity(new Intent(LoginActivity.this,AboutActivity.class));
-            if (before == 1)startActivity(new Intent(LoginActivity.this,CreateActivity.class));
-            if (before == 3)startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(LoginActivity.this,StatsActivity.class));
-            if (before == 5)startActivity(new Intent(LoginActivity.this,ThemesActivity.class));
-        }
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

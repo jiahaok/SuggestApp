@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 
 
-public class ThemesActivity extends ActionBarActivity {
+public class ThemesActivity extends MainActivity {
 
     public static int t;
     public static int temp;
@@ -151,29 +151,6 @@ public class ThemesActivity extends ActionBarActivity {
         return true;
     }
 
-    public void menu(int a){
-        if (a ==R.id.action_about){
-            AboutActivity.before = 5;
-            startActivity(new Intent(ThemesActivity.this,AboutActivity.class));
-        }
-        else if (a ==R.id.action_login){
-            LoginActivity.before = 5;
-            startActivity(new Intent(ThemesActivity.this,LoginActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            StatsActivity.before = 5;
-            startActivity(new Intent(ThemesActivity.this,StatsActivity.class));
-        }
-        else  if (a ==R.id.action_main) startActivity(new Intent(ThemesActivity.this,MainActivity.class));
-
-        else{
-            if (before == 0)startActivity(new Intent(ThemesActivity.this,AboutActivity.class));
-            if (before == 1)startActivity(new Intent(ThemesActivity.this,CreateActivity.class));
-            if (before == 2)startActivity(new Intent(ThemesActivity.this,LoginActivity.class));
-            if (before == 3)startActivity(new Intent(ThemesActivity.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(ThemesActivity.this,StatsActivity.class));
-        }
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

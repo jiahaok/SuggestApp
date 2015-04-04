@@ -27,7 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class CreateActivity extends Activity {
+public class CreateActivity extends MainActivity {
     //variables here:
     private ImageView viewImageLeft, viewImageRight;
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
@@ -122,25 +122,7 @@ public class CreateActivity extends Activity {
         spinnerMinute.setAdapter(adapter);
     }
 
-    public void menu(int a){
-        if (a == R.id.action_login){
-            LoginActivity.before = 1;
-            startActivity(new Intent(CreateActivity.this,LoginActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            StatsActivity.before = 1;
-            startActivity(new Intent(CreateActivity.this,StatsActivity.class));
-        }
-        else if (a ==R.id.action_themes){
-            ThemesActivity.before = 1;
-            startActivity(new Intent(CreateActivity.this,ThemesActivity.class));
-        }
-        else  if (a ==R.id.action_about){
-            AboutActivity.before = 1;
-            startActivity(new Intent(CreateActivity.this,AboutActivity.class));
-        }
-        else startActivity(new Intent(CreateActivity.this,MainActivity.class));
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

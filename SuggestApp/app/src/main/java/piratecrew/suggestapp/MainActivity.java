@@ -44,7 +44,30 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void menu(int a){
+        switch (a){
+            case R.id.action_main:{
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                break;
+            }
+            case R.id.action_login:{
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                break;
+            }
+            case R.id.action_stats:{
+                startActivity(new Intent(MainActivity.this, StatsActivity.class));
+                break;
+            }
+            case R.id.action_themes:{
+                startActivity(new Intent(MainActivity.this, ThemesActivity.class));
+                break;
+            }
+            case R.id.action_about:{
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
+                break;
+            }
 
+        }
+        /*
         if (a == R.id.action_login){
             LoginActivity.before = 3;
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
@@ -61,6 +84,7 @@ public class MainActivity extends ActionBarActivity {
             AboutActivity.before = 3;
             startActivity(new Intent(MainActivity.this,AboutActivity.class));
         }
+        */
     }
 
 

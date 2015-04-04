@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class AboutActivity extends ActionBarActivity {
+public class AboutActivity extends MainActivity {
 
     public static int before;
 
@@ -35,31 +35,7 @@ public class AboutActivity extends ActionBarActivity {
         setContentView(R.layout.activity_about);
 
     }
-    public void menu(int a){
-        if (a ==R.id.action_log){
-            LoginActivity.before = 0;
-            startActivity(new Intent(AboutActivity.this,LoginActivity.class));
-        }
-        else if (a ==R.id.action_stats){
-            StatsActivity.before = 0;
-            startActivity(new Intent(AboutActivity.this,StatsActivity.class));
-        }
-        else if (a ==R.id.action_themes){
-            ThemesActivity.before = 0;
-            startActivity(new Intent(AboutActivity.this,ThemesActivity.class));
-        }
-        else  if (a ==R.id.action_main){
-            startActivity(new Intent(AboutActivity.this,MainActivity.class));
-        }
-        else{
-            if (before == 1)startActivity(new Intent(AboutActivity.this,CreateActivity.class));
-            if (before == 2)startActivity(new Intent(AboutActivity.this,LoginActivity.class));
-            if (before == 3)startActivity(new Intent(AboutActivity.this,MainActivity.class));
-            if (before == 4)startActivity(new Intent(AboutActivity.this,StatsActivity.class));
-            if (before == 5)startActivity(new Intent(AboutActivity.this,ThemesActivity.class));
-        }
 
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
