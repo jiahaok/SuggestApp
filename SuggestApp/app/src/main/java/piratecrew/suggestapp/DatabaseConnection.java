@@ -27,22 +27,34 @@ import java.net.URI;
  * Created by Brent on 3/30/2015.
  */
 public class DatabaseConnection {
-    private final String WEB_ROOT = "http://10.0.0.4";
+    private final String WEB_ROOT = "http://10.0.0.4/";
     TextView text;
-    DatabaseConnection(TextView textView){
+    DatabaseConnection(String username, String password, TextView textView){
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            text = textView;
+        }
+        new SendGetRequest().execute(WEB_ROOT+"login.php?username="+username+"&password="+password);
+    }
+    /**
+     * Tests how to make a GET request.
+     * @param textView Shows status of GET request
+     */
+    void getTest(TextView textView){
         text = textView;
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
-        new SentGetRequest().execute(WEB_ROOT+"?id=1");
+        new SendGetRequest().execute(WEB_ROOT+"?id=1");
 
         textView.setText("Loading...");
     }
 
     //get
-    private class SentGetRequest extends AsyncTask<String, Void, String> {
+    private class SendGetRequest extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... params) {
             try {
                 //Get the response
@@ -85,4 +97,5 @@ public class DatabaseConnection {
 
         }
     }
+
 }

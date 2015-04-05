@@ -26,7 +26,6 @@ public class LoginActivity extends MainActivity {
         final EditText username = (EditText)findViewById(R.id.username);
         final EditText password =(EditText)findViewById(R.id.password);
 
-        DatabaseConnection databaseConnection = new DatabaseConnection(status);
 
         Button login = (Button)findViewById(R.id.login);
 
@@ -36,18 +35,7 @@ public class LoginActivity extends MainActivity {
             public void onClick(View v) {
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
-                for(int i = 0; i<= 1; i++) {
-                    if (usernameField.equals("username")) {
-                        if (passwordField.equals("1234")) {
-                            status.setText("Logged In");
-                        }
-                        else {
-                            status.setText("Wrong Log-In");
-                        }
-                    } else {
-                        status.setText("Wrong Log-In");
-                    }
-              }
+                DatabaseConnection db = new DatabaseConnection(usernameField, passwordField, status);
             }
         });
     }
