@@ -166,23 +166,23 @@ public class CreateActivity extends MainActivity {
                 }
                 try {
                     Bitmap bitmap;
-                    BitmapFactory.Options bitmapOptionsLeft = new BitmapFactory.Options();
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptionsLeft);
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
                     ((ImageView) findViewById(imageToSet)).setImageBitmap(bitmap);
 
                     String path = android.os.Environment
                             .getExternalStorageDirectory()
                             + File.separator
-                            + "Xeonjake" + File.separator + "default";
+                            + "createAct" + File.separator + "default"; //create the file name
                     f.delete();
                     OutputStream outFile = null;
                     File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
                     try {
                         outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile); //compress captured image
                         outFile.flush();
                         outFile.close();
-                    } catch (FileNotFoundException e) {
+                    } catch (FileNotFoundException e) { //idk what these are it just had to be there
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -210,7 +210,7 @@ public class CreateActivity extends MainActivity {
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-                thumbnail.compress(Bitmap.CompressFormat.JPEG,85,compressThumbnail);
+                thumbnail.compress(Bitmap.CompressFormat.JPEG,85,compressThumbnail); //use to compress the display image
                 Log.w("image path:", picturePath + "");
                 ((ImageView) findViewById(imageToSet)).setImageBitmap(thumbnail);
 
