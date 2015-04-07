@@ -60,4 +60,10 @@
         <item>5 Minutes</item>
         <item>55 Minutes</item>
     </string-array>
+    <string name="photo_dialog_title">Add Photo</string>
+    <string-array name="photo_options">
+        <item>Take a photo</item>
+        <item>Chose From Gallery</item>
+        <item>Cancel</item>
+    </string-array>
 </resources>
