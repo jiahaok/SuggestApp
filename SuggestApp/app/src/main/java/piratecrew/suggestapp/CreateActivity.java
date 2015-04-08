@@ -26,10 +26,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class CreateActivity extends MainActivity {
+public class CreateActivity extends MainActivity implements Runnable{
     //variables here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
 
+    @Override
+    public void run() {
+        setButtons();
+        setSpinners();
+        Log.i("Running", "Thread is running");
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(theme);
@@ -37,14 +43,15 @@ public class CreateActivity extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        Thread t = new Thread(this);
+        t.start();
 
-        setButtons();
-        setSpinners();
 
     }
 
     public void setButtons(){
         //left upload button
+
         findViewById(R.id.uploadLeft).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,21 +76,18 @@ public class CreateActivity extends MainActivity {
 
     public void setSpinners() {
         ArrayAdapter<CharSequence> adapter;
-
         spinnerDay = (Spinner) findViewById(R.id.spinnerDay);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_day,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDay.setAdapter(adapter);
-
         spinnerHour = (Spinner) findViewById(R.id.spinnerHour);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_hour,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHour.setAdapter(adapter);
-
         spinnerMinute = (Spinner) findViewById(R.id.spinnerMinute);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_minute,
@@ -217,4 +221,6 @@ public class CreateActivity extends MainActivity {
             }
         }
     }
+
+
 }
