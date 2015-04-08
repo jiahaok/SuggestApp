@@ -29,11 +29,75 @@ import java.io.OutputStream;
 public class CreateActivity extends MainActivity implements Runnable{
     //variables here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
+    int requestCodeRun;
+    int resultCodeRun;
+    Intent dataRun;
 
     @Override
     public void run() {
-        setButtons();
-        setSpinners();
+
+        super.onActivityResult(requestCodeRun, resultCodeRun, dataRun);
+        if (resultCodeRun == RESULT_OK) {
+            if (requestCodeRun == 1) {   //took a photo
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                for (File temp : f.listFiles()) {
+                    if (temp.getName().equals("temp.jpg")) {
+                        f = temp;
+                        break;
+                    }
+                }
+                try {
+                    Bitmap bitmap;
+                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
+                    ((ImageView) findViewById(imageToSet)).setImageBitmap(bitmap);
+
+                    String path = android.os.Environment
+                            .getExternalStorageDirectory()
+                            + File.separator
+                            + "createAct" + File.separator + "default"; //create the file name
+                    f.delete();
+                    OutputStream outFile = null;
+                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
+                    try {
+                        outFile = new FileOutputStream(file);
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile); //compress captured image
+                        outFile.flush();
+                        outFile.close();
+                    } catch (FileNotFoundException e) { //idk what these are it just had to be there
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else if (requestCodeRun == 2) {    //choose photo
+
+                Uri selectedImage = dataRun.getData();
+                String[] filePath = {MediaStore.Images.Media.DATA};
+                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
+                c.moveToFirst();
+                int columnIndex = c.getColumnIndex(filePath[0]);
+                String picturePath = c.getString(columnIndex);
+                c.close();
+                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+                OutputStream compressThumbnail = null;
+                try {
+                    compressThumbnail = new FileOutputStream(picturePath);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                thumbnail.compress(Bitmap.CompressFormat.JPEG,85,compressThumbnail); //use to compress the display image
+                Log.w("image path:", picturePath + "");
+                ((ImageView) findViewById(imageToSet)).setImageBitmap(thumbnail);
+
+            }
+        }
         Log.i("Running", "Thread is running");
     }
     @Override
@@ -43,10 +107,8 @@ public class CreateActivity extends MainActivity implements Runnable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
-        Thread t = new Thread(this);
-        t.start();
-
-
+        setButtons();
+        setSpinners();
     }
 
     public void setButtons(){
@@ -158,68 +220,11 @@ public class CreateActivity extends MainActivity implements Runnable{
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 1) {   //took a photo
-                File f = new File(Environment.getExternalStorageDirectory().toString());
-                for (File temp : f.listFiles()) {
-                    if (temp.getName().equals("temp.jpg")) {
-                        f = temp;
-                        break;
-                    }
-                }
-                try {
-                    Bitmap bitmap;
-                    BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
-                    bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
-                    ((ImageView) findViewById(imageToSet)).setImageBitmap(bitmap);
-
-                    String path = android.os.Environment
-                            .getExternalStorageDirectory()
-                            + File.separator
-                            + "createAct" + File.separator + "default"; //create the file name
-                    f.delete();
-                    OutputStream outFile = null;
-                    File file = new File(path, String.valueOf(System.currentTimeMillis()) + ".jpg");
-                    try {
-                        outFile = new FileOutputStream(file);
-                        bitmap.compress(Bitmap.CompressFormat.JPEG, 85, outFile); //compress captured image
-                        outFile.flush();
-                        outFile.close();
-                    } catch (FileNotFoundException e) { //idk what these are it just had to be there
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-            else if (requestCode == 2) {    //choose photo
-
-                Uri selectedImage = data.getData();
-                String[] filePath = {MediaStore.Images.Media.DATA};
-                Cursor c = getContentResolver().query(selectedImage, filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                String picturePath = c.getString(columnIndex);
-                c.close();
-                Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-                OutputStream compressThumbnail = null;
-                try {
-                    compressThumbnail = new FileOutputStream(picturePath);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                thumbnail.compress(Bitmap.CompressFormat.JPEG,85,compressThumbnail); //use to compress the display image
-                Log.w("image path:", picturePath + "");
-                ((ImageView) findViewById(imageToSet)).setImageBitmap(thumbnail);
-
-            }
-        }
+        requestCodeRun = requestCode;
+        resultCodeRun = resultCode;
+        dataRun = data;
+        Thread t = new Thread(this);
+        t.start();
     }
 
 
