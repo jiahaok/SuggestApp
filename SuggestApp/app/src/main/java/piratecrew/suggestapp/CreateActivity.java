@@ -7,9 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -26,16 +23,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class CreateActivity extends MainActivity implements Runnable{
+public class CreateActivity extends MainActivity implements Runnable {
     //variables here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
     int requestCodeRun;
     int resultCodeRun;
     Intent dataRun;
 
+    Bitmap thumb;
+    Bitmap bit;
+
     @Override
     public void run() {
-
         super.onActivityResult(requestCodeRun, resultCodeRun, dataRun);
         if (resultCodeRun == RESULT_OK) {
             if (requestCodeRun == 1) {   //took a photo
@@ -50,7 +49,13 @@ public class CreateActivity extends MainActivity implements Runnable{
                     Bitmap bitmap;
                     BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
                     bitmap = BitmapFactory.decodeFile(f.getAbsolutePath(),bitmapOptions);
-                    ((ImageView) findViewById(imageToSet)).setImageBitmap(bitmap);
+                    bit = bitmap;
+                    runOnUiThread(new Runnable(){
+                        @Override
+                        public void run() {
+                            ((ImageView) findViewById(imageToSet)).setImageBitmap(bit);
+                        }
+                    });
 
                     String path = android.os.Environment
                             .getExternalStorageDirectory()
@@ -94,7 +99,13 @@ public class CreateActivity extends MainActivity implements Runnable{
                 }
                 thumbnail.compress(Bitmap.CompressFormat.JPEG,85,compressThumbnail); //use to compress the display image
                 Log.w("image path:", picturePath + "");
-                ((ImageView) findViewById(imageToSet)).setImageBitmap(thumbnail);
+                thumb = thumbnail;
+                runOnUiThread(new Runnable(){
+                    @Override
+                    public void run() {
+                        ((ImageView) findViewById(imageToSet)).setImageBitmap(thumb);
+                    }
+                });
 
             }
         }
@@ -225,6 +236,7 @@ public class CreateActivity extends MainActivity implements Runnable{
         dataRun = data;
         Thread t = new Thread(this);
         t.start();
+
     }
 
 
