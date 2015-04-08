@@ -38,6 +38,8 @@ public class LoginActivity extends MainActivity {
                 DatabaseConnection db = new DatabaseConnection(usernameField, passwordField, status);
             }
         });
+
+
     }
 
 
