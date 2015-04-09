@@ -149,6 +149,11 @@ public class CreateActivity extends MainActivity implements Runnable {
             @Override
             public void onClick(View v) {
                 //TODO: add code to verify inputs and upload to server
+                //Verify that there is a length of time selected
+                if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
+                    showToast("Can Not Be 0 Minute.");
+                    return;
+                }
             }
         });
     }
@@ -170,13 +175,6 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int dayPosition, long dayId){ // save the spinner position to dayPosition and id to dayId
                         dayPositionP = dayPosition; // save to a class wide variable so all method can use it
                         dayIdP = dayId;
-                        if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){//this checks to see if it is literally a 0 minute on the timer
-                            showToast("Can Not Be 0 Minute.");
-                            create.setEnabled(false); // grey out submit button
-                        }
-                        else{
-                            create.setEnabled(true);
-                        }
                     }
                     public void onNothingSelected(AdapterView<?> parent) { // this is for if nothing is selected, which is impossible for this app
                         showToast("ERROR: day: unselected"); //display those little dark flippy text on the bottom
@@ -194,13 +192,6 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int hourPosition, long hourId){
                         hourPositionP = hourPosition;
                         hourIdP = hourId;
-                        if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
-                            showToast("Can Not Be 0 Minute.");
-                            create.setEnabled(false); // grey out submit button
-                        }
-                        else{
-                            create.setEnabled(true);
-                        }
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: hour = unselected");
@@ -218,13 +209,6 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int minutePosition, long minuteId){
                         minutePositionP = minutePosition;
                         minuteIdP = minuteId;
-                        if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
-                            showToast("Can Not Be 0 Minute.");
-                            create.setEnabled(false); // grey out submit button
-                        }
-                        else{
-                            create.setEnabled(true);
-                        }
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: minute = unselected");
