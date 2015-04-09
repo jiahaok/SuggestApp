@@ -198,7 +198,7 @@ public class CreateActivity extends MainActivity implements Runnable {
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMinute.setAdapter(adapter);
-        spinnerMinute.setSelection(1);
+        spinnerMinute.setSelection(1); // set the default position to be 5 minute
         spinnerMinute.setOnItemSelectedListener(
                 new OnItemSelectedListener() {
                     public void onItemSelected(AdapterView<?> parent, View view, int minutePosition, long minuteId){
