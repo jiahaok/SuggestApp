@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -31,12 +32,11 @@ import java.io.OutputStream;
 public class CreateActivity extends MainActivity implements Runnable {
     //variables start here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
-    int requestCodeRun, resultCodeRun, dayPositionP, hourPositionP, minutePositionP;
-    long dayIdP, hourIdP, minuteIdP;
+    int requestCodeRun, resultCodeRun, dayValue, hourValue, minuteValue;
     Intent dataRun;
     Button create;
 
-    Bitmap thumb, bit;
+    Bitmap thumb, bit, rightBit, leftBit;
     //end of variable
 
     @Override
@@ -117,12 +117,17 @@ public class CreateActivity extends MainActivity implements Runnable {
         }
         Log.i("Running", "Thread is running");
     }
+
+    EditText text1, text2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(theme);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+
+        text1 = (EditText) findViewById(R.id.editText1);
+        text2 = (EditText) findViewById(R.id.editText2);
 
         setButtons();
         setSpinners();
@@ -149,10 +154,21 @@ public class CreateActivity extends MainActivity implements Runnable {
             @Override
             public void onClick(View v) {
                 //TODO: add code to verify inputs and upload to server
+                //Turn the time into milliseconds
+                long time = 60_000*(minuteValue +60*(hourValue + 24*dayValue));
                 //Verify that there is a length of time selected
-                if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
-                    showToast("Can Not Be 0 Minute.");
-                    return;
+                if(time == 0)
+                    showToast("Can not Be 0 minutes.");
+                //If no database has been made, or if one was made and isn't logged in, log in.
+                else if(db == null || db.loggedOut())
+                    startActivity(new Intent(CreateActivity.this, LoginActivity.class));
+                //TODO add additional verification for text boxes
+                else if(text1.getText().toString().equals("") || text2.getText().toString().equals(""))
+                    showToast("Must describe both options.");
+                else{
+                    db.createPoll(text1.getText().toString(),
+                            text2.getText().toString(),
+                            null, null, time);
                 }
             }
         });
@@ -172,9 +188,13 @@ public class CreateActivity extends MainActivity implements Runnable {
         spinnerDay.setAdapter(adapter);
         spinnerDay.setOnItemSelectedListener(  //a on listener for spinners
                 new OnItemSelectedListener() {  //<---self explanatory
-                    public void onItemSelected(AdapterView<?> parent, View view, int dayPosition, long dayId){ // save the spinner position to dayPosition and id to dayId
-                        dayPositionP = dayPosition; // save to a class wide variable so all method can use it
-                        dayIdP = dayId;
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){ // save the spinner position to dayPosition and id to dayId
+                        //Take the spinner, get the selected panel, read the panel's text,
+                        //remove all non-number parts of that text, and convert into an int.
+                        dayValue = Integer.parseInt(parent
+                                .getItemAtPosition(pos)
+                                .toString()
+                                .replaceAll("[^0-9]", "")); // save to a class wide variable so all method can use it
                     }
                     public void onNothingSelected(AdapterView<?> parent) { // this is for if nothing is selected, which is impossible for this app
                         showToast("ERROR: day: unselected"); //display those little dark flippy text on the bottom
@@ -189,9 +209,13 @@ public class CreateActivity extends MainActivity implements Runnable {
         spinnerHour.setAdapter(adapter);
         spinnerHour.setOnItemSelectedListener(
                 new OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int hourPosition, long hourId){
-                        hourPositionP = hourPosition;
-                        hourIdP = hourId;
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+                        //Take the spinner, get the selected panel, read the panel's text,
+                        //remove all non-number parts of that text, and convert into an int.
+                        hourValue = Integer.parseInt(parent
+                                .getItemAtPosition(pos)
+                                .toString()
+                                .replaceAll("[^0-9]", "")); // save to a class wide variable so all method can use it
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: hour = unselected");
@@ -206,9 +230,13 @@ public class CreateActivity extends MainActivity implements Runnable {
         spinnerMinute.setSelection(1); // set the default position to be 5 minute
         spinnerMinute.setOnItemSelectedListener(
                 new OnItemSelectedListener() {
-                    public void onItemSelected(AdapterView<?> parent, View view, int minutePosition, long minuteId){
-                        minutePositionP = minutePosition;
-                        minuteIdP = minuteId;
+                    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+                        //Take the spinner, get the selected panel, read the panel's text,
+                        //remove all non-number parts of that text, and convert into an int.
+                        minuteValue =  Integer.parseInt(parent
+                                .getItemAtPosition(pos)
+                                .toString()
+                                .replaceAll("[^0-9]", "")); // save to a class wide variable so all method can use it
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: minute = unselected");
