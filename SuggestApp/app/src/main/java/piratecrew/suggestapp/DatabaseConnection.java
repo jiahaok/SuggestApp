@@ -2,6 +2,7 @@ package piratecrew.suggestapp;
 
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -9,8 +10,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.util.Base64;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -28,6 +32,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +40,7 @@ import java.util.List;
  */
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
+    private String sessionId;
     TextView text;
     DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -75,6 +81,18 @@ public class DatabaseConnection {
         new SendPostRequest().execute(strings, strings1);
 
 
+    }
+
+    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, int minutes){
+        String[] host = {WEB_ROOT+"create.php"};
+        String[] opt1  = {"opt1", text1};
+        String[] opt2 = {"opt2", text2};
+        String[] bit1 = {"pic1", BitMapToString(pic1)};
+        String[] bit2 = {"pic2", BitMapToString(pic2)};
+        float end = new Date().getTime();
+        String[] endTime = {"end_time", Float.toString(end)};
+
+        new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime);
     }
 
     //get
@@ -173,8 +191,32 @@ public class DatabaseConnection {
         }
 
         protected void onPostExecute(String result){
-            text.setText(result);
+                //NOTE: if result.length() is less then 10, the program
+                //will ignore the second half, preventing an error.
+                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:"))
+                    text.setText(result.substring(11));
+                else {
+                    sessionId = result;
+                    text.setText("Logged In");
+                }
 
+        }
+    }
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos = new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
         }
     }
 }

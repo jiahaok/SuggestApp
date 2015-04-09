@@ -11,7 +11,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    static DatabaseConnection db = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

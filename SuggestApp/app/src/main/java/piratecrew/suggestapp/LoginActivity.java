@@ -35,7 +35,7 @@ public class LoginActivity extends MainActivity {
             public void onClick(View v) {
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
-                DatabaseConnection db = new DatabaseConnection(usernameField, passwordField, status);
+                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
             }
         });
 
