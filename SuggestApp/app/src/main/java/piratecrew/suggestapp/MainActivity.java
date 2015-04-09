@@ -46,6 +46,9 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_about:
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 break;
+            case R.id.action_terms:
+                startActivity(new Intent(MainActivity.this, terms.class));
+                break;
 
         }
     }
