@@ -15,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -40,7 +41,7 @@ import java.util.List;
  */
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
-    private String sessionId;
+    private String sessionId = null;
     TextView text;
     DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -83,16 +84,20 @@ public class DatabaseConnection {
 
     }
 
-    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, int minutes){
+    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
         String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
         String[] opt2 = {"opt2", text2};
-        String[] bit1 = {"pic1", BitMapToString(pic1)};
-        String[] bit2 = {"pic2", BitMapToString(pic2)};
-        float end = new Date().getTime();
+        String sPic1, sPic2;
+        if(pic1 == null || pic2 == null){sPic1 = ""; sPic2 = "";}
+        else{sPic1 = BitMapToString(pic1); sPic2 =BitMapToString(pic2);}
+        String[] bit1 = {"pic1", sPic1};
+        String[] bit2 = {"pic2", sPic2};
+        end += new Date().getTime();
         String[] endTime = {"end_time", Float.toString(end)};
+        String[] session = {"session", sessionId};
 
-        new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime);
+        new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime, session);
     }
 
     //get
@@ -219,4 +224,5 @@ public class DatabaseConnection {
             return null;
         }
     }
+    boolean loggedOut(){return sessionId == null;}
 }
