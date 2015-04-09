@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,7 +18,10 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,14 +29,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class CreateActivity extends MainActivity implements Runnable {
-    //variables here:
+    //variables start here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
-    int requestCodeRun;
-    int resultCodeRun;
+    int requestCodeRun, resultCodeRun, dayPositionP, hourPositionP, minutePositionP;
+    long dayIdP, hourIdP, minuteIdP;
     Intent dataRun;
+    Button create;
 
-    Bitmap thumb;
-    Bitmap bit;
+    Bitmap thumb, bit;
+    //end of variable
 
     @Override
     public void run() {
@@ -124,7 +130,6 @@ public class CreateActivity extends MainActivity implements Runnable {
 
     public void setButtons(){
         //left upload button
-
         findViewById(R.id.uploadLeft).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,12 +144,17 @@ public class CreateActivity extends MainActivity implements Runnable {
             }
         });
         //Submit button
-        findViewById(R.id.create).setOnClickListener(new View.OnClickListener() {
+        create =(Button)findViewById(R.id.create);
+        create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: add code to verify inputs and upload to server
             }
         });
+    }
+
+    void showToast(CharSequence msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     public void setSpinners() {
@@ -155,18 +165,57 @@ public class CreateActivity extends MainActivity implements Runnable {
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDay.setAdapter(adapter);
+        spinnerDay.setOnItemSelectedListener(  //a on listener for spinners
+                new OnItemSelectedListener() {  //<---self explanatory
+                    public void onItemSelected(AdapterView<?> parent, View view, int dayPosition, long dayId){ // save the spinner position to dayPosition and id to dayId
+                        dayPositionP = dayPosition; // save to a class wide variable so all method can use it
+                        dayIdP = dayId;
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) { // this is for if nothing is selected, which is impossible for this app
+                        showToast("ERROR: day: unselected"); //display those little dark flippy text on the bottom
+                    }
+                });
+                //code below repeats the exact same thing except with different variable
         spinnerHour = (Spinner) findViewById(R.id.spinnerHour);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_hour,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerHour.setAdapter(adapter);
+        spinnerHour.setOnItemSelectedListener(
+                new OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int hourPosition, long hourId){
+                        hourPositionP = hourPosition;
+                        hourIdP = hourId;
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        showToast("ERROR: hour = unselected");
+                    }
+                });
         spinnerMinute = (Spinner) findViewById(R.id.spinnerMinute);
         adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_minute,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMinute.setAdapter(adapter);
+        spinnerMinute.setSelection(1); // set the default position to be 5 minute
+        spinnerMinute.setOnItemSelectedListener(
+                new OnItemSelectedListener() {
+                    public void onItemSelected(AdapterView<?> parent, View view, int minutePosition, long minuteId){
+                        minutePositionP = minutePosition;
+                        minuteIdP = minuteId;
+                        if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){//this checks to see if it is literally a 0 minute on the timer
+                            showToast("Can Not Be 0 Minute.");
+                            create.setEnabled(false); // grey out submit button
+                        }
+                        else{
+                            create.setEnabled(true);
+                        }
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        showToast("ERROR: minute = unselected");
+                    }
+                });
     }
 
 
