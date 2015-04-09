@@ -21,7 +21,6 @@ import android.util.Log;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -128,6 +127,7 @@ public class CreateActivity extends MainActivity implements Runnable {
         setSpinners();
     }
 
+
     public void setButtons(){
         //left upload button
         findViewById(R.id.uploadLeft).setOnClickListener(new View.OnClickListener() {
@@ -149,13 +149,19 @@ public class CreateActivity extends MainActivity implements Runnable {
             @Override
             public void onClick(View v) {
                 //TODO: add code to verify inputs and upload to server
-                //Verify that there is a length of time selected
-                if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
-                    showToast("Can Not Be 0 Minute.");
-                    return;
-                }
+
             }
         });
+    }
+    public void verifyTime(){
+        //Verify that there is a length of time selected
+        if(dayPositionP == 0 && hourPositionP == 0 && minutePositionP == 0){
+            showToast("Can Not Be 0 Minute.");
+            create.setEnabled(false);
+        }
+        else{
+            create.setEnabled(true);
+        }
     }
 
     void showToast(CharSequence msg) {
@@ -175,6 +181,7 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int dayPosition, long dayId){ // save the spinner position to dayPosition and id to dayId
                         dayPositionP = dayPosition; // save to a class wide variable so all method can use it
                         dayIdP = dayId;
+                        verifyTime();
                     }
                     public void onNothingSelected(AdapterView<?> parent) { // this is for if nothing is selected, which is impossible for this app
                         showToast("ERROR: day: unselected"); //display those little dark flippy text on the bottom
@@ -192,6 +199,7 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int hourPosition, long hourId){
                         hourPositionP = hourPosition;
                         hourIdP = hourId;
+                        verifyTime();
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: hour = unselected");
@@ -209,6 +217,7 @@ public class CreateActivity extends MainActivity implements Runnable {
                     public void onItemSelected(AdapterView<?> parent, View view, int minutePosition, long minuteId){
                         minutePositionP = minutePosition;
                         minuteIdP = minuteId;
+                        verifyTime();
                     }
                     public void onNothingSelected(AdapterView<?> parent) {
                         showToast("ERROR: minute = unselected");
