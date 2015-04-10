@@ -6,10 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class terms extends ActionBarActivity {
+public class TermsActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(theme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms);
     }
@@ -30,9 +33,6 @@ public class terms extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

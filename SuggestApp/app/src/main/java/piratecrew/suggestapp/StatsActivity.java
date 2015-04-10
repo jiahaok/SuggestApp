@@ -33,10 +33,7 @@ public class StatsActivity extends MainActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         menu(id);
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
                 break;
             case R.id.action_terms:
-                startActivity(new Intent(MainActivity.this, terms.class));
+                startActivity(new Intent(MainActivity.this, TermsActivity.class));
                 break;
 
         }
@@ -72,11 +72,6 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         menu(id);
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-
-        }
 
         return super.onOptionsItemSelected(item);
 

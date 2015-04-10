@@ -66,10 +66,7 @@ public class ThemesActivity extends MainActivity {
         int id = item.getItemId();
         menu(id);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

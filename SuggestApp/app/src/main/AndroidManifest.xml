@@ -63,7 +63,7 @@
                 android:value="piratecrew.suggestapp.MainActivity" />
         </activity>
         <activity
-            android:name=".terms"
+            android:name=".TermsActivity"
             android:label="@string/title_activity_terms" >
         </activity>
     </application>
