@@ -38,17 +38,6 @@
         android:layout_alignStart="@+id/email"
         android:text="Repeat Email" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/birthday"
-        android:layout_below="@+id/reEmail"
-        android:layout_alignLeft="@+id/reEmail"
-        android:layout_alignStart="@+id/reEmail"
-        android:text="Birthday" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,7 +46,7 @@
         android:id="@+id/textView"
         android:textStyle="bold"
         android:textColor="#ff0a0a0a"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -66,18 +55,18 @@
         android:layout_height="wrap_content"
         android:text="I agree to the terms"
         android:id="@+id/radioButton"
-        android:layout_below="@+id/birthday"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="55dp"
-        android:checked="false" />
+        android:layout_marginTop="35dp"
+        android:checked="false"
+        android:layout_alignLeft="@+id/reEmail"
+        android:layout_alignStart="@+id/reEmail"
+        android:layout_below="@+id/reEmail" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:id="@+id/signup"
-        android:layout_alignBottom="@+id/radioButton"
+        android:layout_below="@+id/radioButton"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView" />
 
@@ -87,9 +76,9 @@
         android:layout_height="wrap_content"
         android:text="Terms Of Service"
         android:id="@+id/button4"
-        android:layout_below="@+id/birthday"
-        android:layout_alignRight="@+id/radioButton"
-        android:layout_alignEnd="@+id/radioButton" />
+        android:layout_below="@+id/radioButton"
+        android:layout_alignLeft="@+id/radioButton"
+        android:layout_alignStart="@+id/radioButton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,5 +88,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textColor="#ffff000c" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/birthday"
+        android:text="Birthday"
+        android:layout_below="@+id/reEmail"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

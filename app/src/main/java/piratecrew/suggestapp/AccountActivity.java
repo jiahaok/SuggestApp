@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 
 public class AccountActivity extends ActionBarActivity {
@@ -19,6 +20,7 @@ public class AccountActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        TextView status = (TextView)findViewById(R.id.textView2);
         Button signup = (Button)findViewById(R.id.signup);
         Button terms = (Button)findViewById(R.id.button4);
         RadioButton accept = (RadioButton)findViewById(R.id.radioButton);
@@ -45,13 +47,18 @@ public class AccountActivity extends ActionBarActivity {
             }
         });
 
-        if(email != " " && reEmail != " " && email == reEmail && password != " " && birthday != " " && acceptOn.equals(true)){
+        if(email != " " || email != "" && reEmail != " " && email == reEmail && password != " " && birthday != " " && acceptOn.equals(true)){
             signup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(AccountActivity.this,MainActivity.class);
+                    startActivity(intent);
                 }
             });
+        }
+        else{
+            status.setText("YOU MUST FILL EVERY SINGLE BOX / RADIO BUTTON IN!");
+            acceptOn.equals(false);
         }
 
 
