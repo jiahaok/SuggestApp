@@ -1,18 +1,24 @@
 package piratecrew.suggestapp;
 
 
+import java.io.FileOutputStream;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
-import piratecrew.suggestapp.DatabaseConnection;
 
 
 public class LoginActivity extends MainActivity {
     static int before = 0;
+    static int c;
+    static String temp = "";
+    static String temp2 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,25 +27,31 @@ public class LoginActivity extends MainActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        DatabaseConnection.l = this;
 
-        final TextView status = (TextView)findViewById(R.id.status);
-        final EditText username = (EditText)findViewById(R.id.username);
-        final EditText password =(EditText)findViewById(R.id.password);
+        //clears the files if the user is not logged in
+        if (loggedIn == false){
+            writeFile("","Login");
+            writeFile("","Password");
+        }
 
+        final TextView status = (TextView) findViewById(R.id.status);
+        final EditText username = (EditText) findViewById(R.id.username);
+        final EditText password = (EditText) findViewById(R.id.password);
 
-        Button login = (Button)findViewById(R.id.login);
+        Button login = (Button) findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
 
 
             public void onClick(View v) {
+                DatabaseConnection.leave = true;
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
-                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
+
+                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status, false);
             }
         });
-
-
     }
 
 
@@ -65,4 +77,21 @@ public class LoginActivity extends MainActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //Writes a string to a file; is accessed by DatabaseConnection
+    public void writeFile(String data,String file){
+        try {
+            FileOutputStream fOut = openFileOutput(file, MODE_PRIVATE);
+            fOut.write(data.getBytes());
+            fOut.close();
+
+        } catch(Exception e) {
+            Log.e("error", Log.getStackTraceString(e));
+        }
+    }
+    //Allows DatabaseConnection to send user to the Logout Page
+    public void leave(){
+        startActivity(new Intent(LoginActivity.this,LogoutActivity.class));
+    }
+
 }

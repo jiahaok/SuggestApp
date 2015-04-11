@@ -4,14 +4,20 @@ package piratecrew.suggestapp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.FileInputStream;
 
 
 public class MainActivity extends ActionBarActivity {
     static protected DatabaseConnection db = null;
+    //this variable shows if the user is logged in based on data read from files
+    public static boolean loggedIn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -19,6 +25,39 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //checking to see if the user is logged in
+            try {
+                FileInputStream fin = openFileInput("Login");
+                LoginActivity.temp = "";
+                while ((LoginActivity.c = fin.read()) != -1) {
+                    LoginActivity.temp = LoginActivity.temp + Character.toString((char) LoginActivity.c);
+                }
+                Log.i("Data Read", LoginActivity.temp);
+                fin.close();
+            } catch (Exception e) {
+                Log.e("error", Log.getStackTraceString(e));
+                LoginActivity.temp = "";
+            }
+        //If the user is logged in, the program finds the password
+            if (LoginActivity.temp != "" && LoginActivity.temp != null) {
+                try {
+                    FileInputStream fin = openFileInput("Password");
+                    LoginActivity.temp2 = "";
+                    while ((LoginActivity.c = fin.read()) != -1) {
+                        LoginActivity.temp2 = LoginActivity.temp2 + Character.toString((char) LoginActivity.c);
+                    }
+                    Log.i("Data Read", LoginActivity.temp2);
+                    fin.close();
+                    db = new DatabaseConnection(LoginActivity.temp, LoginActivity.temp2, null,false);
+                    //sets loggedIn as true
+                    loggedIn = true;
+                } catch (Exception e) {
+                    Log.e("error", Log.getStackTraceString(e));
+                    LoginActivity.temp2 = "";
+                }
+            }
+            //sets loggedIn as false
+            else loggedIn = false;
 
         Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +74,8 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 break;
             case R.id.action_login:
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                if (loggedIn == true)startActivity(new Intent(MainActivity.this, LogoutActivity.class));
+                else startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.action_stats:
                 startActivity(new Intent(MainActivity.this, StatsActivity.class));
@@ -59,6 +99,8 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (loggedIn == true) menu.findItem(R.id.action_login).setTitle("Log Out");
+        else menu.findItem(R.id.action_login).setTitle("Log In");
         return true;
     }
 

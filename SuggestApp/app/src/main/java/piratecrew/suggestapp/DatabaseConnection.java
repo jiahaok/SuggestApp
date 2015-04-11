@@ -2,20 +2,16 @@ package piratecrew.suggestapp;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Base64;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -23,15 +19,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,16 +36,25 @@ public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
     private String sessionId = null;
     TextView text;
-    DatabaseConnection(String username, String password, TextView textView){
+    static LoginActivity l = new LoginActivity();
+    public static boolean leave;
+
+    DatabaseConnection(String username, String password, TextView textView, boolean logout){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        //saves the username and password to files (these values will be overwritten w/ a blank string...
+        //...if the username and password are wrong
+        l.writeFile(username,"Login");
+        l.writeFile(password, "Password");
         text = textView;
-        String[] site = {WEB_ROOT+"login.php"};
+        String[] site = {WEB_ROOT + "login.php"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
-        new SendPostRequest().execute(site, data1, data2);
+        if (logout == false)new SendPostRequest().execute(site, data1, data2);
+        //If the logout parameter is true, the user is logged out
+        else sessionId = null;
     }
     /**
      * Tests how to make a GET request.
@@ -198,13 +200,33 @@ public class DatabaseConnection {
         protected void onPostExecute(String result){
                 //NOTE: if result.length() is less then 10, the program
                 //will ignore the second half, preventing an error.
-                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:"))
-                    text.setText(result.substring(11));
+
+                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:")) {
+                    try {
+                        text.setText(result.substring(11));
+                    } catch (Exception e){
+                    }
+                    //Writing to the files that this app sets up on the phone
+                    //clearing the files so that an incorrect login is not saves
+                    l.writeFile("", "Login");
+                    l.writeFile("", "Password");
+                }
                 else {
                     sessionId = result;
-                    text.setText("Logged In");
+                    try {
+                        text.setText("Logged In");
+                    } catch (Exception e) {
+                    }
+                    //saves the login, brings user to logout page
+                    MainActivity.loggedIn = true;
+                        try {
+                        if (leave == true){
+                            leave = false;
+                            l.leave();
+                        }
+                    }catch (Exception e){
+                    }
                 }
-
         }
     }
     public String BitMapToString(Bitmap bitmap){
