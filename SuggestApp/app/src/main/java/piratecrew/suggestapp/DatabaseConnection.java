@@ -33,6 +33,7 @@ import org.apache.http.message.BasicNameValuePair;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +43,7 @@ import java.util.List;
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
     private String sessionId = null;
+    private String successText;
     TextView text;
     DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -52,6 +54,7 @@ public class DatabaseConnection {
         String[] site = {WEB_ROOT+"login.php"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
+        successText = "Logged In";
         new SendPostRequest().execute(site, data1, data2);
     }
     /**
@@ -85,18 +88,21 @@ public class DatabaseConnection {
     }
 
     protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
+
         String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
         String[] opt2 = {"opt2", text2};
         String sPic1, sPic2;
-        if(pic1 == null || pic2 == null){sPic1 = ""; sPic2 = "";}
+        if(pic1 == null || pic2 == null){sPic1 = "null"; sPic2 = "null";}
         else{sPic1 = BitMapToString(pic1); sPic2 =BitMapToString(pic2);}
         String[] bit1 = {"pic1", sPic1};
         String[] bit2 = {"pic2", sPic2};
-        end += new Date().getTime();
-        String[] endTime = {"end_time", Float.toString(end)};
+        String[] endTime = {"length", Long.toString(end)};
+
         String[] session = {"session", sessionId};
 
+        successText = "Question created successfully.";
+        Log.i("Date", Long.toString(end));
         new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime, session);
     }
 
@@ -198,11 +204,15 @@ public class DatabaseConnection {
         protected void onPostExecute(String result){
                 //NOTE: if result.length() is less then 10, the program
                 //will ignore the second half, preventing an error.
-                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:"))
+
+                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:")) {
                     text.setText(result.substring(11));
+                    Log.e("SERVER ERROR", result);
+                }
                 else {
                     sessionId = result;
-                    text.setText("Logged In");
+                    text.setText(successText);
+                    Log.i("SERVER SUCCESS", successText);
                 }
 
         }
