@@ -24,19 +24,19 @@ public class LogoutActivity extends MainActivity {
 
         //finds and displays username
         try {
-            FileInputStream fin = openFileInput("Login");
-            LoginActivity.temp = "";
-            while ((LoginActivity.c = fin.read()) != -1) {
-                LoginActivity.temp = LoginActivity.temp + Character.toString((char) LoginActivity.c);
+            FileInputStream fin = openFileInput("Username");
+            temp = "";
+            while ((c = fin.read()) != -1) {
+                temp = temp + Character.toString((char) LoginActivity.c);
             }
-            Log.i("Data Read", LoginActivity.temp);
+            Log.i("Data Read", temp);
             fin.close();
-            user.setText("You are logged in as: " +  LoginActivity.temp);
+            user.setText("You are logged in as: " + temp);
         } catch (Exception e) {
             Log.e("error", Log.getStackTraceString(e));
-            LoginActivity.temp = "";
+            temp = "";
         }
-        LoginActivity.temp = "";
+        temp = "";
 
         //When the logout button is pressed, the user is logged out, the files are "cleared", and...
         //...the user is taken back to the login page.
@@ -44,10 +44,10 @@ public class LogoutActivity extends MainActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.db = new DatabaseConnection(null, null, null, true);
+                DatabaseConnection.sessionId = null;
                 loggedIn = false;
                 writeFile("", "Login");
-                writeFile("","Password");
+                writeFile("","Username");
                 startActivity(new Intent(LogoutActivity.this,LoginActivity.class));
             }
         });

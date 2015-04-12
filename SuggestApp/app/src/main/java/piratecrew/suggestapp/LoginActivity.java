@@ -16,9 +16,7 @@ import android.widget.TextView;
 
 public class LoginActivity extends MainActivity {
     static int before = 0;
-    static int c;
-    static String temp = "";
-    static String temp2 = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class LoginActivity extends MainActivity {
         //clears the files if the user is not logged in
         if (loggedIn == false){
             writeFile("","Login");
-            writeFile("","Password");
+            writeFile("","Username");
         }
 
         final TextView status = (TextView) findViewById(R.id.status);
@@ -49,7 +47,7 @@ public class LoginActivity extends MainActivity {
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
 
-                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status, false);
+                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
             }
         });
     }
@@ -84,6 +82,7 @@ public class LoginActivity extends MainActivity {
             FileOutputStream fOut = openFileOutput(file, MODE_PRIVATE);
             fOut.write(data.getBytes());
             fOut.close();
+            Log.i("Write", data);
 
         } catch(Exception e) {
             Log.e("error", Log.getStackTraceString(e));

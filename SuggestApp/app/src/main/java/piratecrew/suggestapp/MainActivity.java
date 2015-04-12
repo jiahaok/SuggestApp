@@ -18,6 +18,10 @@ public class MainActivity extends ActionBarActivity {
     static protected DatabaseConnection db = null;
     //this variable shows if the user is logged in based on data read from files
     public static boolean loggedIn = false;
+    static int c;
+    static String temp = "";
+    static String temp2 = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -28,35 +32,21 @@ public class MainActivity extends ActionBarActivity {
         //checking to see if the user is logged in
             try {
                 FileInputStream fin = openFileInput("Login");
-                LoginActivity.temp = "";
+                temp = "";
                 while ((LoginActivity.c = fin.read()) != -1) {
-                    LoginActivity.temp = LoginActivity.temp + Character.toString((char) LoginActivity.c);
+                    temp = temp + Character.toString((char) c);
                 }
-                Log.i("Data Read", LoginActivity.temp);
+                Log.i("Data Read", temp);
                 fin.close();
             } catch (Exception e) {
                 Log.e("error", Log.getStackTraceString(e));
-                LoginActivity.temp = "";
+                temp = "";
             }
         //If the user is logged in, the program finds the password
-            if (LoginActivity.temp != "" && LoginActivity.temp != null) {
-                try {
-                    FileInputStream fin = openFileInput("Password");
-                    LoginActivity.temp2 = "";
-                    while ((LoginActivity.c = fin.read()) != -1) {
-                        LoginActivity.temp2 = LoginActivity.temp2 + Character.toString((char) LoginActivity.c);
-                    }
-                    Log.i("Data Read", LoginActivity.temp2);
-                    fin.close();
-                    db = new DatabaseConnection(LoginActivity.temp, LoginActivity.temp2, null,false);
-                    //sets loggedIn as true
-                    loggedIn = true;
-                } catch (Exception e) {
-                    Log.e("error", Log.getStackTraceString(e));
-                    LoginActivity.temp2 = "";
-                }
+            if (temp != ""){
+                loggedIn = true;
+                DatabaseConnection.sessionId = temp;
             }
-            //sets loggedIn as false
             else loggedIn = false;
 
         Button createBtn = (Button) findViewById(R.id.button);

@@ -34,27 +34,25 @@ import java.util.List;
  */
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
-    private String sessionId = null;
+    public static String sessionId = null;
     TextView text;
     static LoginActivity l = new LoginActivity();
     public static boolean leave;
 
-    DatabaseConnection(String username, String password, TextView textView, boolean logout){
+    DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         //saves the username and password to files (these values will be overwritten w/ a blank string...
         //...if the username and password are wrong
-        l.writeFile(username,"Login");
-        l.writeFile(password, "Password");
         text = textView;
+        l.writeFile(username, "Username");
         String[] site = {WEB_ROOT + "login.php"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
-        if (logout == false)new SendPostRequest().execute(site, data1, data2);
+        new SendPostRequest().execute(site, data1, data2);
         //If the logout parameter is true, the user is logged out
-        else sessionId = null;
     }
     /**
      * Tests how to make a GET request.
@@ -208,8 +206,7 @@ public class DatabaseConnection {
                     }
                     //Writing to the files that this app sets up on the phone
                     //clearing the files so that an incorrect login is not saves
-                    l.writeFile("", "Login");
-                    l.writeFile("", "Password");
+                    l.writeFile("","Login");
                 }
                 else {
                     sessionId = result;
@@ -219,7 +216,8 @@ public class DatabaseConnection {
                     }
                     //saves the login, brings user to logout page
                     MainActivity.loggedIn = true;
-                        try {
+                    l.writeFile(sessionId,"Login");
+                    try {
                         if (leave == true){
                             leave = false;
                             l.leave();
