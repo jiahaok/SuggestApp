@@ -1,14 +1,12 @@
 package piratecrew.suggestapp;
 
-import android.accounts.Account;
+
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -20,46 +18,35 @@ public class AccountActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-        TextView status = (TextView)findViewById(R.id.textView2);
-        Button signup = (Button)findViewById(R.id.signup);
-        Button terms = (Button)findViewById(R.id.button4);
-        RadioButton accept = (RadioButton)findViewById(R.id.radioButton);
-        EditText emailn = (EditText)findViewById(R.id.email);
-        String email = emailn.getText().toString();
-        EditText reEmailn = (EditText)findViewById(R.id.reEmail);
-        String reEmail = reEmailn.getText().toString();
-        EditText passwordn = (EditText)findViewById(R.id.password);
-        String password = passwordn.getText().toString();
-        EditText birthdayn = (EditText)findViewById(R.id.birthday);
-        String birthday = birthdayn.getText().toString();
-        terms.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccountActivity.this, TermsAndServices.class);
                 startActivity(intent);
             }
         });
-        final boolean[] acceptOn = {false};
-        accept.setOnClickListener(new View.OnClickListener() {
+
+
+        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                acceptOn[0] = true;
+                String username  = ((EditText) findViewById(R.id.email   )).getText().toString();
+                String checkUser = ((EditText) findViewById(R.id.rePassword)).getText().toString();
+                String password  = ((EditText) findViewById(R.id.password)).getText().toString();
+                TextView status = (TextView) findViewById(R.id.status);
+
+
+                if(username.equals("") || password.equals(""))
+                    status.setText("Must have username and password");
+                else if(!username.equals(checkUser))
+                    status.setText("Email doesn't match");
+                else if(!((RadioButton) findViewById(R.id.radioButton)).isChecked())
+                    status.setText("Must agree to terms of use");
+                //TODO: else create user
+
+
             }
         });
-
-        if(email != " " || email != "" && reEmail != " " && email == reEmail && password != " " && birthday != " " && acceptOn.equals(true)){
-            signup.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(AccountActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
-        else{
-            status.setText("YOU MUST FILL EVERY SINGLE BOX / RADIO BUTTON IN!");
-            acceptOn.equals(false);
-        }
 
 
 
