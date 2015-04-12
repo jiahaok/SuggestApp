@@ -68,4 +68,5 @@
         <item>Chose From Gallery</item>
         <item>Cancel</item>
     </string-array>
+    <string name="title_activity_account">AccountActivity</string>
 </resources>
