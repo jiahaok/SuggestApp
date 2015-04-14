@@ -18,9 +18,6 @@ public class MainActivity extends ActionBarActivity {
     static protected DatabaseConnection db = null;
     //this variable shows if the user is logged in based on data read from files
     public static boolean loggedIn = false;
-    static int c;
-    static String temp = "";
-    static String temp2 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,23 +26,10 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //checking to see if the user is logged in
-            try {
-                FileInputStream fin = openFileInput("Login");
-                temp = "";
-                while ((LoginActivity.c = fin.read()) != -1) {
-                    temp = temp + Character.toString((char) c);
-                }
-                Log.i("Data Read", temp);
-                fin.close();
-            } catch (Exception e) {
-                Log.e("error", Log.getStackTraceString(e));
-                temp = "";
-            }
         //If the user is logged in, the program finds the password
-            if (temp != ""){
+            if (FileSingleton.readFile("Login") != ""){
                 loggedIn = true;
-                DatabaseConnection.sessionId = temp;
+                DatabaseConnection.sessionId = FileSingleton.readFile("Login");
             }
             else loggedIn = false;
 

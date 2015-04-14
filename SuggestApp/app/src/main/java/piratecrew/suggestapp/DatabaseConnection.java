@@ -36,7 +36,6 @@ public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
     public static String sessionId = null;
     TextView text;
-    static LoginActivity l = new LoginActivity();
     public static boolean leave;
 
     DatabaseConnection(String username, String password, TextView textView){
@@ -47,7 +46,7 @@ public class DatabaseConnection {
         //saves the username and password to files (these values will be overwritten w/ a blank string...
         //...if the username and password are wrong
         text = textView;
-        l.writeFile(username, "Username");
+        FileSingleton.writeFile(username, "Username");
         String[] site = {WEB_ROOT + "login.php"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
@@ -206,7 +205,7 @@ public class DatabaseConnection {
                     }
                     //Writing to the files that this app sets up on the phone
                     //clearing the files so that an incorrect login is not saves
-                    l.writeFile("","Login");
+                    FileSingleton.writeFile("","Login");
                 }
                 else {
                     sessionId = result;
@@ -216,11 +215,11 @@ public class DatabaseConnection {
                     }
                     //saves the login, brings user to logout page
                     MainActivity.loggedIn = true;
-                    l.writeFile(sessionId,"Login");
+                    FileSingleton.writeFile(sessionId,"Login");
                     try {
                         if (leave == true){
                             leave = false;
-                            l.leave();
+                            FileSingleton.leave();
                         }
                     }catch (Exception e){
                     }

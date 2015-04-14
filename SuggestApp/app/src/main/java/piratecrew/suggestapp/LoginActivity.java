@@ -25,13 +25,7 @@ public class LoginActivity extends MainActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        DatabaseConnection.l = this;
-
-        //clears the files if the user is not logged in
-        if (loggedIn == false){
-            writeFile("","Login");
-            writeFile("","Username");
-        }
+        FileSingleton.l = this;
 
         final TextView status = (TextView) findViewById(R.id.status);
         final EditText username = (EditText) findViewById(R.id.username);
@@ -77,17 +71,9 @@ public class LoginActivity extends MainActivity {
     }
 
     //Writes a string to a file; is accessed by DatabaseConnection
-    public void writeFile(String data,String file){
-        try {
-            FileOutputStream fOut = openFileOutput(file, MODE_PRIVATE);
-            fOut.write(data.getBytes());
-            fOut.close();
-            Log.i("Write", data);
+    //public void writeFile(String data,String file){
 
-        } catch(Exception e) {
-            Log.e("error", Log.getStackTraceString(e));
-        }
-    }
+    //}
     //Allows DatabaseConnection to send user to the Logout Page
     public void leave(){
         startActivity(new Intent(LoginActivity.this,LogoutActivity.class));

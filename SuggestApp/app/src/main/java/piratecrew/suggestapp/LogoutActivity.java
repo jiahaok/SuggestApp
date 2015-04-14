@@ -23,21 +23,7 @@ public class LogoutActivity extends MainActivity {
         TextView user = (TextView) findViewById(R.id.LogText);
 
         //finds and displays username
-        try {
-            FileInputStream fin = openFileInput("Username");
-            temp = "";
-            while ((c = fin.read()) != -1) {
-                temp = temp + Character.toString((char) LoginActivity.c);
-            }
-            Log.i("Data Read", temp);
-            fin.close();
-            user.setText("You are logged in as: " + temp);
-        } catch (Exception e) {
-            Log.e("error", Log.getStackTraceString(e));
-            temp = "";
-        }
-        temp = "";
-
+        user.setText("You are logged in as: " + FileSingleton.readFile("Username"));
         //When the logout button is pressed, the user is logged out, the files are "cleared", and...
         //...the user is taken back to the login page.
         Button logout = (Button) findViewById(R.id.logout);
@@ -46,8 +32,8 @@ public class LogoutActivity extends MainActivity {
             public void onClick(View v) {
                 DatabaseConnection.sessionId = null;
                 loggedIn = false;
-                writeFile("", "Login");
-                writeFile("","Username");
+                FileSingleton.writeFile("", "Login");
+                FileSingleton.writeFile("","Username");
                 startActivity(new Intent(LogoutActivity.this,LoginActivity.class));
             }
         });
@@ -75,16 +61,5 @@ public class LogoutActivity extends MainActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    //file writing function for logging out
-    public void writeFile(String data,String file){
-        try {
-            FileOutputStream fOut = openFileOutput(file, MODE_PRIVATE);
-            fOut.write(data.getBytes());
-            fOut.close();
-
-        } catch(Exception e) {
-            Log.e("error", Log.getStackTraceString(e));
-        }
     }
 }
