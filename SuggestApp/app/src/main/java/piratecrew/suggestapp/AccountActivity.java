@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,10 +78,15 @@ public class AccountActivity extends ActionBarActivity {
     }
 
     public void compressAndSend(String username, String password){
-        //Todo: submission code
+        String usernameSend = username;
+        String passwordSend = password;
+        String[] send = new String[1];
+        send[0]=usernameSend;
+        send[1]=passwordSend;
+        //Todo: send the send String Array to server
     }
 
-    public boolean validEmail(String username) {
+    public static boolean validEmail(String username) {
         boolean valid;
 
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"; // regex code for email format(i hate this)
