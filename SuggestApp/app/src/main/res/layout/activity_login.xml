@@ -43,4 +43,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Create an Account"
+        android:id="@+id/CreateAccountLink"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"
+        android:textColor="@color/abc_search_url_text_normal"
+        android:onClick="onClick"
+        android:clickable="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="OR"
+        android:id="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/login" />
+
+
 </RelativeLayout>

@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileInputStream;
 
@@ -18,21 +20,41 @@ public class MainActivity extends ActionBarActivity {
     static protected DatabaseConnection db = null;
     //this variable shows if the user is logged in based on data read from files
     public static boolean loggedIn = false;
+    Toast toast;
+    public Boolean showToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         setTheme(theme);
+        try{
+            if(showToast != false) showToast = true;
+            else showToast = false;} catch (Exception e){ showToast = true;}
 
-        super.onCreate(savedInstanceState);
+            super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //If the user is logged in, the program finds the password
+        //If the user is logged in, the program displays the username using a toast
             if (FileSingleton.readFile("Login") != ""){
                 loggedIn = true;
                 DatabaseConnection.sessionId = FileSingleton.readFile("Login");
+                if (showToast == true) {
+                    toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileSingleton.readFile("Username") + "",
+                            Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+                    toast.show();
+                }
             }
-            else loggedIn = false;
-
+            //otherwise, the toast displays "Not logged in."
+            else{
+                loggedIn = false;
+                if (showToast == true) {
+                    toast = Toast.makeText(getApplicationContext(), "Not logged in.",
+                            Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+                    toast.show();
+                }
+            }
+        showToast = false;
         Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,25 +1,21 @@
 package piratecrew.suggestapp;
 
-
-import java.io.FileOutputStream;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class LoginActivity extends MainActivity {
-    static int before = 0;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        showToast = false;
 
         setTheme(theme);
 
@@ -42,6 +38,15 @@ public class LoginActivity extends MainActivity {
                 String passwordField = password.getText().toString();
 
                 MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
+            }
+        });
+        //Link to CreateAccount page
+        TextView createAccount = (TextView) findViewById(R.id.CreateAccountLink);
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Sorry, this option is not available yet.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -69,14 +74,10 @@ public class LoginActivity extends MainActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    //Writes a string to a file; is accessed by DatabaseConnection
-    //public void writeFile(String data,String file){
-
-    //}
-    //Allows DatabaseConnection to send user to the Logout Page
+    //Allows DatabaseConnection to send user to the main Page
     public void leave(){
-        startActivity(new Intent(LoginActivity.this,LogoutActivity.class));
+        showToast = true;
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
 
 }

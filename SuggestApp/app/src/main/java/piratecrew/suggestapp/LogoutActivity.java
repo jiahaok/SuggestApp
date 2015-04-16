@@ -17,6 +17,7 @@ public class LogoutActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        showToast = false;
         setTheme(theme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
@@ -34,7 +35,8 @@ public class LogoutActivity extends MainActivity {
                 loggedIn = false;
                 FileSingleton.writeFile("", "Login");
                 FileSingleton.writeFile("","Username");
-                startActivity(new Intent(LogoutActivity.this,LoginActivity.class));
+                showToast = true;
+                startActivity(new Intent(LogoutActivity.this,MainActivity.class));
             }
         });
     }

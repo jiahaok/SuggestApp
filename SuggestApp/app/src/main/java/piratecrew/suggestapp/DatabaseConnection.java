@@ -43,8 +43,7 @@ public class DatabaseConnection {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        //saves the username and password to files (these values will be overwritten w/ a blank string...
-        //...if the username and password are wrong
+        //Saves the username to a file
         text = textView;
         FileSingleton.writeFile(username, "Username");
         String[] site = {WEB_ROOT + "login.php"};
@@ -203,9 +202,9 @@ public class DatabaseConnection {
                         text.setText(result.substring(11));
                     } catch (Exception e){
                     }
-                    //Writing to the files that this app sets up on the phone
-                    //clearing the files so that an incorrect login is not saves
+                    //Clearing the files so that an incorrect login is not saved
                     FileSingleton.writeFile("","Login");
+                    FileSingleton.writeFile("","Username");
                 }
                 else {
                     sessionId = result;
@@ -213,7 +212,7 @@ public class DatabaseConnection {
                         text.setText("Logged In");
                     } catch (Exception e) {
                     }
-                    //saves the login, brings user to logout page
+                    //saves the login, brings user to main page
                     MainActivity.loggedIn = true;
                     FileSingleton.writeFile(sessionId,"Login");
                     try {

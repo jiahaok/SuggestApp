@@ -12,6 +12,7 @@ import java.io.IOException;
  * Created by Naomi on 4/13/15.
  */
 public class FileSingleton {
+    //singleton code
     private static FileSingleton ourInstance = new FileSingleton();
 
     public static FileSingleton getInstance() {
@@ -22,6 +23,7 @@ public class FileSingleton {
 
     static LoginActivity l = new LoginActivity();
 
+    //Writing data to a file
     public static void writeFile(String data, String file){
         try {
             FileOutputStream fOut = new FileOutputStream(new File("/data/data/piratecrew.suggestapp/"+file+".txt"),false);
@@ -33,6 +35,7 @@ public class FileSingleton {
             Log.e("Error", Log.getStackTraceString(e));
         }
     }
+    //Reading a file
     public static String readFile(String file){
         int c;
         String temp = "";
@@ -49,6 +52,7 @@ public class FileSingleton {
         }
         return temp;
     }
+    //The DatabaseConnection class uses this to leave the LoginActivity
     public static void leave(){l.leave();}
 }
 

@@ -122,7 +122,7 @@ public class CreateActivity extends MainActivity implements Runnable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(theme);
-
+        showToast = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
