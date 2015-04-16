@@ -18,8 +18,8 @@ if(!@$_POST['session'] || !@$_POST['length'] ||
 $endTime = ((float) $_POST['length'])/1000 + time();
 $date = date("y-m-d h:i:s", $endTime);
 
-$query = $db->prepare("INSERT INTO questions (title, opt1, opt2, photo1, photo2, user, end_time) VALUES (?, ?, ?, ?, ?, ?, ?)") or die("PHP ERROR: failed to prepare db statement! ". $db->error);
-$query->bind_param('sssssis', $_POST['length'], $_POST['opt1'], $_POST['opt2'], $_POST['pic1'], 
+$query = $db->prepare("INSERT INTO questions (opt1, opt2, photo1, photo2, user, end_time) VALUES (?, ?, ?, ?, ?, ?)") or die("PHP ERROR: failed to prepare db statement! ". $db->error);
+$query->bind_param('ssssis', $_POST['opt1'], $_POST['opt2'], $_POST['pic1'], 
 							 $_POST['pic2'], 
 							 $_POST['session'],
 							 $date) or die("PHP ERROR: Params wouldn't bind!");

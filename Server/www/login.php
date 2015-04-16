@@ -10,17 +10,16 @@ if($db->connect_errno >0)
 //----------------------------------------------------
 if(!@$_POST['username'] || !@$_POST['password'])die("PHP ERROR: No username or password selected!");
 
-$query = $db->prepare("SELECT id FROM users WHERE username = ? and password = ?");
-$query->bind_param('ss', $_POST['username'], $_POST['password']);
+$query = $db->prepare("SELECT id, password FROM users WHERE username = ?");
+$query->bind_param('s', $_POST['username']);
 $query->execute();
-$query->bind_result($returned_id);
-
-
+$query->bind_result($returned_id, $returned_hash);
 $query->fetch();
-$id = $returned_id;
-
+$id   = $returned_id;
+$hash = $returned_hash;
 
 $query->free_result();
 
-if($id)echo $id;//TODO: make crypto safe way of generating a user session id
-else echo "PHP ERROR: Incorrect username or password";
+if(!password_verify($_POST['password'], $hash)) die("PHP ERROR: Incorrect username or password.");
+
+echo $id;//TODO: make crypto safe way of generating a user session id

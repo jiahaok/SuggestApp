@@ -51,7 +51,7 @@ public class DatabaseConnection {
             StrictMode.setThreadPolicy(policy);
         }
         text = textView;
-        String[] site = {WEB_ROOT+"login.php"};
+        String[] site = {WEB_ROOT+"user.php?action=login"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
         successText = "Logged In";
@@ -89,7 +89,7 @@ public class DatabaseConnection {
 
     protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
 
-        String[] host = {WEB_ROOT+"create.php"};
+        String[] host = {WEB_ROOT+"user.php?action=create"};
         String[] opt1  = {"opt1", text1};
         String[] opt2 = {"opt2", text2};
         String sPic1, sPic2;
