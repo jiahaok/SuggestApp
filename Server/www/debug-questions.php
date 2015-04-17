@@ -8,12 +8,13 @@ if($db->connect_errno >0)
 
 
 //----------------------------------------------------
-if(!@$_POST['id'])die("PHP ERROR: NO ID SELECTED!");
 
-$query = $db->prepare("SELECT username FROM users WHERE id = ?");
-$query->bind_param('s', $_POST['id']);
+$query = $db->prepare("SELECT id, title, opt1, opt2, photo1, photo2, end_time, user FROM questions");
 $query->execute();
-$query->bind_result($returned_username);
+$query->bind_result($id, $title, $opt1, $opt2, $photo1, $photo2, $end_time, $user);
+while($query->fetch()){
+	echo "ID: $id; title: $title; opt1: $opt1; opt2: $opt2; photo1: $photo1; $photo2: $photo2; end_time: $end_time user: $user </br>";
+}
 
 
 $query->fetch();
