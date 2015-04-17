@@ -9,7 +9,6 @@ public class StatsActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         setTheme(theme);
 
         super.onCreate(savedInstanceState);
@@ -23,6 +22,8 @@ public class StatsActivity extends MainActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_stats, menu);
+        if (loggedIn == true) menu.findItem(R.id.action_login).setTitle("Log Out");
+        else menu.findItem(R.id.action_login).setTitle("Log In");
         return true;
     }
 

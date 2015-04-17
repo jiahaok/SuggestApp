@@ -4,22 +4,35 @@ package piratecrew.suggestapp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
     static protected DatabaseConnection db = null;
+    //this variable shows if the user is logged in based on data read from files
+    public static boolean loggedIn = false;
+    Toast toast;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         setTheme(theme);
-
-        super.onCreate(savedInstanceState);
+            super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //If the user is logged in, loggedIn is set to true
+            if (FileSingleton.readFile("Login") != ""){
+                loggedIn = true;
+                DatabaseConnection.sessionId = FileSingleton.readFile("Login");
+            }
+            //otherwise, loggedIn is set to false
+            else{
+                loggedIn = false;
+            }
         Button createBtn = (Button) findViewById(R.id.button);
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +48,8 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
                 break;
             case R.id.action_login:
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                if (loggedIn == true)startActivity(new Intent(MainActivity.this, LogoutActivity.class));
+                else startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
             case R.id.action_stats:
                 startActivity(new Intent(MainActivity.this, StatsActivity.class));
@@ -59,6 +73,8 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (loggedIn == true) menu.findItem(R.id.action_login).setTitle("Log Out");
+        else menu.findItem(R.id.action_login).setTitle("Log In");
         return true;
     }
 

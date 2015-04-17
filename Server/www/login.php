@@ -1,26 +1,29 @@
 <?php
-require '../config.php';
+define("DATABASE_HOST", "localhost");
+define("DATABASE_USERNAME", "root");
+define("DATABASE_PASSWORD", "");
+define("DATABASE_NAME", "mainbase");
+
 //------------------------------------------------
 
-$db = new mysqli($dbServer, $dbUser, $dbPassword, $dbName);
+$db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if($db->connect_errno >0)
-	die("PHP ERROR: Error connecting to database: ".$db->connect_error."");
+	die("PHP ERROR: Error connecting to database: ".mysql_error()."");
 
 
 //----------------------------------------------------
-if(!@$_POST['username'] || !@$_POST['password'])die("PHP ERROR: No username or password selected!");
+if(!@$_GET['username'] || !@$_GET['password'])die("PHP ERROR: No username or password selected!");
 
-$query = $db->prepare("SELECT id FROM users WHERE username = ? and password = ?");
-$query->bind_param('ss', $_POST['username'], $_POST['password']);
+$query = $db->prepare("SELECT username FROM users WHERE username = ? and password = ?");
+$query->bind_param('ss', $_GET['username'], $_GET['password']);
 $query->execute();
-$query->bind_result($returned_id);
+$query->bind_result($returned_username);
 
 
 $query->fetch();
-$id = $returned_id;
-
+$username = $returned_username;
 
 $query->free_result();
 
-if($id)echo $id;//TODO: make crypto safe way of generating a user session id
+if($username)echo "Logged in!";
 else echo "PHP ERROR: Incorrect username or password";

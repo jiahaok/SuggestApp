@@ -1,17 +1,21 @@
 <?php
-require '../config.php';
+define("DATABASE_HOST", "localhost");
+define("DATABASE_USERNAME", "root");
+define("DATABASE_PASSWORD", "");
+define("DATABASE_NAME", "mainbase");
+
 //------------------------------------------------
 
-$db = new mysqli($dbServer, $dbUser, $dbPassword, $dbName);
+$db = new mysqli(DATABASE_HOST, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_NAME);
 if($db->connect_errno >0)
-	die("PHP ERROR: Error connecting to database: ".$db->connect_error."");
+	die("<p>error connecting to database: ".mysql_error()."<p>");
 
 
 //----------------------------------------------------
-if(!@$_POST['id'])die("PHP ERROR: NO ID SELECTED!");
+if(!@$_GET['id'])die("NO ID SELECTED!");
 
 $query = $db->prepare("SELECT username FROM users WHERE id = ?");
-$query->bind_param('s', $_POST['id']);
+$query->bind_param('s', $_GET['id']);
 $query->execute();
 $query->bind_result($returned_username);
 
