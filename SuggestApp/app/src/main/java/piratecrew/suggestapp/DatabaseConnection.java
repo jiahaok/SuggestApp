@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -26,7 +27,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +34,9 @@ import java.util.List;
  */
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
+
     public static String sessionId = null;
+    private String successText;
     TextView text;
     public static boolean leave;
 
@@ -49,6 +51,7 @@ public class DatabaseConnection {
         String[] site = {WEB_ROOT + "login.php"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
+        successText = "Logged In";
         new SendPostRequest().execute(site, data1, data2);
         //If the logout parameter is true, the user is logged out
     }
@@ -83,18 +86,21 @@ public class DatabaseConnection {
     }
 
     protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
+
         String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
         String[] opt2 = {"opt2", text2};
         String sPic1, sPic2;
-        if(pic1 == null || pic2 == null){sPic1 = ""; sPic2 = "";}
+        if(pic1 == null || pic2 == null){sPic1 = "null"; sPic2 = "null";}
         else{sPic1 = BitMapToString(pic1); sPic2 =BitMapToString(pic2);}
         String[] bit1 = {"pic1", sPic1};
         String[] bit2 = {"pic2", sPic2};
-        end += new Date().getTime();
-        String[] endTime = {"end_time", Float.toString(end)};
+        String[] endTime = {"length", Long.toString(end)};
+
         String[] session = {"session", sessionId};
 
+        successText = "Question created successfully.";
+        Log.i("Date", Long.toString(end));
         new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime, session);
     }
 
@@ -198,20 +204,16 @@ public class DatabaseConnection {
                 //will ignore the second half, preventing an error.
 
                 if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:")) {
-                    try {
-                        text.setText(result.substring(11));
-                    } catch (Exception e){
-                    }
+                    try {text.setText(result.substring(11));} catch (Exception e){}
+                    Log.e("SERVER ERROR", result);
                     //Clearing the files so that an incorrect login is not saved
                     FileSingleton.writeFile("","Login");
                     FileSingleton.writeFile("","Username");
                 }
                 else {
                     sessionId = result;
-                    try {
-                        text.setText("Logged In");
-                    } catch (Exception e) {
-                    }
+                    try{text.setText(successText);}catch (Exception e){}
+                    Log.i("SERVER SUCCESS", successText);
                     //saves the login, brings user to main page
                     MainActivity.loggedIn = true;
                     FileSingleton.writeFile(sessionId,"Login");
@@ -220,8 +222,7 @@ public class DatabaseConnection {
                             leave = false;
                             FileSingleton.leave();
                         }
-                    }catch (Exception e){
-                    }
+                    }catch (Exception e){}
                 }
         }
     }

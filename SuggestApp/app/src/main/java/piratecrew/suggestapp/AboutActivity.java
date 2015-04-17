@@ -11,7 +11,6 @@ public class AboutActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        showToast = false;
 
         setTheme(theme);
 

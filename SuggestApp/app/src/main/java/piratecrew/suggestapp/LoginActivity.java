@@ -2,6 +2,7 @@ package piratecrew.suggestapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +16,6 @@ public class LoginActivity extends MainActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        showToast = false;
 
         setTheme(theme);
 
@@ -45,8 +45,7 @@ public class LoginActivity extends MainActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Sorry, this option is not available yet.",
-                        Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, AccountActivity.class));
             }
         });
     }
@@ -76,7 +75,10 @@ public class LoginActivity extends MainActivity {
     }
     //Allows DatabaseConnection to send user to the main Page
     public void leave(){
-        showToast = true;
+        toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileSingleton.readFile("Username") + "",
+                Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+        toast.show();
         startActivity(new Intent(LoginActivity.this,MainActivity.class));
     }
 

@@ -70,6 +70,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="piratecrew.suggestapp.MainActivity" />
         </activity>
+        <activity
+            android:name=".AccountActivity"
+            android:label="@string/title_activity_account" >
+        </activity>
     </application>
 
 </manifest>
