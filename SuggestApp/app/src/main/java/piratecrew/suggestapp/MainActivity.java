@@ -4,7 +4,6 @@ package piratecrew.suggestapp;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,9 +24,9 @@ public class MainActivity extends ActionBarActivity {
             super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //If the user is logged in, loggedIn is set to true
-            if (FileSingleton.readFile("Login") != ""){
+            if (FileHandler.readFile("Login") != ""){
                 loggedIn = true;
-                DatabaseConnection.sessionId = FileSingleton.readFile("Login");
+                DatabaseConnection.sessionId = FileHandler.readFile("Login");
             }
             //otherwise, loggedIn is set to false
             else{

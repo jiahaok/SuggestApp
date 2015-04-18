@@ -21,7 +21,7 @@ public class LoginActivity extends MainActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FileSingleton.l = this;
+        FileHandler.l = this;
 
         final TextView status = (TextView) findViewById(R.id.status);
         final EditText username = (EditText) findViewById(R.id.username);
@@ -75,7 +75,7 @@ public class LoginActivity extends MainActivity {
     }
     //Allows DatabaseConnection to send user to the main Page
     public void leave(){
-        toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileSingleton.readFile("Username") + "",
+        toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileHandler.readFile("Username") + "",
                 Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
         toast.show();

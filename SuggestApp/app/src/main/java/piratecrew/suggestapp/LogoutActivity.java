@@ -21,7 +21,7 @@ public class LogoutActivity extends MainActivity {
         TextView user = (TextView) findViewById(R.id.LogText);
 
         //finds and displays username
-        user.setText("You are logged in as: " + FileSingleton.readFile("Username"));
+        user.setText("You are logged in as: " + FileHandler.readFile("Username"));
         //When the logout button is pressed, the user is logged out, the files are "cleared", and...
         //...the user is taken back to the login page.
         Button logout = (Button) findViewById(R.id.logout);
@@ -30,8 +30,8 @@ public class LogoutActivity extends MainActivity {
             public void onClick(View v) {
                 DatabaseConnection.sessionId = null;
                 loggedIn = false;
-                FileSingleton.writeFile("", "Login");
-                FileSingleton.writeFile("","Username");
+                FileHandler.writeFile("", "Login");
+                FileHandler.writeFile("", "Username");
                 toast = Toast.makeText(getApplicationContext(), "Not logged in.",
                         Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);

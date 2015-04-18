@@ -47,7 +47,7 @@ public class DatabaseConnection {
         }
         //Saves the username to a file
         text = textView;
-        FileSingleton.writeFile(username, "Username");
+        FileHandler.writeFile(username, "Username");
         String[] site = {WEB_ROOT+"user.php?action=create"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
@@ -62,7 +62,7 @@ public class DatabaseConnection {
         }
         //Saves the username to a file
         text = textView;
-        FileSingleton.writeFile(username, "Username");
+        FileHandler.writeFile(username, "Username");
         String[] site = {WEB_ROOT+"user.php?action=login"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
@@ -221,8 +221,8 @@ public class DatabaseConnection {
                     try {text.setText(result.substring(11));} catch (Exception e){}
                     Log.e("SERVER ERROR", result);
                     //Clearing the files so that an incorrect login is not saved
-                    FileSingleton.writeFile("","Login");
-                    FileSingleton.writeFile("","Username");
+                    FileHandler.writeFile("", "Login");
+                    FileHandler.writeFile("", "Username");
                 }
                 else {
                     sessionId = result;
@@ -230,11 +230,11 @@ public class DatabaseConnection {
                     Log.i("SERVER SUCCESS", successText);
                     //saves the login, brings user to main page
                     MainActivity.loggedIn = true;
-                    FileSingleton.writeFile(sessionId,"Login");
+                    FileHandler.writeFile(sessionId, "Login");
                     try {
                         if (leave == true){
                             leave = false;
-                            FileSingleton.leave();
+                            FileHandler.leave();
                         }
                     }catch (Exception e){}
                 }

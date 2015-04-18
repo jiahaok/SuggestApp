@@ -4,22 +4,20 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 /**
  * Created by Naomi on 4/13/15.
  */
-public class FileSingleton {
+public class FileHandler {
     //singleton code
-    private static FileSingleton ourInstance = new FileSingleton();
+    private static FileHandler ourInstance = new FileHandler();
 
-    public static FileSingleton getInstance() {
+    public static FileHandler getInstance() {
         return ourInstance;
     }
 
-    private FileSingleton() {}
+    private FileHandler() {}
 
     static LoginActivity l = new LoginActivity();
 
