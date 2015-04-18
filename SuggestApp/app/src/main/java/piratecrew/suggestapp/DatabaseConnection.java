@@ -33,13 +33,28 @@ import java.util.List;
  * Created by Brent on 3/30/2015.
  */
 public class DatabaseConnection {
-    private final String WEB_ROOT = "http://www.brentluker.com/";
+    static private final String WEB_ROOT = "http://www.brentluker.com/";
 
     public static String sessionId = null;
-    private String successText;
-    TextView text;
+    static private String successText;
+    static TextView text;
     public static boolean leave;
 
+    static void createUser(String username, String password, TextView textView){
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+        //Saves the username to a file
+        text = textView;
+        FileSingleton.writeFile(username, "Username");
+        String[] site = {WEB_ROOT+"user.php?action=create"};
+        String[] data1 = {"username", username};
+        String[] data2 = {"password", password};
+        successText = "Logged In";
+        new SendPostRequest().execute(site, data1, data2);
+        //If the logout parameter is true, the user is logged out
+    }
     DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -87,7 +102,7 @@ public class DatabaseConnection {
 
     protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
 
-        String[] host = {WEB_ROOT+"user.php?action=create"};
+        String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
         String[] opt2 = {"opt2", text2};
         String sPic1, sPic2;
@@ -148,7 +163,7 @@ public class DatabaseConnection {
 
         }
     }
-    private class SendPostRequest extends AsyncTask<String[], Void, String> {
+    static private class SendPostRequest extends AsyncTask<String[], Void, String> {
 
         protected String doInBackground(String[]... params) {
             try {
@@ -198,7 +213,6 @@ public class DatabaseConnection {
             }
             return null; //If program gets this far, something didn't work.
         }
-
         protected void onPostExecute(String result){
                 //NOTE: if result.length() is less then 10, the program
                 //will ignore the second half, preventing an error.

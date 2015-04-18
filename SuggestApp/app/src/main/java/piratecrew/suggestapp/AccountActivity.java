@@ -42,7 +42,8 @@ public class AccountActivity extends ActionBarActivity {
                     status.setText("Email doesn't match");
                 else if(!((RadioButton) findViewById(R.id.radioButton)).isChecked())
                     status.setText("Must agree to terms of use");
-                //TODO: else create user
+                else
+                    DatabaseConnection.createUser(username, password, status);
 
 
             }
