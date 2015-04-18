@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import java.lang.reflect.Array;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +28,7 @@ public class AccountActivity extends ActionBarActivity {
             }
         });
         //start local variable declaration
-         boolean emailIsUsed = true;
+
         //end local variable declaration
 
         findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
