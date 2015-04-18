@@ -2,13 +2,10 @@ package piratecrew.suggestapp;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,18 +20,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,20 +34,26 @@ import java.util.List;
  */
 public class DatabaseConnection {
     private final String WEB_ROOT = "http://www.brentluker.com/";
-    private String sessionId = null;
+
+    public static String sessionId = null;
     private String successText;
     TextView text;
+    public static boolean leave;
+
     DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        //Saves the username to a file
         text = textView;
+        FileSingleton.writeFile(username, "Username");
         String[] site = {WEB_ROOT+"user.php?action=login"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
         successText = "Logged In";
         new SendPostRequest().execute(site, data1, data2);
+        //If the logout parameter is true, the user is logged out
     }
     /**
      * Tests how to make a GET request.
@@ -206,15 +204,26 @@ public class DatabaseConnection {
                 //will ignore the second half, preventing an error.
 
                 if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:")) {
-                    text.setText(result.substring(11));
+                    try {text.setText(result.substring(11));} catch (Exception e){}
                     Log.e("SERVER ERROR", result);
+                    //Clearing the files so that an incorrect login is not saved
+                    FileSingleton.writeFile("","Login");
+                    FileSingleton.writeFile("","Username");
                 }
                 else {
                     sessionId = result;
-                    text.setText(successText);
+                    try{text.setText(successText);}catch (Exception e){}
                     Log.i("SERVER SUCCESS", successText);
+                    //saves the login, brings user to main page
+                    MainActivity.loggedIn = true;
+                    FileSingleton.writeFile(sessionId,"Login");
+                    try {
+                        if (leave == true){
+                            leave = false;
+                            FileSingleton.leave();
+                        }
+                    }catch (Exception e){}
                 }
-
         }
     }
     public String BitMapToString(Bitmap bitmap){

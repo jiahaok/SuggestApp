@@ -1,18 +1,18 @@
 package piratecrew.suggestapp;
 
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
-import piratecrew.suggestapp.DatabaseConnection;
+import android.widget.Toast;
 
 
 public class LoginActivity extends MainActivity {
-    static int before = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,25 +21,33 @@ public class LoginActivity extends MainActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FileSingleton.l = this;
 
-        final TextView status = (TextView)findViewById(R.id.status);
-        final EditText username = (EditText)findViewById(R.id.username);
-        final EditText password =(EditText)findViewById(R.id.password);
+        final TextView status = (TextView) findViewById(R.id.status);
+        final EditText username = (EditText) findViewById(R.id.username);
+        final EditText password = (EditText) findViewById(R.id.password);
 
-
-        Button login = (Button)findViewById(R.id.login);
+        Button login = (Button) findViewById(R.id.login);
 
         login.setOnClickListener(new View.OnClickListener() {
 
 
             public void onClick(View v) {
+                DatabaseConnection.leave = true;
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
+
                 MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
             }
         });
-
-
+        //Link to CreateAccount page
+        TextView createAccount = (TextView) findViewById(R.id.CreateAccountLink);
+        createAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, AccountActivity.class));
+            }
+        });
     }
 
 
@@ -65,4 +73,13 @@ public class LoginActivity extends MainActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    //Allows DatabaseConnection to send user to the main Page
+    public void leave(){
+        toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileSingleton.readFile("Username") + "",
+                Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+        toast.show();
+        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+    }
+
 }

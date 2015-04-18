@@ -5,7 +5,7 @@
 
     <item android:id="@+id/action_stats" android:title="Statistics"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_login" android:title="Login"
+    <item android:id="@+id/action_login" android:title="Log In"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_themes" android:title="Themes"
         android:orderInCategory="100" app:showAsAction="never" />
