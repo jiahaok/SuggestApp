@@ -67,7 +67,8 @@ public class AccountActivity extends ActionBarActivity {
                         break;
                     }
 
-                    compressAndSend(username,password);
+                    submitAccountInfo(username,password);
+
 
                 }
 
@@ -77,7 +78,7 @@ public class AccountActivity extends ActionBarActivity {
 
     }
 
-    public void compressAndSend(String username, String password){
+    public void submitAccountInfo(String username, String password){
         String usernameSend = username;
         String passwordSend = password;
         String[] send = new String[1];
