@@ -102,7 +102,7 @@ public class AccountActivity extends ActionBarActivity implements Runnable {
     }
 
     public boolean serverEmailCheckUsed(){ //check if email is used
-        boolean serverEmailCheckBooleanReturn = false;// true = not used, false = used
+        boolean serverEmailCheckBooleanReturn = false;// true = used, false = not used
         //Todo: check email with server, also remove ^^ line
         return serverEmailCheckBooleanReturn;
     }
