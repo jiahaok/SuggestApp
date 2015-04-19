@@ -1,10 +1,13 @@
-package piratecrew.suggestapp;
+package piratecrew.suggestapp.Util;
 
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+
+import piratecrew.suggestapp.Activity.LoginActivity;
 
 /**
  * Created by Naomi on 4/13/15.
@@ -19,7 +22,7 @@ public class FileHandler {
 
     private FileHandler() {}
 
-    static LoginActivity l = new LoginActivity();
+    public static LoginActivity l = new LoginActivity();
 
     //Writing data to a file
     public static void writeFile(String data, String file){

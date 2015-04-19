@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context="piratecrew.suggestapp.StatsActivity"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="piratecrew.suggestapp.Activity.StatsActivity"
     android:title = "Statistics">
     <item android:id="@+id/action_login" android:title="Log In"
         android:orderInCategory="100" app:showAsAction="never" />

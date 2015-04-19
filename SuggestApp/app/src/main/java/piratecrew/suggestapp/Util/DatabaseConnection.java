@@ -1,4 +1,4 @@
-package piratecrew.suggestapp;
+package piratecrew.suggestapp.Util;
 
 
 import java.io.ByteArrayOutputStream;
@@ -29,6 +29,8 @@ import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
 
+import piratecrew.suggestapp.Activity.MainActivity;
+
 /**
  * Created by Brent on 3/30/2015.
  */
@@ -55,7 +57,7 @@ public class DatabaseConnection {
         new SendPostRequest().execute(site, data1, data2);
         //If the logout parameter is true, the user is logged out
     }
-    DatabaseConnection(String username, String password, TextView textView){
+    public DatabaseConnection(String username, String password, TextView textView){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -100,7 +102,7 @@ public class DatabaseConnection {
 
     }
 
-    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){ //method to create a poll
+    public void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){ //method to create a poll
 
         String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
@@ -257,5 +259,5 @@ public class DatabaseConnection {
             return null;
         }
     }
-    boolean loggedOut(){return sessionId == null;}
+    public boolean loggedOut(){return sessionId == null;}
 }

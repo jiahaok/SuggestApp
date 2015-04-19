@@ -1,4 +1,4 @@
-package piratecrew.suggestapp;
+package piratecrew.suggestapp.Activity;
 
 
 import android.support.v7.app.ActionBarActivity;
@@ -13,8 +13,11 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import piratecrew.suggestapp.Util.DatabaseConnection;
+import piratecrew.suggestapp.R;
 
-public class AccountActivity extends ActionBarActivity implements Runnable {
+
+public class AccountActivity extends AbstractActivity implements Runnable {
 
     //beginning of private variable declaration
     private String SUsername,SPassword; // SUsername = send username, SPassword = send password
@@ -116,23 +119,8 @@ public class AccountActivity extends ActionBarActivity implements Runnable {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void run() { // runs the DatabaseConnection createUser on different thread
-        DatabaseConnection.createUser(SUsername,SPassword,null);
+        DatabaseConnection.createUser(SUsername, SPassword, null);
         String tempStatus;
         MainActivity.db = new DatabaseConnection(SUsername,SPassword,null);
     }
