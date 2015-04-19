@@ -35,8 +35,8 @@ public class CreateActivity extends MainActivity implements Runnable {
     int requestCodeRun, resultCodeRun, dayValue, hourValue, minuteValue;
     Intent dataRun;
     Button create;
-
-    Bitmap thumb, bit, rightBit, leftBit;
+    EditText text1, text2;
+    Bitmap thumb, bit;
     //end of variable
 
     @Override
@@ -118,7 +118,6 @@ public class CreateActivity extends MainActivity implements Runnable {
         Log.i("Running", "Thread is running");
     }
 
-    EditText text1, text2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(theme);
@@ -128,8 +127,9 @@ public class CreateActivity extends MainActivity implements Runnable {
         text1 = (EditText) findViewById(R.id.editText1);
         text2 = (EditText) findViewById(R.id.editText2);
 
-        setButtons();
         setSpinners();
+        setButtons();
+
     }
 
     public void setButtons(){
@@ -152,19 +152,31 @@ public class CreateActivity extends MainActivity implements Runnable {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: add code to verify inputs and upload to server
                 //Turn the time into milliseconds
-                long time = 60_000*(minuteValue +60*(hourValue + 24*dayValue));
-                //Verify that there is a length of time selected
-                if(time == 0)
-                    showToast("Can not Be 0 minutes.");
-                //If no database has been made, or if one was made and isn't logged in, log in.
-                else if(db == null || db.loggedOut())
-                    startActivity(new Intent(CreateActivity.this, LoginActivity.class));
-                //TODO add additional verification for text boxes
-                else if(text1.getText().toString().equals("") || text2.getText().toString().equals(""))
-                    showToast("Must describe both options.");
-                else{
+                long time = 60_000 * (minuteValue + 60 * (hourValue + 24 * dayValue));
+
+                for(byte i = 0;i<=1;i++) {
+                    //TODO: add code to verify inputs and upload to server
+
+                    //Verify that there is a length of time selected
+                    if (time == 0) {
+                        showToast("Can not Be 0 minutes.");
+                        break;
+                    }
+                        //If no database has been made, or if one was made and isn't logged in, log in.
+                    else if (db == null || db.loggedOut()) {
+                        startActivity(new Intent(CreateActivity.this, LoginActivity.class));
+                        break;
+                    }
+                        //TODO add additional verification for text boxes
+                    else if (text1.getText().toString().equals("") || text2.getText().toString().equals("")) {
+                        showToast("Must describe both options.");
+                        break;
+                    }
+                    else {
+
+                    }
+
                     db.createPoll(text1.getText().toString(),
                             text2.getText().toString(),
                             null, null, time);

@@ -40,7 +40,7 @@ public class DatabaseConnection {
     static TextView text;
     public static boolean leave;
 
-    static void createUser(String username, String password, TextView textView){
+    public static void createUser(String username, String password, TextView textView){ // method to create user
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -100,7 +100,7 @@ public class DatabaseConnection {
 
     }
 
-    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){
+    protected void createPoll(String text1, String text2, Bitmap pic1, Bitmap pic2, long end){ //method to create a poll
 
         String[] host = {WEB_ROOT+"create.php"};
         String[] opt1  = {"opt1", text1};
@@ -240,14 +240,14 @@ public class DatabaseConnection {
                 }
         }
     }
-    public String BitMapToString(Bitmap bitmap){
+    public String BitMapToString(Bitmap bitmap){ // method to convert bitmap to string
         ByteArrayOutputStream baos = new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
         byte [] b=baos.toByteArray();
         String temp= Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
     }
-    public Bitmap StringToBitMap(String encodedString){
+    public Bitmap StringToBitMap(String encodedString){ // method t convert string to bitmap
         try {
             byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
             Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);

@@ -35,7 +35,7 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"
-        android:layout_above="@+id/rePassword"
+        android:layout_above="@+id/rPassword"
         android:layout_centerHorizontal="true"
         android:hint="Password" />
 
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/rePassword"
+        android:id="@+id/rPassword"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/email"
         android:layout_alignStart="@+id/email"
@@ -57,18 +57,17 @@
         android:id="@+id/radioButton"
         android:layout_marginTop="35dp"
         android:checked="false"
-        android:layout_alignLeft="@+id/rePassword"
-        android:layout_alignStart="@+id/rePassword"
-        android:layout_below="@+id/rePassword" />
+        android:layout_alignLeft="@+id/rPassword"
+        android:layout_alignStart="@+id/rPassword"
+        android:layout_below="@+id/rPassword" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:id="@+id/signup"
-        android:layout_below="@+id/radioButton"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_below="@+id/button4"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -77,8 +76,7 @@
         android:text="Terms Of Service"
         android:id="@+id/button4"
         android:layout_below="@+id/radioButton"
-        android:layout_alignLeft="@+id/radioButton"
-        android:layout_alignStart="@+id/radioButton" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
