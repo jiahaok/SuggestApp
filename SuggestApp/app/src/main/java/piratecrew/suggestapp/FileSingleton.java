@@ -46,9 +46,18 @@ public class FileSingleton {
             }
             Log.i("Data Read", temp);
             fin.close();
-        } catch (Exception e) {
-            Log.e("error", Log.getStackTraceString(e));
+        } catch (FileNotFoundException e) {
             temp = "";
+            try {
+                FileOutputStream fOut = new FileOutputStream(new File("/data/data/piratecrew.suggestapp/" + file + ".txt"), false);
+                fOut.write("".getBytes());
+                fOut.close();
+                Log.i("Write", "Created empty file.");
+            } catch (Exception e1){
+                Log.e("error", Log.getStackTraceString(e1));
+            }
+        } catch (Exception e){
+            Log.e("error", Log.getStackTraceString(e));
         }
         return temp;
     }
