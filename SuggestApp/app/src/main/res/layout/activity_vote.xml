@@ -17,7 +17,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="375dp"
             android:layout_gravity="center_horizontal"
             android:weightSum="1">
 
@@ -42,19 +42,45 @@
                 android:layout_weight="0.50">
 
                 <ImageButton
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:id="@+id/imageButtonRight"
                     android:layout_gravity="center_vertical" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.50"></LinearLayout>
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight=".50">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="attemping to connect to server"
+                    android:id="@+id/leftTextField" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight=".5">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="attemping to connect to server"
+                    android:id="@+id/rightTextField" />
+            </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"

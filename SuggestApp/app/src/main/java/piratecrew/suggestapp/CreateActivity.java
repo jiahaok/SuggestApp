@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;

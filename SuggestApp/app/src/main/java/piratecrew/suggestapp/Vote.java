@@ -7,11 +7,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class Vote extends ActionBarActivity {
 
     private ImageButton imageButtonLeft, imageButtonRight;
+    private TextView leftField, rightField;
     private Button skip;
 
     @Override
@@ -21,7 +23,17 @@ public class Vote extends ActionBarActivity {
         //methods star here:
         setImageButtonLeft();
         setImageButtonRight();
+        setLeftField();
+        setRightField();
         setSkip();
+    }
+
+    public void setLeftField(){
+        leftField = (TextView) findViewById(R.id.leftTextField);
+    }
+
+    public void setRightField(){
+        rightField = (TextView) findViewById(R.id.rightTextField);
     }
 
     public void setImageButtonLeft(){
