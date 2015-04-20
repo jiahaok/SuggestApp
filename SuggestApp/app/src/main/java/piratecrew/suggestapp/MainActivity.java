@@ -41,6 +41,18 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(new Intent(MainActivity.this, CreateActivity.class));
             }
         });
+        setsuggestButton();
+
+    }
+
+    public void setsuggestButton(){
+        Button suggestButton = (Button) findViewById(R.id.button2);
+        suggestButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, Vote.class));
+            }
+        });
     }
 
     public void menu(int a){
