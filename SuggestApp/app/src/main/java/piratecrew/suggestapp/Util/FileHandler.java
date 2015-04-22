@@ -12,6 +12,8 @@ import piratecrew.suggestapp.Activity.LoginActivity;
 /**
  * Created by Naomi on 4/13/15.
  */
+
+//writes to files and reads files
 public class FileHandler {
     //singleton code
     private static FileHandler ourInstance = new FileHandler();

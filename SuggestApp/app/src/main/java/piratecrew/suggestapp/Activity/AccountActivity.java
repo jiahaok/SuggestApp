@@ -1,27 +1,23 @@
 package piratecrew.suggestapp.Activity;
 
-
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import piratecrew.suggestapp.Util.DatabaseConnection;
 import piratecrew.suggestapp.R;
 
 
-public class AccountActivity extends AbstractActivity implements Runnable {
+public class AccountActivity extends AbstractActivity implements Runnable{
 
     //beginning of private variable declaration
+    private String PUsername, PPassword,PRPassword;
     private String SUsername,SPassword; // SUsername = send username, SPassword = send password
-    //private String setStatus;
     //end of private variable declaration
 
     @Override
@@ -31,8 +27,10 @@ public class AccountActivity extends AbstractActivity implements Runnable {
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(AccountActivity.this, TermsAndServices.class);
-                //startActivity(intent);
+                /*
+                Intent intent = new Intent(AccountActivity.this, TermsAndServices.class);
+                startActivity(intent);
+                */
             }
         });
 
@@ -44,36 +42,44 @@ public class AccountActivity extends AbstractActivity implements Runnable {
                 String password  = ((EditText) findViewById(R.id.password)).getText().toString();
                 String rPassword = ((EditText) findViewById(R.id.rPassword)).getText().toString();
                 TextView status = (TextView) findViewById(R.id.status);
+                PUsername = username;
+                PPassword = password;
+                PRPassword = rPassword;
 
+                run();
 
-                for(short x = 0; x<=1; x++) {
+                DatabaseConnection.createUser(SUsername, SPassword, null);
+                startActivity(new Intent(AccountActivity.this, LoginActivity.class));                }
 
-                    if (username.equals(null)) {//check if email field is empty
-                        status.setText("Please enter your Email");
-                        break;
-                    } else if (!validEmail(username)) {// check the email format
-                        status.setText("Email is not valid");
-                    } else if (!serverEmailCheckUsed()) {//check if email is used
-                        status.setText("Email have already been used");
-                        break;
-                    } else if (password.equals(null) || password.length() < 6) {//check if password is empty or less than 6 character
-                        status.setText("Please choose a password 6 character or longer");
-                        break;
-                    } else if (password.equalsIgnoreCase(rPassword)) {//check retyped password
-                        status.setText("Password does not match");
-                        break;
-                    } else if (!((RadioButton) findViewById(R.id.radioButton)).isChecked()) {//check term of use agreement
-                        status.setText("Must agree to terms of use");
-                        break;
-                    }
-                    SUsername = username;
-                    SPassword = password;
-                    run();// run the create user method on a separate thread
-                }
-
-            }
         });
 
+    }
+    public void run(){
+        for (short i = 0; i <= 1; i++) {
+
+            if (PUsername.equals("")) {//check if email field is empty
+                toast.setText("Please enter your Email");
+                break;
+            } else if (!validEmail(PUsername)) {// check the email format
+                toast.setText("Email is not valid");
+            } else if (!serverEmailCheckUsed()) {//check if email is used
+                toast.setText("Email have already been used");
+                break;
+            } else if (PPassword.equals("") || PPassword.length() < 6) {//check if password is empty or less than 6 character
+                toast.setText("Please choose a password 6 character or longer");
+                break;
+            } else if (PPassword != PRPassword) {//check retyped password
+               // toast.setText("Password does not match");
+                break;
+            } else if (!((RadioButton) findViewById(R.id.radioButton)).isChecked()) {//check term of use agreement
+                toast.setText("Must agree to terms of use");
+                break;
+            }
+            else if (PPassword == PRPassword) {
+                SUsername = PUsername;
+                SPassword = PPassword;
+            }
+        }
     }
 
     public void submitAccountInfo(String username, String password){
@@ -105,7 +111,7 @@ public class AccountActivity extends AbstractActivity implements Runnable {
     }
 
     public boolean serverEmailCheckUsed(){ //check if email is used
-        boolean serverEmailCheckBooleanReturn = false;// true = used, false = not used
+        boolean serverEmailCheckBooleanReturn = true;// true = used, false = not used
         //Todo: check email with server, also remove ^^ line
         return serverEmailCheckBooleanReturn;
     }
@@ -118,10 +124,4 @@ public class AccountActivity extends AbstractActivity implements Runnable {
         return true;
     }
 
-    @Override
-    public void run() { // runs the DatabaseConnection createUser on different thread
-        DatabaseConnection.createUser(SUsername, SPassword, null);
-        String tempStatus;
-        MainActivity.db = new DatabaseConnection(SUsername,SPassword,null);
-    }
 }

@@ -226,6 +226,13 @@ public class DatabaseConnection {
                     FileHandler.writeFile("", "Login");
                     FileHandler.writeFile("", "Username");
                 }
+                else if (result.substring(0, 11).equals("PHP SUCCESS 1:")){
+                    try {text.setText(result.substring(11));} catch (Exception e){}
+                    Log.e("INCORRECT LOGIN", result);
+                    //Clearing the files so that an incorrect login is not saved
+                    FileHandler.writeFile("", "Login");
+                    FileHandler.writeFile("", "Username");
+                }
                 else {
                     sessionId = result;
                     try{text.setText(successText);}catch (Exception e){}
