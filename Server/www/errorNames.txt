@@ -1,0 +1,23 @@
+Errors
+	0 -> Problems with database
+		PHP ERROR 0: Problems connecting to database: $db->connect_error
+		PHP ERROR 0: Params wouldn't bind!
+		PHP ERROR 0: Execution of database query failed: $query->error
+	1 -> Client side problem not addressed. These should never come up unless someone is trying to use something other than the app.
+		PHP ERROR 1: Some information to create question is missing!
+		PHP ERROR 1: No username or password selected!
+		PHP ERROR 1: No action selected! {The app should to either create or login a user}
+		PHP ERROR 1: Action not possible
+Successes
+	0 -> Requeset has been fully addressed
+		PHP SUCCESS 0: Question made successfuly
+		PHP SUCCESS 0: New Account Created
+	1 -> Username or password was incorrect
+		PHP SUCCESS 1: Incorrect username or password.
+	N\A -> Request returned an ID
+		
+
+
+
+
+
