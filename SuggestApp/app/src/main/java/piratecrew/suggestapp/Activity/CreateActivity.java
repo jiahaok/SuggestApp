@@ -2,6 +2,7 @@ package piratecrew.suggestapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -30,8 +32,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import piratecrew.suggestapp.R;
+import piratecrew.suggestapp.Util.FileHandler;
 
-public class CreateActivity extends AbstractActivity implements Runnable {
+public class CreateActivity extends ResponsiveActivity implements Runnable {
     //variables start here:
     private Spinner spinnerDay, spinnerHour, spinnerMinute;
     int requestCodeRun, resultCodeRun, dayValue, hourValue, minuteValue;
@@ -302,5 +305,20 @@ public class CreateActivity extends AbstractActivity implements Runnable {
         builder.show();
     }
 
+    public void onWebResponse(int code, int isError) {
+        {
+            TextView status = (TextView) findViewById(R.id.status);
+            if(isError == 1){ //If an error came up...
+                if(code == 0)
+                    status.setText("There's a problem with the server. Try again later!");
+                else if (code == 1)
+                    status.setText("There might be a problem with what you submitted.");
+            }
+            else if (isError == 0){//If server succeeded but didn't process request completely
+                if(code == 0)
+                    status.setText("Question Created");
+            }
 
+        }
+    }
 }

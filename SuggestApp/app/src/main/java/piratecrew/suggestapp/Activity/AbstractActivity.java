@@ -15,7 +15,7 @@ import piratecrew.suggestapp.R;
 import piratecrew.suggestapp.Util.FileHandler;
 
 abstract class AbstractActivity extends ActionBarActivity {
-    static protected DatabaseConnection db = null;
+    static protected DatabaseConnection db = new DatabaseConnection();
     //this variable shows if the user is logged in based on data read from files
     public static boolean loggedIn = false;
     Toast toast;

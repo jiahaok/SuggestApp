@@ -15,16 +15,6 @@ import piratecrew.suggestapp.Activity.LoginActivity;
 
 //writes to files and reads files
 public class FileHandler {
-    //singleton code
-    private static FileHandler ourInstance = new FileHandler();
-
-    public static FileHandler getInstance() {
-        return ourInstance;
-    }
-
-    private FileHandler() {}
-
-    public static LoginActivity l = new LoginActivity();
 
     //Writing data to a file
     public static void writeFile(String data, String file){
@@ -64,7 +54,5 @@ public class FileHandler {
         }
         return temp;
     }
-    //The DatabaseConnection class uses this to leave the LoginActivity
-    public static void leave(){l.leave();}
 }
 

@@ -2,29 +2,53 @@ package piratecrew.suggestapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import piratecrew.suggestapp.Util.DatabaseConnection;
 import piratecrew.suggestapp.R;
+import piratecrew.suggestapp.Util.FileHandler;
 
 
-public class AccountActivity extends AbstractActivity implements Runnable{
+public class AccountActivity extends ResponsiveActivity implements Runnable{
 
     //beginning of private variable declaration
     private String PUsername, PPassword,PRPassword;
     private String SUsername,SPassword; // SUsername = send username, SPassword = send password
     //end of private variable declaration
 
+    public void onWebResponse(int code, int isError){
+        TextView status = (TextView) findViewById(R.id.status);
+        if(isError == 1){ //If an error came up...
+            if(code == 0)
+                status.setText("There's a problem with the server. Try again later!");
+            else if (code == 1)
+                status.setText("There might be a problem with what you submitted.");
+        }
+        else if (isError == 0){//If server succeeded but didn't process request completely
+            if(code == 0) {//If server says everything went OK
+                toast = Toast.makeText(getApplicationContext(), "Created Account",
+                        Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+                toast.show();
+                startActivity(new Intent(AccountActivity.this, LoginActivity.class));
+            }
+        }
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
-        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.terms).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*
@@ -48,10 +72,12 @@ public class AccountActivity extends AbstractActivity implements Runnable{
 
                 run();
 
-                DatabaseConnection.createUser(SUsername, SPassword, null);
-                startActivity(new Intent(AccountActivity.this, LoginActivity.class));                }
+                DatabaseConnection.createUser(SUsername, SPassword);
+                startActivity(new Intent(AccountActivity.this, LoginActivity.class));
+            }
 
         });
+
 
     }
     public void run(){

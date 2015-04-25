@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import piratecrew.suggestapp.Activity.MainActivity;
+import piratecrew.suggestapp.Activity.ResponsiveActivity;
 
 /**
  * Created by Brent on 3/30/2015.
@@ -38,46 +39,38 @@ public class DatabaseConnection {
     static private final String WEB_ROOT = "http://www.brentluker.com/";
 
     public static String sessionId = null;
-    static private String successText;
-    static TextView text;
     public static boolean leave;
 
-    public static void createUser(String username, String password, TextView textView){ // method to create user
+    public static void createUser(String username, String password){ // method to create user
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         //Saves the username to a file
-        text = textView;
         FileHandler.writeFile(username, "Username");
         String[] site = {WEB_ROOT+"user.php?action=create"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
-        successText = "Logged In";
         new SendPostRequest().execute(site, data1, data2);
         //If the logout parameter is true, the user is logged out
     }
-    public DatabaseConnection(String username, String password, TextView textView){
+    public void logIn(String username, String password){
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
         //Saves the username to a file
-        text = textView;
         FileHandler.writeFile(username, "Username");
         String[] site = {WEB_ROOT+"user.php?action=login"};
         String[] data1 = {"username", username};
         String[] data2 = {"password", password};
-        successText = "Logged In";
         new SendPostRequest().execute(site, data1, data2);
-        //If the logout parameter is true, the user is logged out
     }
     /**
      * Tests how to make a GET request.
      * @param textView Shows status of GET request
      */
     void getTest(TextView textView){
-        text = textView;
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -88,7 +81,6 @@ public class DatabaseConnection {
         textView.setText("Loading...");
     }
     void postTest(TextView textView){
-        text = textView;
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -116,7 +108,6 @@ public class DatabaseConnection {
 
         String[] session = {"session", sessionId};
 
-        successText = "Question created successfully.";
         Log.i("Date", Long.toString(end));
         new SendPostRequest().execute(host, opt1, opt2, bit1, bit2, endTime, session);
     }
@@ -161,7 +152,6 @@ public class DatabaseConnection {
         }
 
         protected void onPostExecute(String result){
-            text.setText(result);
 
         }
     }
@@ -216,37 +206,27 @@ public class DatabaseConnection {
             return null; //If program gets this far, something didn't work.
         }
         protected void onPostExecute(String result){
-                //NOTE: if result.length() is less then 10, the program
-                //will ignore the second half, preventing an error.
+            //If website submitted an error, start error function
+            if(result.matches("^PHP ERROR ?\\d*:.+$")) {
+                Log.e("SERVER", result);
+                activity.onWebResponse(Integer.parseInt(result.replaceAll("\\D|\\d(?!\\d*:)", "")), 1);
 
-                if(result.length() > 10 && result.substring(0, 10).equals("PHP ERROR:")) {
-                    try {text.setText(result.substring(11));} catch (Exception e){}
-                    Log.e("SERVER ERROR", result);
-                    //Clearing the files so that an incorrect login is not saved
-                    FileHandler.writeFile("", "Login");
-                    FileHandler.writeFile("", "Username");
-                }
-                else if (result.substring(0, 11).equals("PHP SUCCESS 1:")){
-                    try {text.setText(result.substring(11));} catch (Exception e){}
-                    Log.e("INCORRECT LOGIN", result);
-                    //Clearing the files so that an incorrect login is not saved
-                    FileHandler.writeFile("", "Login");
-                    FileHandler.writeFile("", "Username");
-                }
-                else {
-                    sessionId = result;
-                    try{text.setText(successText);}catch (Exception e){}
-                    Log.i("SERVER SUCCESS", successText);
-                    //saves the login, brings user to main page
-                    MainActivity.loggedIn = true;
-                    FileHandler.writeFile(sessionId, "Login");
-                    try {
-                        if (leave == true){
-                            leave = false;
-                            FileHandler.leave();
-                        }
-                    }catch (Exception e){}
-                }
+            }
+            //If website submitted a success, handle it accordingly
+            else if (result.matches("^PHP SUCCESS ?\\d*:.+$")){
+                Log.e("SERVER", result);
+                activity.onWebResponse(Integer.parseInt(result.replaceAll("\\D|\\d(?!\\d*:)", "")), 0);
+            }
+            //If website didn't, do either, it's probably an ID
+            //TODO: create code to check if ID!
+            else {
+                sessionId = result;
+                Log.i("SERVER", "Logged in using id: "+result);
+                FileHandler.writeFile(sessionId, "Login");
+                //saves the login, brings user to main page
+                MainActivity.loggedIn = true;
+                activity.onWebResponse(Integer.parseInt(result), -1);
+            }
         }
     }
     public String BitMapToString(Bitmap bitmap){ // method to convert bitmap to string
@@ -267,4 +247,10 @@ public class DatabaseConnection {
         }
     }
     public boolean loggedOut(){return sessionId == null;}
+
+    //The activity the DatabaseConnection is working with is automatically set by all ResponsiveActivities
+    private static ResponsiveActivity activity = null;
+    public static void setActivity(ResponsiveActivity responsiveActivity){
+        activity = responsiveActivity;
+    }
 }

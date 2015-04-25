@@ -16,16 +16,15 @@ import piratecrew.suggestapp.Util.FileHandler;
 import piratecrew.suggestapp.R;
 
 
-public class LoginActivity extends AbstractActivity {
+public class LoginActivity extends ResponsiveActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FileHandler.l = this;
 
-        final TextView status = (TextView) findViewById(R.id.status);
+
         final EditText username = (EditText) findViewById(R.id.username);
         final EditText password = (EditText) findViewById(R.id.password);
 
@@ -39,7 +38,7 @@ public class LoginActivity extends AbstractActivity {
                 String usernameField = username.getText().toString();
                 String passwordField = password.getText().toString();
 
-                MainActivity.db = new DatabaseConnection(usernameField, passwordField, status);
+                AbstractActivity.db.logIn(usernameField, passwordField);
             }
         });
         //Link to CreateAccount page
@@ -60,12 +59,26 @@ public class LoginActivity extends AbstractActivity {
         return true;
     }
     //Allows DatabaseConnection to send user to the main Page
-    public void leave(){
-        toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileHandler.readFile("Username") + "",
-                Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
-        toast.show();
-        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+    public void onWebResponse(int code, int isError){
+        TextView status = (TextView) findViewById(R.id.status);
+        if(isError == 1){ //If an error came up...
+            if(code == 0)
+                status.setText("There's a problem with the server. Try again later!");
+            else if (code == 1)
+                status.setText("There might be a problem with what you submitted.");
+        }
+        else if (isError == 0){//If server succeeded but didn't process request completely
+            if(code == 1)
+                status.setText("Incorrect username or password.");
+        }
+        else if(isError == -1){//If server returned a session id
+            toast = Toast.makeText(getApplicationContext(), "Logged in as: " + FileHandler.readFile("Username") + "",
+                    Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP | Gravity.CENTER, 0, 180);
+            toast.show();
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        }
+
     }
 
 }
